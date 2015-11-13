@@ -57,6 +57,14 @@ install_resource()
       ;;
   esac
 }
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "AMapNavi/AMapNaviKit.framework/Versions/1.3.2.70b9c1e/Resources/AMap.bundle"
+  install_resource "AMapNavi/AMapNaviKit.framework/Versions/1.3.2.70b9c1e/Resources/AMapNavi.bundle"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "AMapNavi/AMapNaviKit.framework/Versions/1.3.2.70b9c1e/Resources/AMap.bundle"
+  install_resource "AMapNavi/AMapNaviKit.framework/Versions/1.3.2.70b9c1e/Resources/AMapNavi.bundle"
+fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
