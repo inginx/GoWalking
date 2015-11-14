@@ -16,9 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        AMapNaviServices.sharedServices().apiKey = "用户Key"
-        MAMapServices.sharedServices().apiKey = "用户Key"
+        let MAPAPIKey = "c9705494a8a108d527d6b68580008145"
+        MAMapServices.sharedServices().apiKey = MAPAPIKey
+        AMapSearchServices.sharedServices().apiKey = MAPAPIKey
+        AMapNaviServices.sharedServices().apiKey = MAPAPIKey
         return true
     }
 
