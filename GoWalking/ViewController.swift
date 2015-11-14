@@ -53,9 +53,11 @@ class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
     func mapView(mapView: MAMapView!, didUpdateUserLocation userLocation: MAUserLocation!, updatingLocation: Bool) {
         if updatingLocation {
             currentLocation = userLocation.location
-            addRoutePoint(mapView!.userLocation.location)
-            showRoute()
-            
+            if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0)
+            {
+                addRoutePoint(mapView!.userLocation.location)
+                showRoute()
+            }
         }
     }
     
@@ -121,10 +123,7 @@ class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
     {
         var coordiantes: [CLLocationCoordinate2D] = coordinates()
         let polyline = MAPolyline(coordinates: &coordiantes, count: UInt(coordiantes.count))
-        print("show")
-        print(UInt(coordiantes.count))
         mapView!.addOverlay(polyline)
-        print(polyline)
         mapView!.showAnnotations(mapView!.annotations, animated: true)
     }
     
