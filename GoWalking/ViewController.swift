@@ -2,12 +2,13 @@ import UIKit
 
 class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
     
-    var mapView:MAMapView?
     var search:AMapSearchAPI?
     var currentLocation:CLLocation?
 
+    @IBOutlet weak var mapView: MAMapView!
+    
     var locations: NSMutableArray? = []
-    let distanceFilter: CLLocationDistance = 10
+    let distanceFilter: CLLocationDistance = 2
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,14 +19,7 @@ class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
     }
     
     func initMapView(){
-        mapView = MAMapView(frame: self.view.bounds)
-        mapView!.delegate = self
-        self.view.addSubview(mapView!)
-        let compassX = mapView?.compassOrigin.x
-        let scaleX = mapView?.scaleOrigin.x
-        //设置指南针和比例尺的位置
-        mapView?.compassOrigin = CGPointMake(compassX!, 21)
-        mapView?.scaleOrigin = CGPointMake(scaleX!, 21)
+        mapView.delegate = self
         // 启定位
         mapView!.showsUserLocation = true
         // 设置跟随定位模式，将定位点设置成地图中心点
