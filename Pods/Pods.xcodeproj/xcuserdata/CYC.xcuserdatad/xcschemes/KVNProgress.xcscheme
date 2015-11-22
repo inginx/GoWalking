@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7811BACEAE47BA68D4D6705E'
-               BlueprintName = 'Alamofire'
+               BlueprintIdentifier = 'FF0126BAC2312AADC90399C2'
+               BlueprintName = 'KVNProgress'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Alamofire.framework'>
+               BuildableName = 'KVNProgress.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
