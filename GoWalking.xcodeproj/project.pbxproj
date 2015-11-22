@@ -14,6 +14,7 @@
 		0952F0E21BF611EA000905A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0952F0E11BF611EA000905A9 /* Assets.xcassets */; };
 		0952F0E51BF611EA000905A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952F0E31BF611EA000905A9 /* LaunchScreen.storyboard */; };
 		098AA59F1C01AE2600EC6511 /* MaterialKit-0.3.5 in Resources */ = {isa = PBXBuildFile; fileRef = 098AA59E1C01AE2600EC6511 /* MaterialKit-0.3.5 */; };
+		098AA5A31C01AED400EC6511 /* CHWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5A21C01AED400EC6511 /* CHWButton.swift */; };
 		09E81B0C1BF63E7C003385EA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B091BF63E7C003385EA /* AddressBook.framework */; };
 		09E81B0D1BF63E7C003385EA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B0A1BF63E7C003385EA /* AudioToolbox.framework */; };
 		09E81B0E1BF63E7C003385EA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B0B1BF63E7C003385EA /* AVFoundation.framework */; };
@@ -35,7 +36,8 @@
 		0952F0E41BF611EA000905A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0952F0E61BF611EA000905A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		098AA59E1C01AE2600EC6511 /* MaterialKit-0.3.5 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "MaterialKit-0.3.5"; sourceTree = "<group>"; };
-		09E81B081BF63E10003385EA /* AMapDemoSwift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMapDemoSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		098AA5A21C01AED400EC6511 /* CHWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHWButton.swift; sourceTree = "<group>"; };
+		09E81B081BF63E10003385EA /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		09E81B091BF63E7C003385EA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		09E81B0A1BF63E7C003385EA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		09E81B0B1BF63E7C003385EA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -72,7 +74,7 @@
 		0952F0CB1BF611EA000905A9 = {
 			isa = PBXGroup;
 			children = (
-				09E81B081BF63E10003385EA /* AMapDemoSwift-Bridging-Header.h */,
+				09E81B081BF63E10003385EA /* Bridging-Header.h */,
 				0952F0D61BF611EA000905A9 /* GoWalking */,
 				0952F0D51BF611EA000905A9 /* Products */,
 				7BF9B48F4B6E705E94DC2E49 /* Pods */,
@@ -114,6 +116,7 @@
 		B0C144DF1912014DAA130F30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				098AA5A21C01AED400EC6511 /* CHWButton.swift */,
 				098AA59E1C01AE2600EC6511 /* MaterialKit-0.3.5 */,
 				09E81B171BF63EB1003385EA /* libstdc++.6.0.9.tbd */,
 				09E81B151BF63EAA003385EA /* libz.tbd */,
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				098AA5A31C01AED400EC6511 /* CHWButton.swift in Sources */,
 				0952F0DA1BF611EA000905A9 /* ViewController.swift in Sources */,
 				0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */,
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
@@ -370,7 +374,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fzu.cyc.GoWalking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AMapDemoSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -383,7 +387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fzu.cyc.GoWalking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "AMapDemoSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Release;
 		};
