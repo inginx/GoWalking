@@ -20,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MAMapServices.sharedServices().apiKey = MAPAPIKey
         AMapSearchServices.sharedServices().apiKey = MAPAPIKey
         AMapNaviServices.sharedServices().apiKey = MAPAPIKey
+        
+        
+        
+        if inf.username == ""{
+            window=UIWindow(frame: UIScreen.mainScreen().bounds)
+            window!.makeKeyAndVisible()
+            let VC = inf.getVC("LoginVC")
+            window!.rootViewController = VC
+        }
+        
         return true
     }
 

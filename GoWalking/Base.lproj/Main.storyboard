@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="O9r-8o-khq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="O9r-8o-khq">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Running-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -63,6 +64,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="EndTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IWc-Y1-M0N"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -72,13 +76,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="-564"/>
+            <point key="canvasLocation" x="1961" y="-564"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="joC-dJ-l77">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EzH-zh-JP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qjK-Mi-biY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="runningVC" automaticallyAdjustsScrollViewInsets="NO" id="qjK-Mi-biY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9gA-Lc-c7d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -90,13 +93,14 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gWP-fT-Lnn"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EzH-zh-JP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1568" y="-564"/>
         </scene>
         <!--运动-->
         <scene sceneID="6Oe-00-0RC">
             <objects>
-                <viewController title="运动" id="3Y8-UJ-JhK" sceneMemberID="viewController">
+                <viewController title="运动" id="3Y8-UJ-JhK" customClass="StartViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dFK-mn-YgE"/>
                         <viewControllerLayoutGuide type="bottom" id="P1l-wt-Lws"/>
@@ -110,7 +114,7 @@
                                 <animations/>
                                 <state key="normal" title="开始跑步"/>
                                 <connections>
-                                    <segue destination="qjK-Mi-biY" kind="modal" id="Bzy-al-Spx"/>
+                                    <action selector="StartButtonTap:" destination="3Y8-UJ-JhK" eventType="touchUpInside" id="5Dy-1Q-MaB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,35 +131,105 @@
             </objects>
             <point key="canvasLocation" x="1055" y="-564"/>
         </scene>
-        <!--View Controller-->
+        <!--登入-->
         <scene sceneID="EZJ-fQ-mqF">
             <objects>
-                <viewController id="I9p-4W-VIx" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" title="登入" id="I9p-4W-VIx" customClass="LoginViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pQn-3T-opo"/>
                         <viewControllerLayoutGuide type="bottom" id="xIJ-Xl-UTP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hrz-ud-6N9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="YkB-C1-nRS">
-                                <rect key="frame" x="-9" y="0.0" width="329" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="UfB-2z-imi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rb5-kU-X0p" customClass="MKButton" customModule="GoWalking">
+                                <rect key="frame" x="88" y="494" width="200" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="登入">
+                                    <color key="titleShadowColor" red="0.148430541" green="0.3613796293" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleLayerColor">
+                                        <color key="value" red="0.148430541" green="0.3613796293" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shadowAniEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundLayerColor">
+                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LoginTap:" destination="I9p-4W-VIx" eventType="touchUpInside" id="ZUV-LN-nzb"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VMW-Fy-mKr" customClass="MKTextField" customModule="GoWalking">
+                                <rect key="frame" x="80" y="327" width="208" height="50"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ray-Xe-NmW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingPlaceholderEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleLayerColor">
+                                        <color key="value" red="0.148430541" green="0.3613796293" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Lt8-7t-CtK" customClass="MKTextField" customModule="GoWalking">
+                                <rect key="frame" x="80" y="392" width="208" height="50"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="SvI-YR-zNG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="rippleLayerColor">
+                                        <color key="value" red="0.148430541" green="0.3613796293" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shadowAniEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorderEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xIJ-Xl-UTP" firstAttribute="top" secondItem="rb5-kU-X0p" secondAttribute="bottom" constant="143" id="1VY-Z7-9b8"/>
+                            <constraint firstItem="VMW-Fy-mKr" firstAttribute="trailing" secondItem="rb5-kU-X0p" secondAttribute="trailing" id="3PO-Fr-rhg"/>
+                            <constraint firstItem="rb5-kU-X0p" firstAttribute="centerX" secondItem="hrz-ud-6N9" secondAttribute="centerX" id="42O-gF-URu"/>
+                            <constraint firstItem="Lt8-7t-CtK" firstAttribute="leading" secondItem="hrz-ud-6N9" secondAttribute="leadingMargin" constant="64" id="AQf-yg-gdi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lt8-7t-CtK" secondAttribute="trailing" constant="71" id="BlL-4V-vE6"/>
+                            <constraint firstItem="VMW-Fy-mKr" firstAttribute="leading" secondItem="hrz-ud-6N9" secondAttribute="leadingMargin" constant="64" id="EDp-0M-7O1"/>
+                            <constraint firstItem="VMW-Fy-mKr" firstAttribute="top" secondItem="pQn-3T-opo" secondAttribute="bottom" constant="307" id="SWe-EG-Kve"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VMW-Fy-mKr" secondAttribute="trailing" constant="71" id="e2c-3H-Gv7"/>
+                            <constraint firstItem="Lt8-7t-CtK" firstAttribute="top" secondItem="VMW-Fy-mKr" secondAttribute="bottom" constant="15" id="gw2-PW-fuM"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cnA-sR-u7V"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="loginButton" destination="rb5-kU-X0p" id="KQv-MX-vsj"/>
+                        <outlet property="password" destination="Lt8-7t-CtK" id="Ujq-XR-S1t"/>
+                        <outlet property="username" destination="VMW-Fy-mKr" id="hQW-iQ-AbQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxt-If-QtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-396" y="425"/>
+            <point key="canvasLocation" x="-396.5" y="374.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gsj-ew-lQj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="O9r-8o-khq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainVC" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="O9r-8o-khq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Qd3-q4-sSQ">
                         <autoresizingMask key="autoresizingMask"/>

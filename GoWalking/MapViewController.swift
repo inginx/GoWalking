@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
+class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
     
     var search:AMapSearchAPI?
     var currentLocation:CLLocation?
@@ -18,6 +18,13 @@ class ViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
         
     }
     
+    @IBAction func EndTap(sender: AnyObject) {
+        print("endTap")
+        //停止定位
+        mapView.showsUserLocation = false
+        let mainVC = inf.getVC("mainVC")
+        presentViewController(mainVC, animated: true, completion: nil)
+    }
     func initMapView(){
         mapView.delegate = self
         // 启定位
