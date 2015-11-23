@@ -17,6 +17,7 @@ class StartViewController: UIViewController {
     
     func loginCheck(x:Bool){
         if !x{
+            inf.logout()
             let VC = inf.getVC("LoginVC")
             presentViewController(VC, animated: true, completion: nil)
         }

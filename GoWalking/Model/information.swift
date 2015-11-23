@@ -6,7 +6,11 @@
 //  Copyright © 2015年 称一称. All rights reserved.
 //
 import Alamofire
+
 var inf = information()
+let sWidth = UIScreen.mainScreen().bounds.width
+let sHeight = UIScreen.mainScreen().bounds.height
+
 class information: NSObject {
     var username:String! , password:String!;
     var nickname=""
@@ -49,6 +53,18 @@ class information: NSObject {
         }
     }
     
+    func logout(){
+        let x = NSUserDefaults.standardUserDefaults()
+        x.removeObjectForKey("username")
+        x.removeObjectForKey("password")
+        x.removeObjectForKey("nickname")
+        username = ""
+        password = ""
+        nickname = ""
+        
+    }
+    
+
 
 
 
