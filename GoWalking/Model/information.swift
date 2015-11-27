@@ -61,8 +61,23 @@ class information: NSObject {
         username = ""
         password = ""
         nickname = ""
-        
     }
+    
+    func reflash(completation:(()->Void)? = nil){
+        print("reflash")
+        Alamofire.request(.GET, "https://learning2learn.cn/py/gowalking/person").responseJSON(){
+            s in
+            guard let res = s.result.value else{return}
+            if res["success"]as!Bool == false {return}
+            inf.nickname = res["nickname"] as! String
+            self.saveUser()
+            if completation != nil
+            {
+                completation!()
+            }
+        }
+    }
+
     
 
 

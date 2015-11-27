@@ -15,6 +15,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var password: MKTextField!
     
     @IBOutlet weak var loginButton: MKButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.borderWidth = 1

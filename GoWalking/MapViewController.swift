@@ -1,36 +1,36 @@
 import UIKit
 
 class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
+
+
+    @IBOutlet weak var mapView: MAMapView!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var PauseButton: UIButton!
     
     var search:AMapSearchAPI?
     var currentLocation:CLLocation?
-
-    @IBOutlet weak var mapView: MAMapView!
-    
     var locations: NSMutableArray? = []
     let distanceFilter: CLLocationDistance = 2
+    var distance:Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
         initMapView()
         initSearch()
         
     }
     
-    @IBAction func EndTap(sender: AnyObject) {
-        print("endTap")
-        //停止定位
-        mapView.showsUserLocation = false
-        let mainVC = inf.getVC("mainVC")
-        presentViewController(mainVC, animated: true, completion: nil)
-    }
     func initMapView(){
         mapView.delegate = self
         // 启定位
         mapView!.showsUserLocation = true
         // 设置跟随定位模式，将定位点设置成地图中心点
         mapView!.userTrackingMode = MAUserTrackingModeFollow
+        //开启后台定位
+        mapView!.pausesLocationUpdatesAutomatically = true;
+        mapView!.allowsBackgroundLocationUpdates = true;
 
     }
     
@@ -57,6 +57,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0)
             {
                 addRoutePoint(mapView!.userLocation.location)
+                updateSpeed(userLocation)
                 showRoute()
             }
         }
@@ -100,6 +101,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             
             if distance > distanceFilter {
                 locations!.addObject(location!)
+                updateDistance(distance)
             }
         }
         else
@@ -109,6 +111,9 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
 
 
     }
+    
+
+    
     func coordinates() -> [CLLocationCoordinate2D]! {
         var coordinates: [CLLocationCoordinate2D] = []
         if locations!.count > 1 {
@@ -144,9 +149,37 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         return nil
     }
     
+    //Label Updaters
+    func updateDistance(dis:Double){
+        self.distance += dis
+        distanceLabel.text = String(format: "%.2f m", distance)
+    }
+    func updateSpeed(loc:MAUserLocation){
+        var speed = Double(loc.location.speed)
+        if speed < 0 {speed = 0}
+        speedLabel.text = String(format: "%.2f m/s", speed)
+    }
+    func updateTime(){
+        
+    }
     
     
+    //Action Handlers
+    @IBAction func EndTap(sender: AnyObject) {
+        print("endTap")
+        //停止定位
+        mapView.showsUserLocation = false
+        let mainVC = inf.getVC("mainVC")
+        presentViewController(mainVC, animated: true, completion: nil)
+    }
     
+    @IBAction func PauseTap(sender: AnyObject) {
+        if mapView!.showsUserLocation{
+            mapView.showsUserLocation = false
+        } else{
+            mapView.showsUserLocation = true
+        }
+    }
 
 
 }

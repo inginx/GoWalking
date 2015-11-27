@@ -22,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="-6" width="320" height="580"/>
                                 <animations/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Sport!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kng-Po-INE">
-                                <rect key="frame" x="65" y="328" width="225" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Sport!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kng-Po-INE">
+                                <rect key="frame" x="-4" y="292" width="328" height="52"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,20 +33,22 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9GU-dh-dk4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-6" id="1l9-yB-KJz"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="kng-Po-INE" secondAttribute="bottom" constant="185" id="1rE-gK-dOP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kng-Po-INE" secondAttribute="trailing" constant="14" id="2t2-wG-9IF"/>
-                            <constraint firstItem="kng-Po-INE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="308" id="DhP-Pj-uN9"/>
-                            <constraint firstAttribute="trailing" secondItem="9GU-dh-dk4" secondAttribute="trailing" id="KVZ-7M-RBh"/>
-                            <constraint firstItem="kng-Po-INE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="49" id="LqK-bU-bqL"/>
-                            <constraint firstItem="9GU-dh-dk4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="U9i-CM-d1u"/>
-                            <constraint firstItem="9GU-dh-dk4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="pI8-uL-rKp"/>
+                            <constraint firstItem="9GU-dh-dk4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="0U7-HR-rC5"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="kng-Po-INE" secondAttribute="bottom" constant="224" id="2Jl-P0-JW1"/>
+                            <constraint firstItem="kng-Po-INE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="272" id="7PY-NA-BHx"/>
+                            <constraint firstItem="kng-Po-INE" firstAttribute="centerX" secondItem="9GU-dh-dk4" secondAttribute="centerX" id="BnM-88-XDR"/>
+                            <constraint firstItem="9GU-dh-dk4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="LBj-Yv-gI2"/>
+                            <constraint firstItem="kng-Po-INE" firstAttribute="centerX" secondItem="9GU-dh-dk4" secondAttribute="centerX" id="VTx-2V-pwd"/>
+                            <constraint firstItem="9GU-dh-dk4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-6" id="XsG-ee-Krh"/>
+                            <constraint firstItem="kng-Po-INE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ejl-Jk-TwM"/>
+                            <constraint firstItem="kng-Po-INE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="piB-wM-uiR"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="355"/>
+            <point key="canvasLocation" x="27" y="354"/>
         </scene>
     </scenes>
     <resources>

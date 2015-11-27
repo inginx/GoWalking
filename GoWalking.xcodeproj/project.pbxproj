@@ -25,6 +25,9 @@
 		098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */; };
 		098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C21C01CBE400EC6511 /* MKTextField.swift */; };
 		098AA5CB1C020B5300EC6511 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5CA1C020B5300EC6511 /* StartViewController.swift */; };
+		09D169AB1C05FB8000192C40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D169AA1C05FB8000192C40 /* HealthKit.framework */; };
+		09D973201C0488A0000D8403 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9731F1C0488A0000D8403 /* registerViewController.swift */; };
+		09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */; };
 		09E81B0C1BF63E7C003385EA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B091BF63E7C003385EA /* AddressBook.framework */; };
 		09E81B0D1BF63E7C003385EA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B0A1BF63E7C003385EA /* AudioToolbox.framework */; };
 		09E81B0E1BF63E7C003385EA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B0B1BF63E7C003385EA /* AVFoundation.framework */; };
@@ -57,6 +60,10 @@
 		098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
 		098AA5C21C01CBE400EC6511 /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		098AA5CA1C020B5300EC6511 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		09D169AA1C05FB8000192C40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		09D169AC1C05FB8000192C40 /* GoWalking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoWalking.entitlements; sourceTree = "<group>"; };
+		09D9731F1C0488A0000D8403 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
+		09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
 		09E81B081BF63E10003385EA /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		09E81B091BF63E7C003385EA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		09E81B0A1BF63E7C003385EA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -78,6 +85,7 @@
 			files = (
 				098AA5AB1C01CA8200EC6511 /* QuartzCore.framework in Frameworks */,
 				09E81B181BF63EB1003385EA /* libstdc++.6.0.9.tbd in Frameworks */,
+				09D169AB1C05FB8000192C40 /* HealthKit.framework in Frameworks */,
 				09E81B161BF63EAA003385EA /* libz.tbd in Frameworks */,
 				09E81B141BF63E9F003385EA /* CoreGraphics.framework in Frameworks */,
 				09E81B121BF63E98003385EA /* Foundation.framework in Frameworks */,
@@ -113,14 +121,17 @@
 		0952F0D61BF611EA000905A9 /* GoWalking */ = {
 			isa = PBXGroup;
 			children = (
+				09D169AC1C05FB8000192C40 /* GoWalking.entitlements */,
 				098AA5A51C01BC2000EC6511 /* Model */,
 				0952F0D71BF611EA000905A9 /* AppDelegate.swift */,
 				0952F0D91BF611EA000905A9 /* MapViewController.swift */,
 				098AA5A81C01C1C200EC6511 /* LoginViewController.swift */,
 				098AA5CA1C020B5300EC6511 /* StartViewController.swift */,
+				09D9731F1C0488A0000D8403 /* registerViewController.swift */,
 				0952F0DB1BF611EA000905A9 /* Main.storyboard */,
 				0952F0E11BF611EA000905A9 /* Assets.xcassets */,
 				0952F0E31BF611EA000905A9 /* LaunchScreen.storyboard */,
+				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
 			);
 			path = GoWalking;
 			sourceTree = "<group>";
@@ -159,6 +170,7 @@
 		B0C144DF1912014DAA130F30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09D169AA1C05FB8000192C40 /* HealthKit.framework */,
 				09E81B081BF63E10003385EA /* Bridging-Header.h */,
 				0952F0E61BF611EA000905A9 /* Info.plist */,
 				0952F0DE1BF611EA000905A9 /* GoWalking.xcdatamodeld */,
@@ -214,6 +226,14 @@
 					0952F0D31BF611EA000905A9 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = PLN78VXB7A;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -312,9 +332,11 @@
 				098AA5C31C01CBE400EC6511 /* MKButton.swift in Sources */,
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
 				098AA5C41C01CBE400EC6511 /* MKColor.swift in Sources */,
+				09D973201C0488A0000D8403 /* registerViewController.swift in Sources */,
 				098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */,
 				098AA5C51C01CBE400EC6511 /* MKImageView.swift in Sources */,
 				098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */,
+				09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,10 +448,14 @@
 			baseConfigurationReference = 8C87C4FA4706979B6C911268 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GoWalking/GoWalking.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GoWalking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fzu.cyc.GoWalking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Debug;
@@ -439,10 +465,14 @@
 			baseConfigurationReference = 3283696EAFFD6EC709DE1499 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GoWalking/GoWalking.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GoWalking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fzu.cyc.GoWalking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Release;
