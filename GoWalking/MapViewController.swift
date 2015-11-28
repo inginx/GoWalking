@@ -8,17 +8,26 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var PauseButton: UIButton!
+    @IBOutlet weak var averageLabel: UILabel!
     
     var search:AMapSearchAPI?
     var currentLocation:CLLocation?
     var locations: NSMutableArray? = []
     let distanceFilter: CLLocationDistance = 2
     var distance:Double = 0
+    var seconds:Int = 0
+    var AvaiblePoints:Int = 0
+    var timer1:NSTimer?
+    var startTime:NSDate!
+    var endTime:NSDate!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initMapView()
         initSearch()
+        计时Timer()
+        startTime = NSDate()
         
     }
     
@@ -54,11 +63,13 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     func mapView(mapView: MAMapView!, didUpdateUserLocation userLocation: MAUserLocation!, updatingLocation: Bool) {
         if updatingLocation {
             currentLocation = userLocation.location
-            if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0)
-            {
-                addRoutePoint(mapView!.userLocation.location)
-                updateSpeed(userLocation)
-                showRoute()
+            if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0 ){
+                if(AvaiblePoints > 3){
+                    addRoutePoint(mapView!.userLocation.location)
+                    updateSpeed(userLocation)
+                    showRoute()
+                }
+                else {AvaiblePoints++}
             }
         }
     }
@@ -128,11 +139,18 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     func showRoute()
     {
         var coordiantes: [CLLocationCoordinate2D] = coordinates()
-        let polyline = MAPolyline(coordinates: &coordiantes, count: UInt(coordiantes.count))
+        let pointcount = coordiantes.count
+        if pointcount<2 {return}
+        var newCoord:[CLLocationCoordinate2D] = [coordiantes[pointcount-2],coordiantes[pointcount-1]]
+        let polyline = MAPolyline(coordinates: &newCoord, count: 2)
         mapView!.addOverlay(polyline)
         mapView!.showAnnotations(mapView!.annotations, animated: true)
     }
     
+    
+    func 添加标记点(){
+        
+    }
     
     //MARK:- MAMapViewDelegate
     
@@ -140,7 +158,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     {
         if overlay.isKindOfClass(MAPolyline){
             let polylineView:MAPolylineView = MAPolylineView(overlay: overlay)
-            polylineView.strokeColor = UIColor.purpleColor()
+            polylineView.strokeColor = UIColor.blueColor()
             polylineView.lineWidth = 5.0
             polylineView.lineJoinType = kMALineJoinRound;//连接类型
             polylineView.lineCapType = kMALineCapRound;//端点类型
@@ -149,7 +167,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         return nil
     }
     
-    //Label Updaters
+    //MARK:- Label Updaters
     func updateDistance(dis:Double){
         self.distance += dis
         distanceLabel.text = String(format: "%.2f m", distance)
@@ -160,26 +178,77 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         speedLabel.text = String(format: "%.2f m/s", speed)
     }
     func updateTime(){
-        
+        let min=seconds/60;
+        let hour=min/60;
+        timeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,seconds%60)
+    }
+    func uodateAverage(){
+        let avg = distance / Double(seconds)
+        averageLabel.text = String(format: "%.2f m/s", avg)
+    }
+    //MARK:- timers
+    func secondsAdder(){
+        self.seconds += 1
+        updateTime()
+        uodateAverage()
+    }
+    func 计时Timer(enable:Bool = true){
+        if enable{
+        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "secondsAdder", userInfo: nil, repeats: true)
+        }
+        else{
+            timer1?.invalidate()
+            timer1 = nil
+        }
     }
     
     
-    //Action Handlers
+    //MARK:- Action Handlers
     @IBAction func EndTap(sender: AnyObject) {
         print("endTap")
         //停止定位
         mapView.showsUserLocation = false
+        endTime = NSDate()
+        save()
         let mainVC = inf.getVC("mainVC")
         presentViewController(mainVC, animated: true, completion: nil)
     }
     
     @IBAction func PauseTap(sender: AnyObject) {
         if mapView!.showsUserLocation{
+            AvaiblePoints = 0
             mapView.showsUserLocation = false
+            计时Timer(false)
         } else{
             mapView.showsUserLocation = true
+            计时Timer(true)
         }
     }
 
+    //MARK:- 保存
+    func save(){
+        let current = RunningData()
+        current.locations = locations
+        current.startTime = startTime
+        current.endTime = endTime
+        current.distance = distance
+        current.averageSpeed = distance/Double(seconds)
+        current.kind = "run"
+        
+        let x = NSUserDefaults.standardUserDefaults()
+        var history:[RunningData] = []
+        var historyData:NSData
+        if let a = x.objectForKey("history") as? NSData {
+            history = NSKeyedUnarchiver.unarchiveObjectWithData(a) as![RunningData]
+        } else {
+            history = []
+        }
+        
+        history.append(current)
+        historyData = NSKeyedArchiver.archivedDataWithRootObject(history)
+        x.setObject(historyData, forKey: "history")
+        
+
+    }
 
 }

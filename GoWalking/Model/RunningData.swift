@@ -6,8 +6,35 @@
 //  Copyright © 2015年 称一称. All rights reserved.
 //
 
-import Cocoa
 
 class RunningData: NSObject {
+    var locations: NSMutableArray! = []
+    var startTime:NSDate!
+    var endTime:NSDate!
+    var distance:Double = 0
+    var averageSpeed:Double!
+    var kind:String!
+    
+    override init() {
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init()
+        self.locations = aDecoder.decodeObjectForKey("locations")  as! NSMutableArray
+        self.startTime = aDecoder.decodeObjectForKey("startTime")as! NSDate
+        self.endTime = aDecoder.decodeObjectForKey("endTime")  as! NSDate
+        self.distance = aDecoder.decodeObjectForKey("distance")  as! Double
+        self.kind = aDecoder.decodeObjectForKey("kind")  as! String
+
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder){
+        aCoder.encodeObject(self.locations, forKey: "locations")
+        aCoder.encodeObject(self.endTime, forKey: "endTime")
+        aCoder.encodeObject(self.startTime, forKey: "startTime")
+        aCoder.encodeObject(self.distance, forKey: "distance")
+        aCoder.encodeObject(self.kind, forKey: "kind")
+    }
 
 }

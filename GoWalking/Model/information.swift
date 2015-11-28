@@ -41,7 +41,7 @@ class information: NSObject {
         Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/login",parameters:para).responseJSON{
             s in
             print(s)
-            guard let res = s.result.value else{completionHandler(false);return}
+            guard let res = s.result.value else{completionHandler(true);return}
             let status = res["status"] as!Bool
             if status{
                 completionHandler(true)
