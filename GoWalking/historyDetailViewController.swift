@@ -13,10 +13,10 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     @IBOutlet weak var mapview: MAMapView!
     @IBOutlet weak var startTimelabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
-    
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var spendTimeLabel: UILabel!
     @IBOutlet weak var averageSpeedLabel: UILabel!
+    @IBOutlet weak var stepsLabel: UILabel!
     
     
     var data:RunningData!
@@ -34,9 +34,10 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     func initMap(){
         mapview.delegate = self
         mapview.rotateCameraEnabled = false
-        let x = data.locations.lastObject as! CLLocation
-        print(x.coordinate.latitude)
-        mapview.centerCoordinate = x.coordinate
+        if data.locations.count > 1{
+            let x = data.locations.lastObject as! CLLocation
+            mapview.centerCoordinate = x.coordinate
+        }
         mapview.setZoomLevel(17, animated: false)
     }
     
@@ -48,8 +49,7 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         distanceLabel.text = String(format: "%.2f m",data.distance)
         spendTimeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
         averageSpeedLabel.text = String(format: "%.2f m/s",data.distance/Double(data.seconds) )
-
-
+        stepsLabel.text = "\(data.steps)步"
     }
     
 

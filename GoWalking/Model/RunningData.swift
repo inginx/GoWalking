@@ -14,6 +14,7 @@ class RunningData: NSObject {
     var distance:Double = 0
     var seconds:Int! = 0
     var kind:String!
+    var steps:Int!
     
     override init() {
         
@@ -27,6 +28,7 @@ class RunningData: NSObject {
         self.distance = aDecoder.decodeObjectForKey("distance")  as! Double
         self.seconds = aDecoder.decodeObjectForKey("seconds")  as! Int
         self.kind = aDecoder.decodeObjectForKey("kind")  as! String
+        self.steps = aDecoder.decodeObjectForKey("steps")  as! Int
 
     }
     
@@ -37,6 +39,8 @@ class RunningData: NSObject {
         aCoder.encodeObject(self.distance, forKey: "distance")
         aCoder.encodeObject(self.seconds, forKey: "seconds")
         aCoder.encodeObject(self.kind, forKey: "kind")
+        aCoder.encodeObject(self.steps, forKey: "steps")
+
     }
 
 }

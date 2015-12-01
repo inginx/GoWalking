@@ -17,7 +17,13 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         data = NSUserDefaults.standardUserDefaults()
+        self.automaticallyAdjustsScrollViewInsets = false
         getData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
 //MARK: Datas

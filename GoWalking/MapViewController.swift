@@ -1,4 +1,6 @@
 import UIKit
+import CoreMotion
+import KVNProgress
 
 class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
 
@@ -10,17 +12,22 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     @IBOutlet weak var PauseButton: UIButton!
     @IBOutlet weak var averageLabel: UILabel!
     
+    @IBOutlet weak var setpsLabel: UILabel!
     var search:AMapSearchAPI?
     var currentLocation:CLLocation?
-    var locations: NSMutableArray? = []
+    var locations: NSMutableArray! = []
     let distanceFilter: CLLocationDistance = 2
     var distance:Double = 0
     var seconds:Int = 0
     var AvaiblePoints:Int = 0
     var timer1:NSTimer?
-    var startTime:NSDate!
-    var endTime:NSDate!
-    
+    var startTime:NSDate! = NSDate()
+    var endTime:NSDate! = NSDate()
+    var steps:Int = 0
+    var pauseStep:Int = 0
+    var pauseTime:NSDate = NSDate()
+    let pedometer = CMPedometer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +35,12 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         initSearch()
         计时Timer()
         startTime = NSDate()
-        
+        StartReadStep()
     }
+    
+
+    
+
     
     func initMapView(){
         mapView.delegate = self
@@ -203,7 +214,38 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             timer1 = nil
         }
     }
+//MARK:- 计步器
+    func StartReadStep(){
+        if CMPedometer.isStepCountingAvailable() != true{
+            self.setpsLabel.text = "传感器错误"
+            return
+        }
+        pedometer.startPedometerUpdatesFromDate(startTime){
+            data, error in
+            if error == nil{
+//                print(data!.numberOfSteps)
+                dispatch_async(dispatch_get_main_queue(), {
+                    print("\(self.pauseStep),\(data!.numberOfSteps)")
+                    self.steps = Int(data!.numberOfSteps) - self.pauseStep
+                    self.setpsLabel.text = "\(self.steps)步"
+                });
+            }
+        }
+    }
     
+    func stopReadStep(){
+        pedometer.stopPedometerUpdates()
+    }
+    
+    func pauseTimeCount(){
+        pedometer.queryPedometerDataFromDate(pauseTime, toDate: NSDate()){
+            data,err in
+            if err != nil {return}
+            dispatch_async(dispatch_get_main_queue(), {
+                self.pauseStep += Int((data?.numberOfSteps)!)
+            });
+        }
+    }
     
     //MARK:- Action Handlers
     @IBAction func EndTap(sender: AnyObject) {
@@ -212,6 +254,8 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         mapView.showsUserLocation = false
         endTime = NSDate()
         save()
+        KVNProgress.showSuccessWithStatus("保存成功")
+        
 //        let mainVC = inf.getVC("mainVC")
 //        presentViewController(mainVC, animated: true, completion: nil)
         dismissViewControllerAnimated(true, completion: nil)
@@ -222,9 +266,13 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             AvaiblePoints = 0
             mapView.showsUserLocation = false
             计时Timer(false)
+            pauseTime = NSDate()
+            stopReadStep()
         } else{
             mapView.showsUserLocation = true
+            pauseTimeCount()
             计时Timer(true)
+            StartReadStep()
         }
     }
 
@@ -237,6 +285,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         current.distance = distance
         current.seconds = self.seconds
         current.kind = "run"
+        current.steps = self.steps
         let x = NSUserDefaults.standardUserDefaults()
         var history:[RunningData] = []
         var historyData:NSData
