@@ -37,9 +37,11 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         mapView!.showsUserLocation = true
         // 设置跟随定位模式，将定位点设置成地图中心点
         mapView!.userTrackingMode = MAUserTrackingModeFollow
+        mapView.rotateCameraEnabled = false
         //开启后台定位
         mapView!.pausesLocationUpdatesAutomatically = true;
         mapView!.allowsBackgroundLocationUpdates = true;
+        
 
     }
     
@@ -210,8 +212,9 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         mapView.showsUserLocation = false
         endTime = NSDate()
         save()
-        let mainVC = inf.getVC("mainVC")
-        presentViewController(mainVC, animated: true, completion: nil)
+//        let mainVC = inf.getVC("mainVC")
+//        presentViewController(mainVC, animated: true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func PauseTap(sender: AnyObject) {
@@ -232,9 +235,8 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         current.startTime = startTime
         current.endTime = endTime
         current.distance = distance
-        current.averageSpeed = distance/Double(seconds)
+        current.seconds = self.seconds
         current.kind = "run"
-        
         let x = NSUserDefaults.standardUserDefaults()
         var history:[RunningData] = []
         var historyData:NSData
@@ -247,8 +249,6 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         history.append(current)
         historyData = NSKeyedArchiver.archivedDataWithRootObject(history)
         x.setObject(historyData, forKey: "history")
-        
-
     }
 
 }

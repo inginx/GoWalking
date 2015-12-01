@@ -33,13 +33,23 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
 
     func initMap(){
         mapview.delegate = self
-        
+        mapview.rotateCameraEnabled = false
+        let x = data.locations.lastObject as! CLLocation
+        print(x.coordinate.latitude)
+        mapview.centerCoordinate = x.coordinate
+        mapview.setZoomLevel(17, animated: false)
     }
     
     func initLabel(){
+        let min=data.seconds/60;
+        let hour=min/60;
         startTimelabel.text = nsdateToString(data.startTime)
         endTimeLabel.text = nsdateToString(data.endTime)
         distanceLabel.text = String(format: "%.2f m",data.distance)
+        spendTimeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
+        averageSpeedLabel.text = String(format: "%.2f m/s",data.distance/Double(data.seconds) )
+
+
     }
     
 

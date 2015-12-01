@@ -116,6 +116,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let mainVC = inf.getVC("mainVC")
         self.presentViewController(mainVC, animated: true, completion: nil)
     }
+    
+    @IBAction func close(sender:UIStoryboardSegue) {
+        
+    }
 }
 
 

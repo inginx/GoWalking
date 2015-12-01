@@ -12,7 +12,7 @@ class RunningData: NSObject {
     var startTime:NSDate!
     var endTime:NSDate!
     var distance:Double = 0
-    var averageSpeed:Double!
+    var seconds:Int! = 0
     var kind:String!
     
     override init() {
@@ -25,6 +25,7 @@ class RunningData: NSObject {
         self.startTime = aDecoder.decodeObjectForKey("startTime")as! NSDate
         self.endTime = aDecoder.decodeObjectForKey("endTime")  as! NSDate
         self.distance = aDecoder.decodeObjectForKey("distance")  as! Double
+        self.seconds = aDecoder.decodeObjectForKey("seconds")  as! Int
         self.kind = aDecoder.decodeObjectForKey("kind")  as! String
 
     }
@@ -34,6 +35,7 @@ class RunningData: NSObject {
         aCoder.encodeObject(self.endTime, forKey: "endTime")
         aCoder.encodeObject(self.startTime, forKey: "startTime")
         aCoder.encodeObject(self.distance, forKey: "distance")
+        aCoder.encodeObject(self.seconds, forKey: "seconds")
         aCoder.encodeObject(self.kind, forKey: "kind")
     }
 
