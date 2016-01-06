@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if inf.username == ""{
             window=UIWindow(frame: UIScreen.mainScreen().bounds)
             window!.makeKeyAndVisible()
-            let VC = inf.getVC("LoginVC")
+            let VC = inf.getVC("LoginNav")
             window!.rootViewController = VC
         }
         

@@ -10,71 +10,109 @@ import UIKit
 import KVNProgress
 import Alamofire
 
+protocol registerviewDelegate{
+    func regist()
+    func resignResponder()
+}
+
 class registerViewController: UIViewController {
 
-    @IBOutlet weak var usernameLabel: UITextField!
-    @IBOutlet weak var passwordLabel: UITextField!
-    @IBOutlet weak var nicknameLabel: UITextField!
-    @IBOutlet weak var mailLabel: UITextField!
-    @IBOutlet weak var loginButton: MKButton!
+//    @IBOutlet weak var loginButton: MKButton!
+
+    var a = 5;
+    var registerTable:registerviewDelegate?
+//    var 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.enabled = false
-        loginButton.layer.borderWidth = 1
+//        loginButton.enabled = false
+//        loginButton.layer.borderWidth = 1
+        self.automaticallyAdjustsScrollViewInsets = false
+//let x = containView.viewWithTag(2) as! RegistTableViewController
+//        self.registerTable = x
+
+
     }
-    
-    @IBAction func textfieldVauleChange(sender: AnyObject) {
-        if usernameLabel.text?.characters.count > 3 &&
-           passwordLabel.text?.characters.count > 5 &&
-        nicknameLabel.text?.characters.count > 3 &&
-        mailLabel.text?.characters.count > 3 &&
-        mailLabel.text?.rangeOfString("@") != nil
-        {
-            loginButton.enabled = true
-        }
-        else {loginButton.enabled = false}
-    }
-    
+
+//    @IBAction func textfieldVauleChange(sender: AnyObject) {
+//        if usernameLabel.text?.characters.count > 3 &&
+//           passwordLabel.text?.characters.count > 5 &&
+//        nicknameLabel.text?.characters.count > 3 &&
+//        mailLabel.text?.characters.count > 3 &&
+//        mailLabel.text?.rangeOfString("@") != nil
+//        {
+//            loginButton.enabled = true
+//        }
+//        else {loginButton.enabled = false}
+//    }
+//    
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        resignResponder()
+        registerTable?.resignResponder()
+        print("test start")
+        print(a)
     }
+//    @IBAction func moveUp(sender: AnyObject) {
+//        let dis = sHeight - loginButton.frame.origin.y-loginButton.frame.size.height-216.0-10-36
+//        if dis<0.0{
+//            UIView.animateWithDuration(0.3){
+//                self.view.frame=CGRect(x: 0,y: dis,width: sWidth,height: sHeight)
+//            }
+//        }
+//
+//    }
+//
+//    func moveDown(){
+//        UIView.animateWithDuration(0.3){
+//            self.view.frame=CGRect(x: 0,y: 0,width: sWidth,height: sHeight)
+//        }
+//    }
+
+
+}
+
+
+class RegistTableViewController: UITableViewController,UITextViewDelegate ,registerviewDelegate{
+
+
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var nickname: UITextField!
+    @IBOutlet weak var mail: UITextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+//        let x = inf.getVC("register") as! registerViewController
+//        print(x)
+//        x.a = 23
+//        let x = self.parentViewController as! registerViewController
+//        x.registerTable = self
+        self.automaticallyAdjustsScrollViewInsets = false
+    }
+
+
+    
+
     func resignResponder() {
-        usernameLabel.resignFirstResponder()
-        passwordLabel.resignFirstResponder()
-        nicknameLabel.resignFirstResponder()
-        mailLabel.resignFirstResponder()
-        moveDown()
-    }
-    @IBAction func moveUp(sender: AnyObject) {
-        let dis = sHeight - loginButton.frame.origin.y-loginButton.frame.size.height-216.0-10-36
-        if dis<0.0{
-            UIView.animateWithDuration(0.3){
-                self.view.frame=CGRect(x: 0,y: dis,width: sWidth,height: sHeight)
-            }
-        }
-
+        username.resignFirstResponder()
+        password.resignFirstResponder()
+        nickname.resignFirstResponder()
+        mail.resignFirstResponder()
     }
 
-    func moveDown(){
-        UIView.animateWithDuration(0.3){
-            self.view.frame=CGRect(x: 0,y: 0,width: sWidth,height: sHeight)
-        }
-    }
-    @IBAction func LoginButtonTap(sender: AnyObject) {
-        resignResponder()
-        let username = usernameLabel.text!
-        let password = passwordLabel.text!
-        let nickname = nicknameLabel.text!
-        let mail = mailLabel.text!
-        
+
+    func regist() {
+        let user = username.text!
+        let pwd = password.text!
+        let nick = nickname.text!
+        let email = mail.text!
         let userData =
         [
-            "username":username,
-            "pwd":password,
-            "nickname":nickname,
-            "email":mail
+            "username":user,
+            "pwd":pwd,
+            "nickname":nick,
+            "email":email
         ]
-        
+
         KVNProgress.showWithStatus("请稍后")
         Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/register",parameters:userData).responseJSON{
             s in
@@ -87,16 +125,14 @@ class registerViewController: UIViewController {
             else {
                 KVNProgress.showSuccessWithStatus(res["Msg"]as!String){
                     s in
-                    inf.username = username
-                    inf.password = password
-                    inf.nickname = nickname
+                    inf.username = user
+                    inf.password = pwd
+                    inf.nickname = nick
                     let VC = inf.getVC("mainVC")
                     self.presentViewController(VC, animated: true, completion: nil)
                 }
             }
         }
     }
-    
-    
-    
+
 }
