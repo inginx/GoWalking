@@ -13,8 +13,7 @@ class SetingViewController: UIViewController ,UITableViewDelegate,UITableViewDat
     
     @IBAction func logoutTap(sender: AnyObject) {
         inf.logout()
-        let vc = inf.getVC("LoginVC")
-        presentViewController(vc, animated: true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int

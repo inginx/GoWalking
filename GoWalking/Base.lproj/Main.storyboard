@@ -203,10 +203,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b6k-h2-hMC" customClass="MKButton" customModule="GoWalking" customModuleProvider="target">
-                                <rect key="frame" x="92" y="433" width="191" height="46"/>
+                                <rect key="frame" x="111" y="317" width="152" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25490196078431371" green="0.69019607843137254" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="注册">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -214,12 +215,19 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" id="kZ2-al-Sde">
-                                <rect key="frame" x="0.0" y="98" width="375" height="181"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="176"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="pQz-PZ-2qf" kind="embed" id="spb-3R-HeW"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rm6-iQ-Q7x">
+                                <rect key="frame" x="170" y="331" width="34" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -239,7 +247,7 @@
             <objects>
                 <tableViewController id="pQz-PZ-2qf" customClass="RegistTableViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4QL-Io-VRS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -259,17 +267,11 @@
                                                     <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="长度4位以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="Uf1-OZ-wTE">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="长度4位以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="Uf1-OZ-wTE">
                                                     <rect key="frame" x="72" y="0.0" width="303" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="EditBeginddd:" destination="pQz-PZ-2qf" eventType="editingDidBegin" id="xMX-FD-vVc"/>
-                                                        <action selector="EditEnd:" destination="pQz-PZ-2qf" eventType="editingDidEnd" id="eSk-fn-t4z"/>
-                                                        <action selector="textChanged:" destination="pQz-PZ-2qf" eventType="editingChanged" id="hz5-CG-s2X"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -288,17 +290,11 @@
                                                     <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="长度6位及以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="KYM-l5-SIj">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="长度6位及以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="KYM-l5-SIj">
                                                     <rect key="frame" x="72" y="0.0" width="303" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="EditBeginddd:" destination="pQz-PZ-2qf" eventType="editingDidBegin" id="Mba-lx-n6U"/>
-                                                        <action selector="EditEnd:" destination="pQz-PZ-2qf" eventType="editingDidEnd" id="M1S-D5-Apr"/>
-                                                        <action selector="textChanged:" destination="pQz-PZ-2qf" eventType="editingChanged" id="lbD-gJ-y74"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -317,17 +313,11 @@
                                                     <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="长度3位以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="i25-kd-kMo">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="长度3位以上" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="i25-kd-kMo">
                                                     <rect key="frame" x="72" y="0.0" width="303" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="EditBeginddd:" destination="pQz-PZ-2qf" eventType="editingDidBegin" id="aVc-71-X54"/>
-                                                        <action selector="EditEnd:" destination="pQz-PZ-2qf" eventType="editingDidEnd" id="rqp-8a-0Ce"/>
-                                                        <action selector="textChanged:" destination="pQz-PZ-2qf" eventType="editingChanged" id="C0o-cB-YlD"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -346,17 +336,11 @@
                                                     <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="支持主流邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="c0Y-oE-2OH">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支持主流邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="c0Y-oE-2OH">
                                                     <rect key="frame" x="72" y="0.0" width="303" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" red="0.84162384859999995" green="0.87514022440000006" blue="0.86996500330000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                    <connections>
-                                                        <action selector="EditBeginddd:" destination="pQz-PZ-2qf" eventType="editingDidBegin" id="26o-Na-qc3"/>
-                                                        <action selector="EditEnd:" destination="pQz-PZ-2qf" eventType="editingDidEnd" id="Zw8-25-Bhd"/>
-                                                        <action selector="textChanged:" destination="pQz-PZ-2qf" eventType="editingChanged" id="p42-qi-bDd"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -498,7 +482,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historycell" rowHeight="98" id="OTL-36-OxH">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OTL-36-OxH" id="gMs-65-fu9">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="97"/>
@@ -801,15 +785,12 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="请输入用户名" textAlignment="natural" minimumFontSize="17" id="hMX-3L-sqF">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" textAlignment="natural" minimumFontSize="17" id="hMX-3L-sqF">
                                                     <rect key="frame" x="84" y="0.0" width="291" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="EditBeginddd:" destination="AuP-co-viO" eventType="editingDidBegin" id="hZG-4a-Jbh"/>
-                                                        <action selector="EditEnd:" destination="AuP-co-viO" eventType="editingDidEnd" id="pNp-9g-hea"/>
                                                         <action selector="textVauleChange:" destination="AuP-co-viO" eventType="editingChanged" id="orZ-3t-3jv"/>
                                                         <outlet property="delegate" destination="AuP-co-viO" id="a5V-VD-YDH"/>
                                                     </connections>
@@ -824,15 +805,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="..." textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" id="KiM-lV-Jqx">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" id="KiM-lV-Jqx">
                                                     <rect key="frame" x="84" y="0.0" width="291" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                     <connections>
-                                                        <action selector="EditBeginddd:" destination="AuP-co-viO" eventType="editingDidBegin" id="dVp-ix-ZI6"/>
-                                                        <action selector="EditEnd:" destination="AuP-co-viO" eventType="editingDidEnd" id="S1f-kG-N61"/>
                                                         <outlet property="delegate" destination="AuP-co-viO" id="uRz-vX-N63"/>
                                                     </connections>
                                                 </textField>
