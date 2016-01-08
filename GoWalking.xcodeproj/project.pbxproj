@@ -109,7 +109,6 @@
 		09145D1A1C085C7E00BC3485 /* users */ = {
 			isa = PBXGroup;
 			children = (
-				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
 				098AA5A81C01C1C200EC6511 /* LoginViewController.swift */,
 				09D9731F1C0488A0000D8403 /* registerViewController.swift */,
 			);
@@ -148,6 +147,7 @@
 			children = (
 				09D169AC1C05FB8000192C40 /* GoWalking.entitlements */,
 				0952F0D71BF611EA000905A9 /* AppDelegate.swift */,
+				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
 				098AA5A51C01BC2000EC6511 /* Model */,
 				09145D1A1C085C7E00BC3485 /* users */,
 				09145D1F1C09460D00BC3485 /* History */,

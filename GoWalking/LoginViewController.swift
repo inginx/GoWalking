@@ -9,117 +9,124 @@
 import UIKit
 import KVNProgress
 import Alamofire
-class LoginViewController: UIViewController,UITextFieldDelegate {
-    @IBOutlet weak var username: MKTextField!
+
+
+
+class LoginViewController: UIViewController ,ContainButtonDelegate{
+
+
+    var x:LoginViewTable!
     
-    @IBOutlet weak var password: MKTextField!
     
-    @IBOutlet weak var loginButton: MKButton!
-    
-    
-    
+    @IBOutlet weak var loginButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.borderWidth = 1
         loginButton.enabled = false
+        self.navigationController?.navigationBar.barTintColor = navBarColor
+        self.navigationController?.navigationBar.tintColor = navBarTextColor
+        self.navigationController?.navigationBar.titleTextAttributes = navTitleAttribute
+        x = childViewControllers.last as!LoginViewTable
+        x.parent = self
 
     }
     
     
+
     @IBAction func LoginTap(sender: AnyObject) {
-        KVNProgress.showWithStatus("加载中")
-        let user = (username.text)!
-        let pwd = (password.text)!
-        
-        登录(user,pwd: pwd)
+        x.login()
     }
-    
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
-        if textField.tag == 1{
-            password.becomeFirstResponder()
-            return true
-        }
-        moveDown()
-        password.resignFirstResponder()
-        return true
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        username.resignFirstResponder()
-        password.resignFirstResponder()
-        moveDown()
-    }
-    
-    @IBAction func moveUp(sender: MKTextField) {
-        let dis = sHeight - loginButton.frame.origin.y-loginButton.frame.size.height-216.0-10
-        if dis<0.0{
-            UIView.animateWithDuration(0.3){
-                self.view.frame=CGRect(x: 0,y: dis,width: sWidth,height: sHeight)
-            }
-        }
 
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        print(loginButton.enabled)
+        x.resignFirstResponders()
+        moveDown()
     }
     
+    func moveUp(){
+//        let dis = sHeight - loginButton.frame.origin.y-loginButton.frame.size.height-216.0-10
+//        if dis<0.0{
+//            UIView.animateWithDuration(0.3){
+//                self.view.frame=CGRect(x: 0,y: dis,width: sWidth,height: sHeight)
+//            }
+//        }
+    }
+
     func moveDown(){
         UIView.animateWithDuration(0.3){
             self.view.frame=CGRect(x: 0,y: 0,width: sWidth,height: sHeight)
         }
     }
 
+    func enableButon(){
+        loginButton.enabled = true
+    }
+    func disableButton(){
+        loginButton.enabled = false
+    }
 
-    @IBAction func textVauleChange(sender: MKTextField) {
-        if username.text?.characters.count > 3 && password.text?.characters.count >= 3{
-            loginButton.enabled = true
+
+    @IBAction func close(sender:UIStoryboardSegue) {}
+}
+
+
+class LoginViewTable: UITableViewController,UITextViewDelegate {
+    @IBOutlet weak var usernamefield: UITextField!
+    @IBOutlet weak var passwordfield: UITextField!
+    var parent:ContainButtonDelegate?
+
+    func resignFirstResponders(){
+        usernamefield.resignFirstResponder()
+        passwordfield.resignFirstResponder()
+    }
+    @IBAction func textVauleChange(sender: AnyObject) {
+        if usernamefield.text?.characters.count > 3 && passwordfield.text?.characters.count > 3{
+            parent?.enableButon()
         }
         else {
-            loginButton.enabled = false
+            parent?.disableButton()
+        }
+    }
+
+    @IBAction func EditBeginddd(sender: AnyObject) {
+        (sender as! UITextField).text = ""
+    }
+
+
+    @IBAction func EditEnd(sender: UITextField) {
+        if sender.text != "" {return}
+        switch sender.tag{
+        case 201:sender.text = "请输入用户名"
+        case 202:sender.text = "..."
+        default:break
         }
     }
     
-    func 登录(username:String,pwd:String){
-        let para = ["user":username,"pwd":pwd]
-        print("开始登录")
-        Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/login",parameters:para).responseJSON(){
-            s in
-            print(s)
-            guard let  res = s.result.value else{ KVNProgress.showErrorWithStatus("网络故障");return}
-            let status = res["status"] as! Bool;
-            if status == true{
-                inf.username = (self.username.text)!
-                inf.password = (self.password.text)!
-                self.获取详细信息()
-            }
-            else {
-                let error = res["Msg"] as! String
-                KVNProgress.showErrorWithStatus(error)
-            }
+
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        if textField.tag == 201{
+            passwordfield.becomeFirstResponder()
+            return true
+        }
+        parent?.moveDown()
+        passwordfield.resignFirstResponder()
+        return true
+    }
+
+
+    func login(){
+        KVNProgress.showWithStatus("登录中")
+        inf.登录(usernamefield.text!, pwd: passwordfield.text!){
+            inf.username = self.usernamefield.text!
+            inf.password = self.passwordfield.text!
+            inf.saveUser()
+            KVNProgress.dismiss()
+            let vc = inf.getVC("mainVC")
+            self.presentViewController(vc, animated: true, completion: nil)
         }
     }
-    
-    func 获取详细信息(){
-        print("获取详细信息")
-        Alamofire.request(.GET, "https://learning2learn.cn/py/gowalking/person").responseJSON(){
-            s in
-            
-            print(s)
-            guard let res = s.result.value else{KVNProgress.showErrorWithStatus("服务器故障");return}
-            if res["success"]as!Bool == false {KVNProgress.showErrorWithStatus("获取信息失败");return}
-            inf.nickname = res["nickname"] as! String
-            self.登录完成()
-        }
-        
-    }
-    func 登录完成(){
-        inf.saveUser()
-        KVNProgress.dismiss()
-        let mainVC = inf.getVC("mainVC")
-        self.presentViewController(mainVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func close(sender:UIStoryboardSegue) {
-        
-    }
+
 }
 
 

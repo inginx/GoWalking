@@ -31,6 +31,8 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = navBarColor
+        
         initMapView()
         initSearch()
         计时Timer()

@@ -15,56 +15,69 @@ protocol registerviewDelegate{
     func resignResponder()
 }
 
-class registerViewController: UIViewController {
+protocol ContainButtonDelegate{
+    func moveUp()
+    func moveDown()
+    func enableButon()
+    func disableButton()
+}
 
-//    @IBOutlet weak var loginButton: MKButton!
+class registerViewController: UIViewController,ContainButtonDelegate{
 
-    var a = 5;
-    var registerTable:registerviewDelegate?
-//    var 
+
+    @IBOutlet weak var regidstButton: MKButton!
+    @IBOutlet weak var contaniner: UIView!
+    var buttonOrignFrame:CGRect!
+    var registerTable:registerviewDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loginButton.enabled = false
-//        loginButton.layer.borderWidth = 1
+
+        regidstButton.enabled = false
         self.automaticallyAdjustsScrollViewInsets = false
-//let x = containView.viewWithTag(2) as! RegistTableViewController
-//        self.registerTable = x
+        let x = childViewControllers.last as! RegistTableViewController
+        x.parentView = self
+        self.registerTable = x
+
+        buttonOrignFrame = regidstButton.frame
+
+
 
 
     }
 
-//    @IBAction func textfieldVauleChange(sender: AnyObject) {
-//        if usernameLabel.text?.characters.count > 3 &&
-//           passwordLabel.text?.characters.count > 5 &&
-//        nicknameLabel.text?.characters.count > 3 &&
-//        mailLabel.text?.characters.count > 3 &&
-//        mailLabel.text?.rangeOfString("@") != nil
-//        {
-//            loginButton.enabled = true
-//        }
-//        else {loginButton.enabled = false}
-//    }
-//    
+    @IBAction func RegistButtionTap(sender: AnyObject) {
+        registerTable.regist()
+    }
+
+
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        registerTable?.resignResponder()
-        print("test start")
-        print(a)
+        registerTable.resignResponder()
+        moveDown()
+
     }
-//    @IBAction func moveUp(sender: AnyObject) {
-//        let dis = sHeight - loginButton.frame.origin.y-loginButton.frame.size.height-216.0-10-36
-//        if dis<0.0{
-//            UIView.animateWithDuration(0.3){
-//                self.view.frame=CGRect(x: 0,y: dis,width: sWidth,height: sHeight)
-//            }
-//        }
-//
-//    }
-//
-//    func moveDown(){
-//        UIView.animateWithDuration(0.3){
-//            self.view.frame=CGRect(x: 0,y: 0,width: sWidth,height: sHeight)
-//        }
-//    }
+    func moveUp() {
+        let dis = sHeight - regidstButton.frame.origin.y-regidstButton.frame.size.height-216.0-10-36
+        if dis<0.0{
+            UIView.animateWithDuration(0.3){
+                self.regidstButton.frame=CGRect(x: self.buttonOrignFrame.origin.x,y: self.buttonOrignFrame.origin.y+dis,width: self.buttonOrignFrame.width,height: self.buttonOrignFrame.height)
+            }
+        }
+
+    }
+
+    func moveDown(){
+        UIView.animateWithDuration(0.3){
+            self.regidstButton.frame = self.buttonOrignFrame
+        }
+    }
+
+    func enableButon() {
+        regidstButton.enabled = true
+
+    }
+    func disableButton() {
+        regidstButton.enabled = false
+    }
 
 
 }
@@ -78,25 +91,63 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
     @IBOutlet weak var nickname: UITextField!
     @IBOutlet weak var mail: UITextField!
 
+    var parentView:ContainButtonDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let x = inf.getVC("register") as! registerViewController
-//        print(x)
-//        x.a = 23
-//        let x = self.parentViewController as! registerViewController
-//        x.registerTable = self
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
 
-    
+    @IBAction func textChanged(sender: AnyObject) {
+        if username.text?.characters.count > 3 &&
+           password.text?.characters.count > 5 &&
+        nickname.text?.characters.count > 3 &&
+        mail.text?.characters.count > 3 &&
+        mail.text?.rangeOfString("@") != nil
+        {
+            parentView?.enableButon()
+        }
+        else {
+            parentView?.disableButton()
+        }
+    }
+
 
     func resignResponder() {
         username.resignFirstResponder()
         password.resignFirstResponder()
         nickname.resignFirstResponder()
         mail.resignFirstResponder()
+    }
+
+
+    @IBAction func EditBeginddd(sender: UITextView) {
+        parentView?.moveUp()
+        sender.text = ""
+    }
+
+    @IBAction func EditEnd(sender: UITextField) {
+        if sender.text == ""{
+            switch (sender.tag){
+            case 101: sender.text = "用户名不能为空"
+            case 102: sender.text = "长度6位或以上"
+            case 103: sender.text = "长度3位或以上"
+            case 104: sender.text = "支持主流邮箱"
+            default:break
+
+            }
+
+        }
+    }
+    
+
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("end")
+        resignResponder()
+        parentView!.moveDown()
+
     }
 
 

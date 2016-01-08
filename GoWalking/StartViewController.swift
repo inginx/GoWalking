@@ -14,6 +14,9 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         inf.checklogin(loginCheck)
         inf.reflash()
+        self.navigationController?.navigationBar.titleTextAttributes = navTitleAttribute
+        self.navigationController?.navigationBar.barTintColor = navBarColor
+        self.navigationController?.navigationBar.tintColor = navBarTextColor
     }
     
     func loginCheck(x:Bool){
