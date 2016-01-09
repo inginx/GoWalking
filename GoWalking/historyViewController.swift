@@ -17,7 +17,6 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         data = NSUserDefaults.standardUserDefaults()
-        self.automaticallyAdjustsScrollViewInsets = false
         getData()
     }
     
@@ -41,6 +40,7 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
 //MARK: Tableview
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{

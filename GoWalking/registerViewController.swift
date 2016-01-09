@@ -24,7 +24,6 @@ class registerViewController: UIViewController{
     var registerTable:registerviewDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
         let x = childViewControllers.last as! RegistTableViewController
         registerTable = x
     }
@@ -67,6 +66,16 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
         resignResponder()
     }
 
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        switch textField.tag{
+        case 101:password.becomeFirstResponder()
+        case 102:nickname.becomeFirstResponder()
+        case 103:mail.becomeFirstResponder()
+        default:textField.resignFirstResponder()
+        }
+
+        return true
+    }
 
     func regist() {
         if username.text! == "" {KVNProgress.showErrorWithStatus("用户名不能为空");return}

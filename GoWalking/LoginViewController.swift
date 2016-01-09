@@ -20,9 +20,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = navBarColor
-        self.navigationController?.navigationBar.tintColor = navBarTextColor
-        self.navigationController?.navigationBar.titleTextAttributes = navTitleAttribute
         x = childViewControllers.last as!LoginViewTable
     }
     

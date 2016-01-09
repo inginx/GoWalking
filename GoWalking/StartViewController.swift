@@ -10,13 +10,15 @@ import UIKit
 import KVNProgress
 class StartViewController: UIViewController {
 
+    @IBOutlet weak var runStartButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         inf.checklogin(loginCheck)
         inf.reflash()
-        self.navigationController?.navigationBar.titleTextAttributes = navTitleAttribute
-        self.navigationController?.navigationBar.barTintColor = navBarColor
-        self.navigationController?.navigationBar.tintColor = navBarTextColor
+
+        runStartButton.frame = CGRectMake(runStartButton.frame.origin.x, runStartButton.frame.origin.y, runStartButton.frame.width, runStartButton.frame.width)
+        runStartButton.layer.cornerRadius = runStartButton.layer.frame.width/2
     }
     
     func loginCheck(x:Bool){

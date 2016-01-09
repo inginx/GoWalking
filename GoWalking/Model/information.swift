@@ -128,3 +128,24 @@ class information: NSObject {
 
 
 }
+
+
+
+extension UIViewController {
+    func viewDidLoadForChangeTitleColor() {
+        self.viewDidLoadForChangeTitleColor()
+        self.automaticallyAdjustsScrollViewInsets = false
+        if self.isKindOfClass(UINavigationController.classForCoder()) {
+            self.changeNavigationBarTextColor(self as! UINavigationController)
+        }
+    }
+
+    func changeNavigationBarTextColor(navController: UINavigationController) {
+        let nav = navController as UINavigationController
+        nav.navigationBar.titleTextAttributes = navTitleAttribute
+        nav.navigationBar.barTintColor = navBarColor
+        nav.navigationBar.tintColor = navBarTextColor
+
+    }
+    
+}

@@ -7,26 +7,45 @@
 //
 
 import UIKit
+import KVNProgress
+class SetingViewController: UIViewController {
 
-class SetingViewController: UIViewController ,UITableViewDelegate,UITableViewDataSource{
-
-    
-    @IBAction func logoutTap(sender: AnyObject) {
-        inf.logout()
-        dismissViewControllerAnimated(true, completion: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return 4
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "hello"
-        return cell
-    }
 
     
+
 }
+
+class SettingTable: UITableViewController {
+
+    @IBOutlet weak var userIcon: UIImageView!
+
+    override func viewDidLoad() {
+        self.userIcon.layer.cornerRadius = userIcon.frame.width/2
+        self.userIcon.clipsToBounds = true
+    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        switch indexPath.section{
+        case 2:logoutTap()
+        default :break
+        }
+    }
+
+    func logoutTap(){
+        let alert = UIAlertController(title: "确定退出？", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "去意已决", style: UIAlertActionStyle.Default){
+            _ in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            inf.logout()
+            })
+        alert.addAction(UIAlertAction(title: "算了", style: UIAlertActionStyle.Cancel, handler: nil))
+        presentViewController(alert, animated: true,completion: nil)
+
+    }
+}
+
+

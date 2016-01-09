@@ -2,7 +2,7 @@ import UIKit
 import CoreMotion
 import KVNProgress
 
-class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate{
+class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate,UIAlertViewDelegate{
 
 
     @IBOutlet weak var mapView: MAMapView!
@@ -31,7 +31,6 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = navBarColor
         
         initMapView()
         initSearch()
@@ -255,12 +254,12 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         //停止定位
         mapView.showsUserLocation = false
         endTime = NSDate()
-        save()
-        KVNProgress.showSuccessWithStatus("保存成功")
+        popSaveAlert()
+
         
 //        let mainVC = inf.getVC("mainVC")
 //        presentViewController(mainVC, animated: true, completion: nil)
-        dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     @IBAction func PauseTap(sender: AnyObject) {
@@ -300,6 +299,23 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         history.append(current)
         historyData = NSKeyedArchiver.archivedDataWithRootObject(history)
         x.setObject(historyData, forKey: "history")
+        KVNProgress.showSuccessWithStatus("保存成功")
     }
+
+//MARK:- 警告
+    func popSaveAlert(){
+        let alert = UIAlertController(title: "保存运动", message: "需要保留此次记录嘛？", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "保存！", style: UIAlertActionStyle.Default){
+            _ in
+            self.save();
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alert.addAction(UIAlertAction(title: "算了吧", style: UIAlertActionStyle.Cancel) {
+            _ in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        
+        presentViewController(alert, animated: true, completion: nil)
+        }
 
 }

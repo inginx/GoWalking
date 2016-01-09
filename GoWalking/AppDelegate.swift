@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MAMapServices.sharedServices().apiKey = MAPAPIKey
         AMapSearchServices.sharedServices().apiKey = MAPAPIKey
         AMapNaviServices.sharedServices().apiKey = MAPAPIKey
+
+        swizzlingMethod(UIViewController.self,oldSelector: "viewDidLoad",newSelector: "viewDidLoadForChangeTitleColor")
         
         
         
@@ -31,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+// change nav color
+    func swizzlingMethod(clzz: AnyClass, oldSelector: Selector, newSelector: Selector) {
+        let oldMethod = class_getInstanceMethod(clzz, oldSelector)
+        let newMethod = class_getInstanceMethod(clzz, newSelector)
+        method_exchangeImplementations(oldMethod, newMethod)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -121,4 +129,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
 
