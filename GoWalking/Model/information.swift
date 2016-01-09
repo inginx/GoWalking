@@ -134,7 +134,6 @@ class information: NSObject {
 extension UIViewController {
     func viewDidLoadForChangeTitleColor() {
         self.viewDidLoadForChangeTitleColor()
-        self.automaticallyAdjustsScrollViewInsets = false
         if self.isKindOfClass(UINavigationController.classForCoder()) {
             self.changeNavigationBarTextColor(self as! UINavigationController)
         }

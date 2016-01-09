@@ -28,6 +28,7 @@
 		098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */; };
 		098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C21C01CBE400EC6511 /* MKTextField.swift */; };
 		098AA5CB1C020B5300EC6511 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5CA1C020B5300EC6511 /* StartViewController.swift */; };
+		09BFBE4D1C41509600B4A0D9 /* FriendsGrounpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */; };
 		09D169AB1C05FB8000192C40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D169AA1C05FB8000192C40 /* HealthKit.framework */; };
 		09D973201C0488A0000D8403 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9731F1C0488A0000D8403 /* registerViewController.swift */; };
 		09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */; };
@@ -66,6 +67,7 @@
 		098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
 		098AA5C21C01CBE400EC6511 /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		098AA5CA1C020B5300EC6511 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsGrounpsViewController.swift; path = friends/FriendsGrounpsViewController.swift; sourceTree = "<group>"; };
 		09D169AA1C05FB8000192C40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		09D169AC1C05FB8000192C40 /* GoWalking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoWalking.entitlements; sourceTree = "<group>"; };
 		09D9731F1C0488A0000D8403 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		0952F0D61BF611EA000905A9 /* GoWalking */ = {
 			isa = PBXGroup;
 			children = (
+				09BFBE4B1C41505A00B4A0D9 /* friends */,
 				09D169AC1C05FB8000192C40 /* GoWalking.entitlements */,
 				0952F0D71BF611EA000905A9 /* AppDelegate.swift */,
 				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
@@ -189,6 +192,14 @@
 				098AA5C21C01CBE400EC6511 /* MKTextField.swift */,
 			);
 			path = "MaterialKit-0.3.5";
+			sourceTree = "<group>";
+		};
+		09BFBE4B1C41505A00B4A0D9 /* friends */ = {
+			isa = PBXGroup;
+			children = (
+				09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */,
+			);
+			name = friends;
 			sourceTree = "<group>";
 		};
 		7BF9B48F4B6E705E94DC2E49 /* Pods */ = {
@@ -367,6 +378,7 @@
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
 				098AA5C41C01CBE400EC6511 /* MKColor.swift in Sources */,
 				09145D1C1C08A31D00BC3485 /* historyViewController.swift in Sources */,
+				09BFBE4D1C41509600B4A0D9 /* FriendsGrounpsViewController.swift in Sources */,
 				09D973201C0488A0000D8403 /* registerViewController.swift in Sources */,
 				09145D191C085B6F00BC3485 /* RunningData.swift in Sources */,
 				098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */,

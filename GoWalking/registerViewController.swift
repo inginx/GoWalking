@@ -24,6 +24,7 @@ class registerViewController: UIViewController{
     var registerTable:registerviewDelegate!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         let x = childViewControllers.last as! RegistTableViewController
         registerTable = x
     }

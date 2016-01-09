@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         x = childViewControllers.last as!LoginViewTable
     }
     
