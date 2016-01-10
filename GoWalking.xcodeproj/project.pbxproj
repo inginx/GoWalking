@@ -28,6 +28,9 @@
 		098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */; };
 		098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5C21C01CBE400EC6511 /* MKTextField.swift */; };
 		098AA5CB1C020B5300EC6511 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5CA1C020B5300EC6511 /* StartViewController.swift */; };
+		0998EE941C4272ED008422C4 /* ZDSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0998EE901C4272ED008422C4 /* ZDSheetCell.m */; };
+		0998EE951C4272ED008422C4 /* ZDSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0998EE911C4272ED008422C4 /* ZDSheetCell.xib */; };
+		0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0998EE931C4272ED008422C4 /* ZDSinaWeiboActionSheet.m */; };
 		09BFBE4D1C41509600B4A0D9 /* FriendsGrounpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */; };
 		09D169AB1C05FB8000192C40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D169AA1C05FB8000192C40 /* HealthKit.framework */; };
 		09D973201C0488A0000D8403 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9731F1C0488A0000D8403 /* registerViewController.swift */; };
@@ -67,6 +70,11 @@
 		098AA5C11C01CBE400EC6511 /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
 		098AA5C21C01CBE400EC6511 /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		098AA5CA1C020B5300EC6511 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		0998EE8F1C4272ED008422C4 /* ZDSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSheetCell.h; sourceTree = "<group>"; };
+		0998EE901C4272ED008422C4 /* ZDSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSheetCell.m; sourceTree = "<group>"; };
+		0998EE911C4272ED008422C4 /* ZDSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDSheetCell.xib; sourceTree = "<group>"; };
+		0998EE921C4272ED008422C4 /* ZDSinaWeiboActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSinaWeiboActionSheet.h; sourceTree = "<group>"; };
+		0998EE931C4272ED008422C4 /* ZDSinaWeiboActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSinaWeiboActionSheet.m; sourceTree = "<group>"; };
 		09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsGrounpsViewController.swift; path = friends/FriendsGrounpsViewController.swift; sourceTree = "<group>"; };
 		09D169AA1C05FB8000192C40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		09D169AC1C05FB8000192C40 /* GoWalking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoWalking.entitlements; sourceTree = "<group>"; };
@@ -194,6 +202,18 @@
 			path = "MaterialKit-0.3.5";
 			sourceTree = "<group>";
 		};
+		0998EE8E1C4272ED008422C4 /* WeiboActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				0998EE8F1C4272ED008422C4 /* ZDSheetCell.h */,
+				0998EE901C4272ED008422C4 /* ZDSheetCell.m */,
+				0998EE911C4272ED008422C4 /* ZDSheetCell.xib */,
+				0998EE921C4272ED008422C4 /* ZDSinaWeiboActionSheet.h */,
+				0998EE931C4272ED008422C4 /* ZDSinaWeiboActionSheet.m */,
+			);
+			path = WeiboActionSheet;
+			sourceTree = "<group>";
+		};
 		09BFBE4B1C41505A00B4A0D9 /* friends */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +236,7 @@
 			children = (
 				09D169AA1C05FB8000192C40 /* HealthKit.framework */,
 				09E81B081BF63E10003385EA /* Bridging-Header.h */,
+				0998EE8E1C4272ED008422C4 /* WeiboActionSheet */,
 				0952F0E61BF611EA000905A9 /* Info.plist */,
 				0952F0DE1BF611EA000905A9 /* GoWalking.xcdatamodeld */,
 				098AA5BB1C01CBE400EC6511 /* MaterialKit-0.3.5 */,
@@ -307,6 +328,7 @@
 				0952F0E51BF611EA000905A9 /* LaunchScreen.storyboard in Resources */,
 				0952F0E21BF611EA000905A9 /* Assets.xcassets in Resources */,
 				0952F0DD1BF611EA000905A9 /* Main.storyboard in Resources */,
+				0998EE951C4272ED008422C4 /* ZDSheetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +389,7 @@
 			files = (
 				098AA5A91C01C1C200EC6511 /* LoginViewController.swift in Sources */,
 				098AA5CB1C020B5300EC6511 /* StartViewController.swift in Sources */,
+				0998EE941C4272ED008422C4 /* ZDSheetCell.m in Sources */,
 				09145D1E1C09460200BC3485 /* historyDetailViewController.swift in Sources */,
 				098AA5A31C01AED400EC6511 /* CHWButton.swift in Sources */,
 				098AA5A71C01BC2C00EC6511 /* information.swift in Sources */,
@@ -375,6 +398,7 @@
 				098AA5C61C01CBE400EC6511 /* MKLabel.swift in Sources */,
 				0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */,
 				098AA5C31C01CBE400EC6511 /* MKButton.swift in Sources */,
+				0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */,
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
 				098AA5C41C01CBE400EC6511 /* MKColor.swift in Sources */,
 				09145D1C1C08A31D00BC3485 /* historyViewController.swift in Sources */,
