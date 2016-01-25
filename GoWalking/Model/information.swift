@@ -16,6 +16,13 @@ let navBarColor = UIColor(red: 44.0/255.0, green: 171.0/255.0, blue: 241.0/255.0
 let navBarTextColor = UIColor.whiteColor()
 let navTitleAttribute = NSDictionary(object: navBarTextColor,forKey: NSForegroundColorAttributeName) as! [String : AnyObject]
 
+let urls = url()
+
+class url{
+    let login = "https://learning2learn.cn/gowalking/login"
+    let detail = "https://learning2learn.cn/gowalking/person"
+}
+
 
 class information: NSObject {
     var username:String! , password:String!;
@@ -45,7 +52,7 @@ class information: NSObject {
     func checklogin(completionHandler:(Bool)->Void){
         let para = ["user":username,"pwd":password]
         print("chk:",para)
-        Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/login",parameters:para).responseJSON{
+        Alamofire.request(.POST, urls.login,parameters:para).responseJSON{
             s in
             print(s)
             guard let res = s.result.value else{completionHandler(true);return}
@@ -72,7 +79,7 @@ class information: NSObject {
     
     func reflash(completation:(()->Void)? = nil){
         print("reflash")
-        Alamofire.request(.GET, "https://learning2learn.cn/py/gowalking/person").responseJSON(){
+        Alamofire.request(.GET, urls.detail).responseJSON(){
             s in
             guard let res = s.result.value else{return}
             if res["success"]as!Bool == false {return}
@@ -89,7 +96,7 @@ class information: NSObject {
     func 登录(username:String,pwd:String,completionHandler:(()->())?=nil){
         let para = ["user":username,"pwd":pwd]
         print("开始登录")
-        Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/login",parameters:para).responseJSON(){
+        Alamofire.request(.POST, urls.login,parameters:para).responseJSON(){
             s in
             print(s)
             guard let  res = s.result.value else{ KVNProgress.showErrorWithStatus("网络故障");return}
@@ -108,7 +115,7 @@ class information: NSObject {
 
     func 获取详细信息(completionHandler:(()->())?=nil){
         print("获取详细信息")
-        Alamofire.request(.GET, "https://learning2learn.cn/py/gowalking/person").responseJSON(){
+        Alamofire.request(.GET, urls.detail).responseJSON(){
             s in
 
             print(s)
