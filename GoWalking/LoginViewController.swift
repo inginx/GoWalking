@@ -70,9 +70,6 @@ class LoginViewTable: UITableViewController,UITextViewDelegate {
         }
         KVNProgress.showWithStatus("登录中")
         inf.登录(usernamefield.text!, pwd: passwordfield.text!){
-            inf.username = self.usernamefield.text!
-            inf.password = self.passwordfield.text!
-            inf.saveUser()
             KVNProgress.dismiss()
             let vc = inf.getVC("mainVC")
             self.presentViewController(vc, animated: true, completion: nil)

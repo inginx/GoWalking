@@ -14,11 +14,8 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        inf.checklogin(loginCheck)
-        inf.reflash()
-
-        runStartButton.frame = CGRectMake(runStartButton.frame.origin.x, runStartButton.frame.origin.y, runStartButton.frame.width, runStartButton.frame.width)
-        runStartButton.layer.cornerRadius = runStartButton.layer.frame.width/2
+        inf.登录({KVNProgress.showErrorWithStatus("密码错误");inf.logout()})
+        runStartButton.setRound()
     }
     
     func loginCheck(x:Bool){

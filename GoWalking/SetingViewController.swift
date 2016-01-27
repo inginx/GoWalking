@@ -7,10 +7,8 @@
 //
 import UIKit
 import KVNProgress
-import Qiniu
 import Alamofire
-import AFNetworking
-import HappyDNS
+import Kingfisher
 
 protocol settingView{
     func showLogout()
@@ -29,10 +27,15 @@ class SetingViewController: UIViewController,SinaWeiboActionSheetDelegate,settin
         x.show()
     }
 
+
     func sinaWeiboActionSheetDidClick(actionSheet: ZDSinaWeiboActionSheet!, selectedItem selectedLine: Int) {
         if selectedLine == 0{
-            self.dismissViewControllerAnimated(true,completion: nil)
+            if (self.presentingViewController != nil){
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }else{
+            self.presentViewController(inf.getVC("LoginNav"), animated: true, completion: nil)
             inf.logout()
+            }
         }
     }
 
@@ -42,69 +45,28 @@ class SetingViewController: UIViewController,SinaWeiboActionSheetDelegate,settin
 class SettingTable: UITableViewController {
 
     @IBOutlet weak var userIcon: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var usermail: UILabel!
     var delegate:settingView?
     override func viewDidLoad() {
-        self.userIcon.layer.cornerRadius = userIcon.frame.width/2
-        self.userIcon.clipsToBounds = true
+        userIcon.setRound()
+        username.text = inf.nickname
+        usermail.text = inf.mail
+        userIcon.kf_setImageWithURL(getAvatarUrl(inf.avatar))
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.section{
-        case 1:self.getToken()
+        case 0: self.navigationController?.pushViewController(inf.getVC("profiles"), animated: true)
         case 2:delegate?.showLogout()
         default :break
         }
     }
 
-    func logoutTap(){
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert.addAction(UIAlertAction(title: "退出", style: UIAlertActionStyle.Default){
-            _ in
-            print("???")
-            KVNProgress.showWithStatus("请稍后")
-
-                        })
-        alert.addAction(UIAlertAction(title: "算了", style: UIAlertActionStyle.Default, handler: nil))
-
-        presentViewController(alert, animated: true,completion: nil)
-
-    }
-
-    func getToken(){
-        request(.GET, "http://127.0.0.1:8000/files/token").responseJSON{
-            r in
-            let res = r.result.value as! NSDictionary
-            let t = res["token"] as! String
-            print(t)
-            self.qiniuTest(t)
-        }
-    }
-
-
-    func qiniuTest(token:String){
-        let item = NSData(base64EncodedString: "fdsafsf", options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-
-        let upManager = QNUploadManager()
-        upManager.putData(item, key: "fdsf" , token: token , complete: { (info, key, resp) -> Void in
-            print("\(info),\(key),\(resp)")
-            print(info.statusCode)
-
-            if (info.statusCode == 200 && resp != nil){
-
-            }else{
-
-            }
-
-            }, option: nil)
-
-    }
-
-
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if (((presentingViewController)?.isMemberOfClass(UIAlertController)) != nil){
             presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-            print("111")
         }
     }
 }

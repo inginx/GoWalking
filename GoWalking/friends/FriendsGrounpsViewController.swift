@@ -8,9 +8,14 @@
 
 class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
 
+    @IBOutlet weak var avastar: UIImageView!
+    @IBOutlet weak var nickname: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        nickname.text = inf.nickname
+        avastar.kf_setImageWithURL(getAvatarUrl(inf.avatar))
+
     }
     @IBOutlet weak var tableview: UITableView!
 
@@ -20,7 +25,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        
+        self.tableview.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 10

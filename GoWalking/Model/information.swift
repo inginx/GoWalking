@@ -21,12 +21,15 @@ let urls = url()
 class url{
     let login = "https://learning2learn.cn/gowalking/login"
     let detail = "https://learning2learn.cn/gowalking/person"
+    let avatar = "http://7xq7zd.com1.z0.glb.clouddn.com/avatar/"
 }
 
 
 class information: NSObject {
     var username:String! , password:String!;
-    var nickname=""
+    var nickname = ""
+    var avatar = "default.png"
+    var mail = ""
 
     
     override init(){
@@ -34,6 +37,8 @@ class information: NSObject {
         if let a = x.objectForKey("username") as? String {username = a} else {username=""}
         if let a = x.objectForKey("password") as? String {password = a} else {password=""}
         if let a = x.objectForKey("nickname") as? String {nickname = a}
+        if let a = x.objectForKey("avatar") as? String {avatar = a} else {avatar="default.png"}
+        if let a = x.objectForKey("mail") as? String {mail = a} else {mail=""}
         }
     
     func getVC(x:String)->UIViewController{
@@ -51,7 +56,6 @@ class information: NSObject {
     
     func checklogin(completionHandler:(Bool)->Void){
         let para = ["user":username,"pwd":password]
-        print("chk:",para)
         Alamofire.request(.POST, urls.login,parameters:para).responseJSON{
             s in
             print(s)
@@ -76,24 +80,13 @@ class information: NSObject {
         password = ""
         nickname = ""
     }
-    
-    func reflash(completation:(()->Void)? = nil){
-        print("reflash")
-        Alamofire.request(.GET, urls.detail).responseJSON(){
-            s in
-            guard let res = s.result.value else{return}
-            if res["success"]as!Bool == false {return}
-            inf.nickname = res["nickname"] as! String
-            self.saveUser()
-            if completation != nil
-            {
-                completation!()
-            }
-        }
+
+
+    func 登录(errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
+        登录(inf.username,pwd: inf.password,errHandler:errHandler,completionHandler:completionHandler)
     }
 
-
-    func 登录(username:String,pwd:String,completionHandler:(()->())?=nil){
+    func 登录(username:String,pwd:String,errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
         let para = ["user":username,"pwd":pwd]
         print("开始登录")
         Alamofire.request(.POST, urls.login,parameters:para).responseJSON(){
@@ -102,13 +95,14 @@ class information: NSObject {
             guard let  res = s.result.value else{ KVNProgress.showErrorWithStatus("网络故障");return}
             let status = res["status"] as! Bool;
             if status == true{
-                //                inf.username = (self.username.text)!
-                //                inf.password = (self.password.text)!
+                inf.username = username
+                inf.password = pwd
                 self.获取详细信息(completionHandler)
             }
             else {
                 let error = res["Msg"] as! String
                 KVNProgress.showErrorWithStatus(error)
+                errHandler?()
             }
         }
     }
@@ -117,25 +111,22 @@ class information: NSObject {
         print("获取详细信息")
         Alamofire.request(.GET, urls.detail).responseJSON(){
             s in
-
-            print(s)
             guard let res = s.result.value else{KVNProgress.showErrorWithStatus("服务器故障");return}
             if res["success"]as!Bool == false {KVNProgress.showErrorWithStatus("获取信息失败");return}
-            inf.nickname = res["nickname"] as! String
+            self.nickname = res["nickname"] as! String
+            self.avatar = res["avatar"]as! String
+            self.mail = res["mail"]as!String
+            inf.saveUser()
             completionHandler?()
         }
 
     }
 
-
-    
-
-
-
-
-
 }
 
+func getAvatarUrl(x:String) -> NSURL{
+    return NSURL(string:"\(urls.avatar)\(x)")!
+}
 
 
 extension UIViewController {
@@ -154,4 +145,13 @@ extension UIViewController {
 
     }
     
+}
+
+extension UIView{
+    func setRound(){
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.width, self.frame.width)
+        self.layer.cornerRadius = self.layer.frame.width/2
+        if self.isKindOfClass(UIImageView){self.clipsToBounds = true}
+
+    }
 }

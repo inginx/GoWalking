@@ -48,7 +48,6 @@
  */
 @property (nonatomic,weak) id<SinaWeiboActionSheetDelegate> delegate;
 
-
 -(void)show;
 
 @end

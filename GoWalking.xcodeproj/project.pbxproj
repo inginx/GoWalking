@@ -32,6 +32,7 @@
 		0998EE951C4272ED008422C4 /* ZDSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0998EE911C4272ED008422C4 /* ZDSheetCell.xib */; };
 		0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0998EE931C4272ED008422C4 /* ZDSinaWeiboActionSheet.m */; };
 		09BFBE4D1C41509600B4A0D9 /* FriendsGrounpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */; };
+		09C933391C586E1A0010D941 /* ProfilesSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C933381C586E1A0010D941 /* ProfilesSetViewController.swift */; };
 		09D169AB1C05FB8000192C40 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D169AA1C05FB8000192C40 /* HealthKit.framework */; };
 		09D973201C0488A0000D8403 /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9731F1C0488A0000D8403 /* registerViewController.swift */; };
 		09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */; };
@@ -76,6 +77,7 @@
 		0998EE921C4272ED008422C4 /* ZDSinaWeiboActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDSinaWeiboActionSheet.h; sourceTree = "<group>"; };
 		0998EE931C4272ED008422C4 /* ZDSinaWeiboActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDSinaWeiboActionSheet.m; sourceTree = "<group>"; };
 		09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendsGrounpsViewController.swift; path = friends/FriendsGrounpsViewController.swift; sourceTree = "<group>"; };
+		09C933381C586E1A0010D941 /* ProfilesSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilesSetViewController.swift; path = Setting/ProfilesSetViewController.swift; sourceTree = "<group>"; };
 		09D169AA1C05FB8000192C40 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		09D169AC1C05FB8000192C40 /* GoWalking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoWalking.entitlements; sourceTree = "<group>"; };
 		09D9731F1C0488A0000D8403 /* registerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +169,7 @@
 				09BFBE4B1C41505A00B4A0D9 /* friends */,
 				09D169AC1C05FB8000192C40 /* GoWalking.entitlements */,
 				0952F0D71BF611EA000905A9 /* AppDelegate.swift */,
-				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
+				09C933371C586DE00010D941 /* Settings */,
 				092908E21C40100100FC47FF /* running */,
 				098AA5A51C01BC2000EC6511 /* Model */,
 				09145D1A1C085C7E00BC3485 /* users */,
@@ -220,6 +222,15 @@
 				09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */,
 			);
 			name = friends;
+			sourceTree = "<group>";
+		};
+		09C933371C586DE00010D941 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
+				09C933381C586E1A0010D941 /* ProfilesSetViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		7BF9B48F4B6E705E94DC2E49 /* Pods */ = {
@@ -402,6 +413,7 @@
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
 				098AA5C41C01CBE400EC6511 /* MKColor.swift in Sources */,
 				09145D1C1C08A31D00BC3485 /* historyViewController.swift in Sources */,
+				09C933391C586E1A0010D941 /* ProfilesSetViewController.swift in Sources */,
 				09BFBE4D1C41509600B4A0D9 /* FriendsGrounpsViewController.swift in Sources */,
 				09D973201C0488A0000D8403 /* registerViewController.swift in Sources */,
 				09145D191C085B6F00BC3485 /* RunningData.swift in Sources */,
