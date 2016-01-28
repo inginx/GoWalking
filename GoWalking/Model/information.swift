@@ -21,7 +21,6 @@ let urls = url()
 class url{
     let login = "https://learning2learn.cn/gowalking/login"
     let detail = "https://learning2learn.cn/gowalking/person"
-    let avatar = "http://7xq7zd.com1.z0.glb.clouddn.com/avatar/"
 }
 
 
@@ -124,8 +123,8 @@ class information: NSObject {
 
 }
 
-func getAvatarUrl(x:String) -> NSURL{
-    return NSURL(string:"\(urls.avatar)\(x)")!
+func getPicUrl(x:String) -> NSURL{
+    return NSURL(string:"http://7xq7zd.com1.z0.glb.clouddn.com/\(x)")!
 }
 
 
