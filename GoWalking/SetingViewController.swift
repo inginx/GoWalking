@@ -52,7 +52,7 @@ class SettingTable: UITableViewController {
         userIcon.setRound()
         username.text = inf.nickname
         usermail.text = inf.mail
-        userIcon.kf_setImageWithURL(getAvatarUrl(inf.avatar))
+        userIcon.kf_setImageWithURL(getPicUrl(inf.avatar))
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

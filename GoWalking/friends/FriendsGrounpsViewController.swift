@@ -14,7 +14,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         nickname.text = inf.nickname
-        avastar.kf_setImageWithURL(getAvatarUrl(inf.avatar))
+        avastar.kf_setImageWithURL(getPicUrl(inf.avatar))
 
     }
     @IBOutlet weak var tableview: UITableView!
