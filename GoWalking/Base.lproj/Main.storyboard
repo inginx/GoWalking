@@ -561,7 +561,7 @@
                                 <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historycell" rowHeight="98" id="OTL-36-OxH">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OTL-36-OxH" id="gMs-65-fu9">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="97"/>
@@ -947,11 +947,11 @@
             </objects>
             <point key="canvasLocation" x="1639.5" y="1769.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--历史-->
         <scene sceneID="7hg-W6-mLn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cl9-LZ-wSQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="V5k-Y0-mQg"/>
+                    <tabBarItem key="tabBarItem" title="历史" image="历史" id="V5k-Y0-mQg"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="djj-ga-lkl">
@@ -967,11 +967,11 @@
             </objects>
             <point key="canvasLocation" x="572.5" y="240.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--发现-->
         <scene sceneID="26D-3p-68G">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dJy-tT-KA2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="friends" selectedImage="friends" id="UWB-Qv-Ane"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="发现" selectedImage="发现" id="UWB-Qv-Ane"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dKE-uL-wzc">
@@ -1007,11 +1007,11 @@
             </objects>
             <point key="canvasLocation" x="572.5" y="1890.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Run-->
         <scene sceneID="xXI-UW-Dak">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Elh-Ax-Eex" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="favorites" id="7gT-EU-q6z"/>
+                    <tabBarItem key="tabBarItem" title="Run" image="运动" id="7gT-EU-q6z"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zEm-7M-1kc">
@@ -1132,6 +1132,8 @@
     <resources>
         <image name="background1" width="500" height="707"/>
         <image name="bg7" width="540" height="1080"/>
-        <image name="friends" width="152" height="152"/>
+        <image name="历史" width="30" height="30"/>
+        <image name="发现" width="30" height="30"/>
+        <image name="运动" width="30" height="30"/>
     </resources>
 </document>
