@@ -30,6 +30,16 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let a = data.objectForKey("history") as? NSData {
             history = NSKeyedUnarchiver.unarchiveObjectWithData(a) as![RunningData]
         } else  { history = [] }
+
+        if history.count == 0{
+            showEmptyLabel()
+        }
+        else{
+            if let x = self.view.viewWithTag(50){
+                x.removeFromSuperview()
+                tableview.hidden = false
+            }
+        }
     }
     
     func saveData(){
@@ -38,6 +48,16 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
 //MARK: Tableview
+
+    func showEmptyLabel(){
+        if (self.view.viewWithTag(50) != nil){return}
+        let x = UILabel(frame: CGRectMake(0, sHeight/2, sWidth, 20.0))
+        x.tag = 50
+        x.text = "暂时没有记录哦~先跑跑步吧！"
+        x.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(x)
+        tableview.hidden = true
+    }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
