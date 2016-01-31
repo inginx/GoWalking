@@ -24,13 +24,17 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let x = UITableViewCell()
-        x.textLabel?.text = data[indexPath.row]
+        guard let x = self.tableView.dequeueReusableCellWithIdentifier("searchFriends") else {return UITableViewCell()}
+        let avatar = x.viewWithTag(40) as! UIImageView
+        let nameLabel = x.viewWithTag(41) as! UILabel
+        let detailLabel = x.viewWithTag(42) as! UITextView
+        
+        
         return x
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        print("fsdadf")
+        print("editend")
     }
     
     
