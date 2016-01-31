@@ -21,6 +21,9 @@ let urls = url()
 class url{
     let login = "https://learning2learn.cn/gowalking/login"
     let detail = "https://learning2learn.cn/gowalking/person"
+    let circleFeed = "https://learning2learn.cn/gowalking/friends/content"
+    let uploadAvatar = "http://127.0.0.1:8000/gowalking/uploadavatar/"
+    let uploadInfo = "http://127.0.0.1:8000/gowalking/uploadinfo/"
 }
 
 

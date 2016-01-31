@@ -21,12 +21,13 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         super.viewDidLoad()
         nickname.text = inf.nickname
         avastar.kf_setImageWithURL(getPicUrl(inf.avatar))
+        avastar.setRound()
         getData()
 
     }
 
     func getData(){
-        request(.POST, "http://127.0.0.1:8000/gowalking/friends/content").responseJSON{
+        request(.POST, urls.circleFeed).responseJSON{
             s in guard let res = s.result.value else{return}
             self.dataArray = res as![NSDictionary]
             KVNProgress.showSuccess()

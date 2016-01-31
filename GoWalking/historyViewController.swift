@@ -17,13 +17,13 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         data = NSUserDefaults.standardUserDefaults()
-        getData()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(animated: Bool) {
+        getData()
+        tableview.reloadData()
     }
+    
     
 //MARK: Datas
     func getData(){
@@ -77,6 +77,7 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
         history.removeAtIndex(indexPath.row)
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         saveData()
+        if history.count == 0{showEmptyLabel()}
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

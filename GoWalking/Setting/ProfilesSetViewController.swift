@@ -89,7 +89,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
                 imageData.writeToURL(fileURL, atomically: false)
         Alamofire.upload(
             .POST,
-            "http://127.0.0.1:8000/gowalking/uploadavatar/\(inf.username)",
+            "\(urls.uploadAvatar)\(inf.username)",
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(fileURL: fileURL, name: "avatar")
             },
@@ -121,7 +121,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         let data = ["nickname":nickname,
             "mail": mail]
 
-        request(.POST, "http://127.0.0.1:8000/gowalking/uploadinfo/\(inf.username)",parameters:data).responseJSON(){s in
+        request(.POST, "\(urls.uploadInfo)\(inf.username)",parameters:data).responseJSON(){s in
             guard let res = s.result.value else {return}
             if (res["success"] as! Bool) == true{
                 if self.avatatModify{self.saveImage(){self.savedone()}}

@@ -15,6 +15,7 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.becomeFirstResponder()
     }
     
     var data:[String] = ["fdfsd"]
@@ -33,9 +34,6 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
         return x
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        print("editend")
-    }
     
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
