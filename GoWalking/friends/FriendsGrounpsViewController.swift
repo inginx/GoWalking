@@ -47,10 +47,24 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         let data = dataArray[indexPath.row] 
         let avatar = cell.viewWithTag(50) as! UIImageView
         let name = cell.viewWithTag(51) as! UILabel
-        let content = cell.viewWithTag(52) as! UILabel
+        let content = cell.viewWithTag(52) as! UITextView
+        let pic = cell.viewWithTag(53) as! UIImageView
         avatar.kf_setImageWithURL(getPicUrl(data["avatar"] as! String))
         name.text = data["name"] as? String
         content.text = data["content"] as? String
+
+        var textviewFrame = content.frame
+        let size = content.sizeThatFits(CGSize(width: CGRectGetWidth(content.frame), height: 2000))
+        textviewFrame.size.height = 300
+        content.frame = textviewFrame
+
+
+        let picurl = data["pic"] as! String
+        if picurl == ""{
+            pic.hidden = true
+        }else{
+            pic.kf_setImageWithURL(getPicUrl(data["pic"] as! String))
+        }
         return cell
     }
 
