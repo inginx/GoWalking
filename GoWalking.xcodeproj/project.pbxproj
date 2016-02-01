@@ -16,6 +16,9 @@
 		0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0952F0DE1BF611EA000905A9 /* GoWalking.xcdatamodeld */; };
 		0952F0E21BF611EA000905A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0952F0E11BF611EA000905A9 /* Assets.xcassets */; };
 		0952F0E51BF611EA000905A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952F0E31BF611EA000905A9 /* LaunchScreen.storyboard */; };
+		09897D001C5E5291003E1433 /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09897CFF1C5E5291003E1433 /* AddFriendsViewController.swift */; };
+		09897D021C5E62E1003E1433 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */; };
+		09897D041C5E6372003E1433 /* FriendDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09897D031C5E6372003E1433 /* FriendDetailTableViewController.swift */; };
 		098AA5A31C01AED400EC6511 /* CHWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5A21C01AED400EC6511 /* CHWButton.swift */; };
 		098AA5A71C01BC2C00EC6511 /* information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5A61C01BC2C00EC6511 /* information.swift */; };
 		098AA5A91C01C1C200EC6511 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA5A81C01C1C200EC6511 /* LoginViewController.swift */; };
@@ -59,6 +62,9 @@
 		0952F0E11BF611EA000905A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0952F0E41BF611EA000905A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0952F0E61BF611EA000905A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = GoWalking/Info.plist; sourceTree = "<group>"; };
+		09897CFF1C5E5291003E1433 /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFriendsViewController.swift; path = friends/AddFriendsViewController.swift; sourceTree = "<group>"; };
+		09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendDetailViewController.swift; path = friends/FriendDetailViewController.swift; sourceTree = "<group>"; };
+		09897D031C5E6372003E1433 /* FriendDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendDetailTableViewController.swift; path = friends/FriendDetailTableViewController.swift; sourceTree = "<group>"; };
 		098AA5A21C01AED400EC6511 /* CHWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHWButton.swift; sourceTree = "<group>"; };
 		098AA5A61C01BC2C00EC6511 /* information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = information.swift; sourceTree = "<group>"; };
 		098AA5A81C01C1C200EC6511 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +226,9 @@
 			isa = PBXGroup;
 			children = (
 				09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */,
+				09897CFF1C5E5291003E1433 /* AddFriendsViewController.swift */,
+				09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */,
+				09897D031C5E6372003E1433 /* FriendDetailTableViewController.swift */,
 			);
 			name = friends;
 			sourceTree = "<group>";
@@ -404,12 +413,14 @@
 				09145D1E1C09460200BC3485 /* historyDetailViewController.swift in Sources */,
 				098AA5A31C01AED400EC6511 /* CHWButton.swift in Sources */,
 				098AA5A71C01BC2C00EC6511 /* information.swift in Sources */,
+				09897D041C5E6372003E1433 /* FriendDetailTableViewController.swift in Sources */,
 				0952F0DA1BF611EA000905A9 /* MapViewController.swift in Sources */,
 				098AA5C71C01CBE400EC6511 /* MKLayer.swift in Sources */,
 				098AA5C61C01CBE400EC6511 /* MKLabel.swift in Sources */,
 				0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */,
 				098AA5C31C01CBE400EC6511 /* MKButton.swift in Sources */,
 				0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */,
+				09897D001C5E5291003E1433 /* AddFriendsViewController.swift in Sources */,
 				0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */,
 				098AA5C41C01CBE400EC6511 /* MKColor.swift in Sources */,
 				09145D1C1C08A31D00BC3485 /* historyViewController.swift in Sources */,
@@ -420,6 +431,7 @@
 				098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */,
 				098AA5C51C01CBE400EC6511 /* MKImageView.swift in Sources */,
 				098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */,
+				09897D021C5E62E1003E1433 /* FriendDetailViewController.swift in Sources */,
 				09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
