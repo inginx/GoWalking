@@ -28,6 +28,7 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         initMap()
         initLabel()
         showRoute()
+        print(data.kind)
 
     }
 
@@ -44,8 +45,8 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     func initLabel(){
         let min=data.seconds/60;
         let hour=min/60;
-        startTimelabel.text = nsdateToString(data.startTime)
-        endTimeLabel.text = nsdateToString(data.endTime)
+        startTimelabel.text = data.startTime.toString()
+        endTimeLabel.text = data.endTime.toString()
         distanceLabel.text = String(format: "%.2f m",data.distance)
         spendTimeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
         averageSpeedLabel.text = String(format: "%.2f m/s",data.distance/Double(data.seconds) )
@@ -53,15 +54,6 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     }
     
 
-    func nsdateToString(date:NSDate)->String
-    {
-        let local = NSLocale.currentLocale()
-        let dateFormatt =
-        NSDateFormatter.dateFormatFromTemplate("yyyy-MM-dd-hh-mm", options: 0, locale: local)
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = dateFormatt
-        return dateFormatter.stringFromDate(date)
-    }
 
 
     func showRoute()

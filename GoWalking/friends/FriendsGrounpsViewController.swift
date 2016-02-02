@@ -47,10 +47,11 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
      }
 
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        guard let cell = self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell") else {return 0.0}
+        let cell = (self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell"))!
         let content = cell.viewWithTag(52) as! UILabel
         let data = dataArray[indexPath.row]
         content.text = data["content"] as? String
+        print(content.text)
         print(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height)
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 500
     }
