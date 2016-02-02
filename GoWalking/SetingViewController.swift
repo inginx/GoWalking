@@ -21,6 +21,7 @@ class SetingViewController: UIViewController,SinaWeiboActionSheetDelegate,settin
         x.delegate = self
     }
 
+    
     func showLogout() {
         let x = ZDSinaWeiboActionSheet(wihtTitlesArr: ["退出","取消"], isNeedCancleBtn: false)
         x.delegate = self
@@ -50,10 +51,15 @@ class SettingTable: UITableViewController {
     var delegate:settingView?
     override func viewDidLoad() {
         userIcon.setRound()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         username.text = inf.nickname
         usermail.text = inf.mail
         userIcon.kf_setImageWithURL(getPicUrl(inf.avatar))
     }
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.section{

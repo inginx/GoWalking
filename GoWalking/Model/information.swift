@@ -22,8 +22,8 @@ class url{
     let login = "https://learning2learn.cn/gowalking/login"
     let detail = "https://learning2learn.cn/gowalking/person"
     let circleFeed = "https://learning2learn.cn/gowalking/friends/content"
-    let uploadAvatar = "http://127.0.0.1:8000/gowalking/uploadavatar/"
-    let uploadInfo = "http://127.0.0.1:8000/gowalking/uploadinfo/"
+    let uploadAvatar = "https://learning2learn.cn/gowalking/uploadavatar/"
+    let uploadInfo = "https://learning2learn.cn/gowalking/uploadinfo/"
 }
 
 
@@ -151,9 +151,10 @@ extension UIViewController {
 
 extension UIView{
     func setRound(){
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.width, self.frame.width)
-        self.layer.cornerRadius = self.layer.frame.width/2
-        if self.isKindOfClass(UIImageView){self.clipsToBounds = true}
-
+        dispatch_async(dispatch_get_main_queue()) {
+            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.width, self.frame.width)
+            self.layer.cornerRadius = self.layer.frame.width/2
+            if self.isKindOfClass(UIImageView){self.clipsToBounds = true}
+        }
     }
 }

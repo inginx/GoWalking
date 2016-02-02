@@ -26,6 +26,10 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         avatar.setRound()
         avatar.addGestureRecognizer(singleTap)
         tableView.addGestureRecognizer(TableTap)
+        }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         avatar.kf_setImageWithURL(getPicUrl(inf.avatar))
         nicknameField.text = inf.nickname
         mailField.text = inf.mail
@@ -57,7 +61,9 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         }else{
            image = info[UIImagePickerControllerOriginalImage] as! UIImage
         }
+        dispatch_async(dispatch_get_main_queue()) {
         self.avatar.image = image
+        }
         self.avatatModify = true
 
     }
@@ -119,7 +125,9 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         let mail = mailField.text!
         KVNProgress.showWithStatus("保存中")
         let data = ["nickname":nickname,
-            "mail": mail]
+            "mail": mail,
+            "introduce":"test"
+        ]
 
         request(.POST, "\(urls.uploadInfo)\(inf.username)",parameters:data).responseJSON(){s in
             guard let res = s.result.value else {return}
