@@ -13,11 +13,11 @@ class RunningData: NSObject {
     var endTime:NSDate!
     var distance:Double = 0
     var seconds:Int! = 0
-    var kind:String!
+    var kind:RunningType!
     var steps:Int!
     
     override init() {
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,9 +27,8 @@ class RunningData: NSObject {
         self.endTime = aDecoder.decodeObjectForKey("endTime")  as! NSDate
         self.distance = aDecoder.decodeObjectForKey("distance")  as! Double
         self.seconds = aDecoder.decodeObjectForKey("seconds")  as! Int
-        self.kind = aDecoder.decodeObjectForKey("kind")  as! String
         self.steps = aDecoder.decodeObjectForKey("steps")  as! Int
-
+        self.kind = RunningType(rawValue: aDecoder.decodeIntegerForKey("kind") )
     }
     
     func encodeWithCoder(aCoder: NSCoder){
@@ -38,9 +37,15 @@ class RunningData: NSObject {
         aCoder.encodeObject(self.startTime, forKey: "startTime")
         aCoder.encodeObject(self.distance, forKey: "distance")
         aCoder.encodeObject(self.seconds, forKey: "seconds")
-        aCoder.encodeObject(self.kind, forKey: "kind")
+        aCoder.encodeInteger(self.kind.rawValue, forKey: "kind")
         aCoder.encodeObject(self.steps, forKey: "steps")
 
     }
 
+}
+
+enum RunningType:Int{
+    case walking = 0
+    case runing = 1
+    case cycling = 2
 }

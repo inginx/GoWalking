@@ -28,6 +28,9 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     var pauseTime:NSDate = NSDate()
     let pedometer = CMPedometer()
 
+    //Kind Judger
+    var isWalk:Int = 0
+    var isRun:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -285,8 +288,14 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         current.endTime = endTime
         current.distance = distance
         current.seconds = self.seconds
-        current.kind = "run"
         current.steps = self.steps
+
+        //Judging Runing Type
+        let distancePerStep = Double(distance)/Double(seconds)
+        if distancePerStep > 2{current.kind = RunningType.cycling}
+        else if distancePerStep > 0.8 {current.kind = RunningType.runing}
+        else {current.kind = RunningType.walking}
+
         let x = NSUserDefaults.standardUserDefaults()
         var history:[RunningData] = []
         var historyData:NSData

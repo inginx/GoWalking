@@ -69,7 +69,28 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("historycell")! as UITableViewCell
-        cell.textLabel?.text = String(format:"%.2f m",history[indexPath.row].distance )
+        let startTime = cell.viewWithTag(1) as! UILabel
+        let seconds = cell.viewWithTag(2) as! UILabel
+        let distance = cell.viewWithTag(3) as! UILabel
+        let kindImg = cell.viewWithTag(4) as! UIImageView
+        let data = history[indexPath.row]
+
+        startTime.text = data.startTime.toString()
+
+        let min=data.seconds/60;
+        let hour=min/60;
+        seconds.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
+
+        distance.text = String(format:"%.2f Km",data.distance/1000 )
+
+        let img:UIImage!
+        switch data.kind as RunningType{
+        case .walking :img = UIImage(named: "走路")!
+        case .runing:img = UIImage(named: "跑步")!
+        case .cycling:img = UIImage(named: "骑车")!
+        }
+        kindImg.image = img
+
         return cell
     }
 
