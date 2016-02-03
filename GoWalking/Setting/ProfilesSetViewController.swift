@@ -13,7 +13,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nicknameField: UITextField!
     @IBOutlet weak var mailField: UITextField!
-
+    @IBOutlet weak var introduce: UITextView!
     var avatatModify = false
 
 
@@ -116,6 +116,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
     func resignFirst(){
         nicknameField.resignFirstResponder()
         mailField.resignFirstResponder()
+        introduce.resignFirstResponder()
     }
 
     //save
