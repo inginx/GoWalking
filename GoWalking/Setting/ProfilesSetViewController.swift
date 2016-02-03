@@ -8,7 +8,6 @@
 import UIKit
 import KVNProgress
 import Alamofire
-import Kingfisher
 
 class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,SinaWeiboActionSheetDelegate {
     @IBOutlet weak var avatar: UIImageView!
@@ -30,7 +29,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        avatar.kf_setImageWithURL(getPicUrl(inf.avatar))
+        avatar.addPicFromUrl(inf.avatar)
         nicknameField.text = inf.nickname
         mailField.text = inf.mail
     }

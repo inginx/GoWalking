@@ -28,7 +28,6 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         initMap()
         initLabel()
         showRoute()
-        print(data.kind)
 
     }
 

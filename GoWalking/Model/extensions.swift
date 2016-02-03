@@ -5,6 +5,8 @@
 //  Created by 称一称 on 16/2/2.
 //  Copyright © 2016年 称一称. All rights reserved.
 //
+import Kingfisher
+
 
 let sWidth = UIScreen.mainScreen().bounds.width
 let sHeight = UIScreen.mainScreen().bounds.height
@@ -49,5 +51,11 @@ extension NSDate{
         dateFormatter.locale = NSLocale.currentLocale()
         dateFormatter.dateFormat = format
         return dateFormatter.stringFromDate(self)
+    }
+}
+
+extension UIImageView{
+    func addPicFromUrl(x:String){
+        self.kf_setImageWithURL(NSURL(string:"http://7xq7zd.com1.z0.glb.clouddn.com/\(x)")!)
     }
 }

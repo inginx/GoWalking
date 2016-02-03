@@ -7,7 +7,6 @@
 //
 import Alamofire
 import KVNProgress
-import Kingfisher
 
 
 class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
@@ -27,7 +26,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         nickname.text = inf.nickname
-        avastar.kf_setImageWithURL(getPicUrl(inf.avatar))
+        avastar.addPicFromUrl(inf.avatar)
         getData()
     }
 
@@ -47,33 +46,39 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
      }
 
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-        let cell = (self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell"))!
-        let content = cell.viewWithTag(52) as! UILabel
+        let cell:UITableViewCell!
         let data = dataArray[indexPath.row]
+        let picurl = data["pic"] as! String
+        if picurl == ""{
+            cell = self.tableview.dequeueReusableCellWithIdentifier("friendnopiccell")!
+        }else{
+            cell = self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell")!}
+
+        let content = cell.viewWithTag(52) as! UILabel
         content.text = data["content"] as? String
-        print(content.text)
-        print(cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height)
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 500
+        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + 1
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        guard let cell = self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell") else {return UITableViewCell()}
-        let data = dataArray[indexPath.row] 
+        let cell:UITableViewCell!
+        let data = dataArray[indexPath.row]
+        let picurl = data["pic"] as! String
+        if picurl == ""{
+            cell = self.tableview.dequeueReusableCellWithIdentifier("friendnopiccell")!
+        }
+        else{
+            cell = self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell")!
+            let pic = cell.viewWithTag(53) as! UIImageView
+            pic.addPicFromUrl(data["pic"] as! String)
+        }
         let avatar = cell.viewWithTag(50) as! UIImageView
         let name = cell.viewWithTag(51) as! UILabel
         let content = cell.viewWithTag(52) as! UILabel
-        let pic = cell.viewWithTag(53) as! UIImageView
-        avatar.kf_setImageWithURL(getPicUrl(data["avatar"] as! String))
+
         name.text = data["name"] as? String
         content.text = data["content"] as? String
+        avatar.addPicFromUrl(data["avatar"] as! String)
 
-
-        let picurl = data["pic"] as! String
-        if picurl == ""{
-            pic.kf_setImageWithURL(getPicUrl("default"))
-        }else{
-            pic.kf_setImageWithURL(getPicUrl(data["pic"] as! String))
-        }
         return cell
     }
 

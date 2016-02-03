@@ -128,13 +128,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09145D1A1C085C7E00BC3485 /* users */ = {
+		09145D1A1C085C7E00BC3485 /* Users */ = {
 			isa = PBXGroup;
 			children = (
 				098AA5A81C01C1C200EC6511 /* LoginViewController.swift */,
 				09D9731F1C0488A0000D8403 /* registerViewController.swift */,
 			);
-			name = users;
+			name = Users;
 			sourceTree = "<group>";
 		};
 		09145D1F1C09460D00BC3485 /* History */ = {
@@ -146,13 +146,13 @@
 			name = History;
 			sourceTree = "<group>";
 		};
-		092908E21C40100100FC47FF /* running */ = {
+		092908E21C40100100FC47FF /* Running */ = {
 			isa = PBXGroup;
 			children = (
 				098AA5CA1C020B5300EC6511 /* StartViewController.swift */,
 				0952F0D91BF611EA000905A9 /* MapViewController.swift */,
 			);
-			name = running;
+			name = Running;
 			sourceTree = "<group>";
 		};
 		0952F0CB1BF611EA000905A9 = {
@@ -176,14 +176,14 @@
 		0952F0D61BF611EA000905A9 /* GoWalking */ = {
 			isa = PBXGroup;
 			children = (
-				09BFBE4B1C41505A00B4A0D9 /* friends */,
 				09D169AC1C05FB8000192C40 /* GoWalking.entitlements */,
 				0952F0D71BF611EA000905A9 /* AppDelegate.swift */,
-				09C933371C586DE00010D941 /* Settings */,
-				092908E21C40100100FC47FF /* running */,
 				098AA5A51C01BC2000EC6511 /* Model */,
-				09145D1A1C085C7E00BC3485 /* users */,
+				09145D1A1C085C7E00BC3485 /* Users */,
+				092908E21C40100100FC47FF /* Running */,
 				09145D1F1C09460D00BC3485 /* History */,
+				09BFBE4B1C41505A00B4A0D9 /* Friends */,
+				09C933371C586DE00010D941 /* Settings */,
 				0952F0DB1BF611EA000905A9 /* Main.storyboard */,
 				0952F0E31BF611EA000905A9 /* LaunchScreen.storyboard */,
 				0952F0E11BF611EA000905A9 /* Assets.xcassets */,
@@ -228,7 +228,7 @@
 			path = WeiboActionSheet;
 			sourceTree = "<group>";
 		};
-		09BFBE4B1C41505A00B4A0D9 /* friends */ = {
+		09BFBE4B1C41505A00B4A0D9 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
 				09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */,
@@ -236,7 +236,7 @@
 				09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */,
 				09897D031C5E6372003E1433 /* FriendDetailTableViewController.swift */,
 			);
-			name = friends;
+			name = Friends;
 			sourceTree = "<group>";
 		};
 		09C933371C586DE00010D941 /* Settings */ = {
