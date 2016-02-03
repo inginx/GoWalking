@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090BA5B71C61FBAC002389A5 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090BA5B61C61FBAC002389A5 /* PublishViewController.swift */; };
 		09145D191C085B6F00BC3485 /* RunningData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09145D181C085B6F00BC3485 /* RunningData.swift */; };
 		09145D1C1C08A31D00BC3485 /* historyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09145D1B1C08A31D00BC3485 /* historyViewController.swift */; };
 		09145D1E1C09460200BC3485 /* historyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09145D1D1C09460200BC3485 /* historyDetailViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		090BA5B61C61FBAC002389A5 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublishViewController.swift; path = friends/PublishViewController.swift; sourceTree = "<group>"; };
 		09145D181C085B6F00BC3485 /* RunningData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningData.swift; sourceTree = "<group>"; };
 		09145D1B1C08A31D00BC3485 /* historyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyViewController.swift; sourceTree = "<group>"; };
 		09145D1D1C09460200BC3485 /* historyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyDetailViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				09BFBE4C1C41509600B4A0D9 /* FriendsGrounpsViewController.swift */,
 				09897CFF1C5E5291003E1433 /* AddFriendsViewController.swift */,
 				09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */,
+				090BA5B61C61FBAC002389A5 /* PublishViewController.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				098AA5C61C01CBE400EC6511 /* MKLabel.swift in Sources */,
 				0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */,
 				098AA5C31C01CBE400EC6511 /* MKButton.swift in Sources */,
+				090BA5B71C61FBAC002389A5 /* PublishViewController.swift in Sources */,
 				0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */,
 				09897D001C5E5291003E1433 /* AddFriendsViewController.swift in Sources */,
 				091BC1B61C61064900CB656A /* extensions.swift in Sources */,
