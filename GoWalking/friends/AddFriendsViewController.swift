@@ -28,7 +28,7 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
         guard let x = self.tableView.dequeueReusableCellWithIdentifier("searchFriends") else {return UITableViewCell()}
         let avatar = x.viewWithTag(40) as! UIImageView
         let nameLabel = x.viewWithTag(41) as! UILabel
-        let detailLabel = x.viewWithTag(42) as! UITextView
+        let detailLabel = x.viewWithTag(42) as! UILabel
         
         
         return x

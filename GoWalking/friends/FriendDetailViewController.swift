@@ -8,11 +8,10 @@
 
 import UIKit
 
-class FriendDetailViewController: UIViewController {
+class FriendDetailViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
 
 
     }
