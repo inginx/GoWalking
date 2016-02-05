@@ -8,23 +8,65 @@
 
 import UIKit
 
-class PublishViewController: UITableViewController {
+class PublishViewController: UITableViewController ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate{
 
     @IBOutlet weak var textview: UITextView!
+    @IBOutlet weak var image: UIImageView!
 
+
+    var TapAction:UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyboard"))
+        TapAction =  UITapGestureRecognizer(target: self, action: "hideKeyboard")
     }
 
     @IBAction func cancelTap(sender: AnyObject) {
-    dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     func hideKeyboard(){
         textview.resignFirstResponder()
+        tableView.removeGestureRecognizer(TapAction)
+    }
+
+    func textViewDidBeginEditing(textView: UITextView){
+        tableView.addGestureRecognizer(TapAction)
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        switch indexPath.section{
+        case 1:showimagePicker()
+        default:break
+        }
+    }
+
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        var image: UIImage!
+        if(picker.allowsEditing){
+            image = info[UIImagePickerControllerEditedImage] as! UIImage
+        }else{
+            image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        }
+        dispatch_async(dispatch_get_main_queue()) {
+            self.image.image = image
+        }
+
+    }
+
+    func showimagePicker(){
+        let x = UIImagePickerController()
+        x.delegate = self
+        presentViewController(x, animated: true, completion: nil)
+    }
+
+
+    func publish(){
+        let currentImage = self.image.image!
+        let fileurl = currentImage.saveWithName("toPublish.jpg")
+
     }
 
 }

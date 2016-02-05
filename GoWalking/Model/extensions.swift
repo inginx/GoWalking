@@ -59,3 +59,13 @@ extension UIImageView{
         self.kf_setImageWithURL(NSURL(string:"http://7xq7zd.com1.z0.glb.clouddn.com/\(x)")!)
     }
 }
+
+extension UIImage{
+    func saveWithName(filename:String)->NSURL{
+        let imageData:NSData = UIImageJPEGRepresentation(self, 0.5)!
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let fileURL = documentsURL.URLByAppendingPathComponent(filename)
+        imageData.writeToURL(fileURL, atomically: false)
+        return fileURL
+    }
+}

@@ -87,11 +87,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
     //saving
     func saveImage(completion:(()->())?=nil){
         let currentImage = self.avatar.image!
-        let imageName = "avastar.jpg"
-        let imageData:NSData = UIImageJPEGRepresentation(currentImage, 0.5)!
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-        let fileURL = documentsURL.URLByAppendingPathComponent(imageName)
-                imageData.writeToURL(fileURL, atomically: false)
+        let fileURL = currentImage.saveWithName("avastar.jpg")
         Alamofire.upload(
             .POST,
             "\(urls.uploadAvatar)\(inf.username)",

@@ -254,6 +254,9 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Kuc-Au-fpI" id="rWT-l5-0s3"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -296,6 +299,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="image" destination="Pvn-Ur-SEq" id="iuw-0Z-bGV"/>
                         <outlet property="textview" destination="2Ii-1b-NIM" id="X68-vs-cHd"/>
                     </connections>
                 </tableViewController>
@@ -1594,6 +1598,6 @@
         <image name="运动" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="osi-L8-cFT"/>
+        <segue reference="AgX-bo-FwX"/>
     </inferredMetricsTieBreakers>
 </document>
