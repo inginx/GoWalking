@@ -49,6 +49,7 @@
 		09E81B141BF63E9F003385EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B131BF63E9F003385EA /* CoreGraphics.framework */; };
 		09E81B161BF63EAA003385EA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B151BF63EAA003385EA /* libz.tbd */; };
 		09E81B181BF63EB1003385EA /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E81B171BF63EB1003385EA /* libstdc++.6.0.9.tbd */; };
+		09F7DA1F1C643E1200C779D9 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F7DA1E1C643E1200C779D9 /* ListTableViewController.swift */; };
 		73AA49584669AFAC1A18CE91 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EE417A9D6B2054089F0D77 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 		09E81B131BF63E9F003385EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		09E81B151BF63EAA003385EA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		09E81B171BF63EB1003385EA /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		09F7DA1E1C643E1200C779D9 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		3283696EAFFD6EC709DE1499 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		54EE417A9D6B2054089F0D77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C87C4FA4706979B6C911268 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				09897CFF1C5E5291003E1433 /* AddFriendsViewController.swift */,
 				09897D011C5E62E1003E1433 /* FriendDetailViewController.swift */,
 				090BA5B61C61FBAC002389A5 /* PublishViewController.swift */,
+				09F7DA1E1C643E1200C779D9 /* ListTableViewController.swift */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				098AA5C71C01CBE400EC6511 /* MKLayer.swift in Sources */,
 				098AA5C61C01CBE400EC6511 /* MKLabel.swift in Sources */,
 				0952F0E01BF611EA000905A9 /* GoWalking.xcdatamodeld in Sources */,
+				09F7DA1F1C643E1200C779D9 /* ListTableViewController.swift in Sources */,
 				098AA5C31C01CBE400EC6511 /* MKButton.swift in Sources */,
 				090BA5B71C61FBAC002389A5 /* PublishViewController.swift in Sources */,
 				0998EE961C4272ED008422C4 /* ZDSinaWeiboActionSheet.m in Sources */,
