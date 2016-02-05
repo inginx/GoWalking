@@ -98,7 +98,7 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
         ]
 
         KVNProgress.showWithStatus("请稍后")
-        Alamofire.request(.POST, "https://learning2learn.cn/py/gowalking/register",parameters:userData).responseJSON{
+        Alamofire.request(.POST, urls.register,parameters:userData).responseJSON{
             s in
             guard let res = s.result.value else {KVNProgress.showErrorWithStatus("服务器故障");return}
             print(res)

@@ -32,6 +32,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         avatar.addPicFromUrl(inf.avatar)
         nicknameField.text = inf.nickname
         mailField.text = inf.mail
+        introduce.text = inf.introduce
     }
 
 
@@ -122,7 +123,7 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         KVNProgress.showWithStatus("保存中")
         let data = ["nickname":nickname,
             "mail": mail,
-            "introduce":"test"
+            "introduce":introduce.text
         ]
 
         request(.POST, "\(urls.uploadInfo)\(inf.username)",parameters:data).responseJSON(){s in

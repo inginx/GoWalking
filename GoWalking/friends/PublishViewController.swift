@@ -18,6 +18,7 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
 
 
     var TapAction:UITapGestureRecognizer!
+    var hasPic:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,9 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
 
     @IBAction func cancelTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    @IBAction func confirmTap(sender: AnyObject) {
+        publish()
     }
 
     func hideKeyboard(){
@@ -56,7 +60,7 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
         dispatch_async(dispatch_get_main_queue()) {
             self.image.image = image
         }
-
+        hasPic = true
     }
 
     func showimagePicker(){
@@ -67,14 +71,18 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
 
 
     func publish(completeAction:(()->())? = nil){
-        let currentImage = self.image.image!
-        let fileurl = currentImage.saveWithName("toPublish.jpg")
         let content = textview.text
         Alamofire.upload(
             .POST,
             "\(urls.publishFeed)\(inf.username)",
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(fileURL: fileurl, name: "image")
+                if self.hasPic{
+                    let fileurl = self.image.image!.saveWithName("toPublish.jpg")
+                    multipartFormData.appendBodyPart(fileURL: fileurl, name: "image")
+                    multipartFormData.appendBodyPart(data: "y".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "haspic")
+                }else{
+                    multipartFormData.appendBodyPart(data: "n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "haspic")
+                }
                 multipartFormData.appendBodyPart(data: content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "content")
             },
             encodingCompletion: { encodingResult in

@@ -20,6 +20,7 @@ class information: NSObject {
     var nickname = ""
     var avatar = "default.png"
     var mail = ""
+    var introduce = ""
 
     
     override init(){
@@ -29,6 +30,7 @@ class information: NSObject {
         if let a = x.objectForKey("nickname") as? String {nickname = a}
         if let a = x.objectForKey("avatar") as? String {avatar = a} else {avatar="default.png"}
         if let a = x.objectForKey("mail") as? String {mail = a} else {mail=""}
+        if let a = x.objectForKey("introduce")as? String {introduce = a} else {introduce = ""}
         }
     
     func getVC(x:String)->UIViewController{
@@ -42,6 +44,7 @@ class information: NSObject {
         x.setObject(username, forKey: "username")
         x.setObject(password, forKey: "password")
         x.setObject(nickname, forKey: "nickname")
+        x.setObject(introduce, forKey: "introduce")
     }
     
     func checklogin(completionHandler:(Bool)->Void){
@@ -106,6 +109,8 @@ class information: NSObject {
             self.nickname = res["nickname"] as! String
             self.avatar = res["avatar"]as! String
             self.mail = res["mail"]as!String
+//            self.introduce = res["introduce"] as! String
+
             inf.saveUser()
             completionHandler?()
         }

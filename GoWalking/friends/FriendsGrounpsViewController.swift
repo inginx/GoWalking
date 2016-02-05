@@ -75,6 +75,9 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         let name = cell.viewWithTag(51) as! UILabel
         let content = cell.viewWithTag(52) as! UILabel
 
+        avatar.layer.cornerRadius = avatar.layer.frame.width/2
+        avatar.clipsToBounds = true
+
         name.text = data["name"] as? String
         content.text = data["content"] as? String
         avatar.addPicFromUrl(data["avatar"] as! String)
