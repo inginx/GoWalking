@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import KVNProgress
+
 
 class PublishViewController: UITableViewController ,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate{
 
@@ -63,10 +66,35 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
     }
 
 
-    func publish(){
+    func publish(completeAction:(()->())? = nil){
         let currentImage = self.image.image!
         let fileurl = currentImage.saveWithName("toPublish.jpg")
+        let content = textview.text
+        Alamofire.upload(
+            .POST,
+            "\(urls.publishFeed)\(inf.username)",
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(fileURL: fileurl, name: "image")
+                multipartFormData.appendBodyPart(data: content.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name: "content")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        guard let r = response.result.value else{KVNProgress.dismiss(); return}
+                        let s = r["success"] as! Bool
+                        if s{completeAction?()}
+                        else {KVNProgress.showErrorWithStatus(r["message"]as!String)}
+                    }
+                case .Failure(_):
+                    KVNProgress.showErrorWithStatus("网络故障")
+                }
+            }
+        )
 
     }
+
+
+
 
 }

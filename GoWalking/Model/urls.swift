@@ -14,4 +14,5 @@ class url{
     let circleFeed = "https://learning2learn.cn/gowalking/friends/content"
     let uploadAvatar = "https://learning2learn.cn/gowalking/uploadavatar/"
     let uploadInfo = "https://learning2learn.cn/gowalking/uploadinfo/"
+    let publishFeed = "https://learning2learn.cn/gowalking/publish/"
 }
