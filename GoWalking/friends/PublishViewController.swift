@@ -29,7 +29,9 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func confirmTap(sender: AnyObject) {
-        publish()
+        publish(){
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
 
     func hideKeyboard(){
@@ -89,10 +91,11 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
                 switch encodingResult {
                 case .Success(let upload, _, _):
                     upload.responseJSON { response in
-                        guard let r = response.result.value else{KVNProgress.dismiss(); return}
+                        guard let r = response.result.value else{KVNProgress.showErrorWithStatus("返回异常"); return}
+                        print(r)
                         let s = r["success"] as! Bool
-                        if s{completeAction?()}
-                        else {KVNProgress.showErrorWithStatus(r["message"]as!String)}
+                        if s {completeAction?()}
+                        else {KVNProgress.showErrorWithStatus(r["Msg"]as!String)}
                     }
                 case .Failure(_):
                     KVNProgress.showErrorWithStatus("网络故障")

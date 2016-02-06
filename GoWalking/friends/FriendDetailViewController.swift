@@ -7,17 +7,52 @@
 //
 
 import UIKit
+import Alamofire
+import KVNProgress
 
 class FriendDetailViewController: UITableViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var mailLabel: UILabel!
+    @IBOutlet weak var intriduceLabel: UITextView!
+
+    var username:String!
+    var VCKind:DetailVCMode!
     override func viewDidLoad() {
         super.viewDidLoad()
+        ModeSet()
+        GetData()
 
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func ModeSet(){
+        switch VCKind as DetailVCMode{
+        case .Friend:break
+        case .Stranger:break
+        case .WatiForAccept:break
+        }
     }
+
+    func GetData(){
+        request(.GET, "\(urls.detail)/\(inf.username)").responseJSON{
+            s in
+            guard let res = s.result.value else{KVNProgress.showError();return}
+            self.imageView.addPicFromUrl(res["avatar"]as!String)
+            self.nicknameLabel.text = res["nickname"]as?String
+            self.usernameLabel.text = res["username"]as?String
+            self.mailLabel.text = res["mail"]as?String
+            self.intriduceLabel.text = res["introduce"]as?String
+
+        }
+    }
+
+}
+
+enum DetailVCMode{
+    case Friend
+    case Stranger
+    case WatiForAccept
 }

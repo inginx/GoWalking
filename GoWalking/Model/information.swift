@@ -109,7 +109,7 @@ class information: NSObject {
             self.nickname = res["nickname"] as! String
             self.avatar = res["avatar"]as! String
             self.mail = res["mail"]as!String
-//            self.introduce = res["introduce"] as! String
+            self.introduce = res["introduce"] as! String
 
             inf.saveUser()
             completionHandler?()
