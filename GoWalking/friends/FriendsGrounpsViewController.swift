@@ -78,12 +78,14 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         let timeLabel = cell.viewWithTag(54) as! UILabel
         let delButton = cell.viewWithTag(55) as! UIButton
 
-        if (data["name"] as! String ) != inf.username{delButton.hidden = true}
-
+        if (data["username"] as! String ) == inf.username{
+            delButton.hidden = false
+            delButton.addTarget(self, action: "deleButtonTap:", forControlEvents: UIControlEvents.TouchDown)
+        }
         avatar.layer.cornerRadius = avatar.layer.frame.width/2
         avatar.clipsToBounds = true
 
-        name.text = data["name"] as? String
+        name.text = data["nickname"] as? String
         content.text = data["content"] as? String
         timeLabel.text = data["time"] as? String
         avatar.addPicFromUrl(data["avatar"] as! String)
@@ -91,6 +93,13 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
 
 
         return cell
+    }
+
+    func deleButtonTap(sender:AnyObject){
+        let x = (sender.superview)!!.superview as! UITableViewCell
+        let indexPath = tableview.indexPathForCell(x)
+        dataArray.removeAtIndex((indexPath?.row)!)
+        tableview.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Top)
     }
 
     func showBigPic(sender:AnyObject){
