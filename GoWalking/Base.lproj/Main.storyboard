@@ -1059,7 +1059,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Cxs-KT-z0D" kind="push" id="GDc-la-aFt"/>
+                                            <segue destination="Cxs-KT-z0D" kind="push" identifier="myfriend" id="GDc-la-aFt"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rtH-Rh-XHC">
@@ -1077,6 +1077,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Cxs-KT-z0D" kind="push" identifier="acceptList" id="Mnl-MI-x5T"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rmP-hr-wjk">
                                         <rect key="frame" x="0.0" y="314" width="375" height="44"/>
@@ -1402,6 +1405,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="LNr-4t-aOe"/>
                     <connections>
+                        <outlet property="button" destination="Loc-6W-Sxd" id="aon-Io-p6m"/>
                         <outlet property="imageView" destination="Fev-nj-Ufo" id="SSr-Tv-72j"/>
                         <outlet property="intriduceLabel" destination="0Wk-c5-Spx" id="y3t-fJ-6Av"/>
                         <outlet property="mailLabel" destination="WLx-Bb-1MX" id="m72-ng-YLC"/>
@@ -1616,6 +1620,7 @@
         <image name="运动" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Mnl-MI-x5T"/>
         <segue reference="AgX-bo-FwX"/>
     </inferredMetricsTieBreakers>
 </document>

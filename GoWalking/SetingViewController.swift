@@ -60,7 +60,18 @@ class SettingTable: UITableViewController,SinaWeiboActionSheetDelegate {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+
+        if segue.identifier == "myfriend"{
+            let VC = segue.destinationViewController as! ListTableViewController
+            VC.kind = ListTableKind.friends
+        }
+        else if segue.identifier == "acceptList"{
+            let VC = segue.destinationViewController as! ListTableViewController
+            VC.kind = ListTableKind.waitForAccept
+        }
+    }
 
 }
 

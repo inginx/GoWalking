@@ -59,7 +59,8 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let VC = segue.destinationViewController as! FriendDetailViewController
         let indexPath = tableView.indexPathForSelectedRow!
-        VC.username = data[indexPath.row]["username"] as! String
+//        VC.username = data[indexPath.row]["username"] as! String
+        VC.data =  data[indexPath.row]
         VC.VCKind = DetailVCMode.Stranger
     }
     

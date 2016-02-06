@@ -20,6 +20,10 @@ class url{
     let publishFeed:String
     let register:String
     let searchUser:String
+    let friendList:String
+    let addfriend:String
+    let wait4Accept:String
+    let acceptFriend:String
     init(){
         login = "\(prefix)/user/login"
         register = "\(prefix)/user/register"
@@ -31,6 +35,12 @@ class url{
 
         circleFeed = "\(prefix)/friends/content"
         publishFeed = "\(prefix)/friends/publish/"
+
+
+        friendList = "\(prefix)/friends/list"
+        addfriend = "\(prefix)/friends/add/"
+        wait4Accept = "\(prefix)/friends/waitforaccept"
+        acceptFriend = "\(prefix)/friends/accept/"
     }
 }
 
