@@ -37,7 +37,7 @@ class FriendDetailViewController: UITableViewController {
     }
 
     func GetData(){
-        request(.GET, "\(urls.detail)/\(inf.username)").responseJSON{
+        request(.GET, "\(urls.detail)/\(username)").responseJSON{
             s in
             guard let res = s.result.value else{KVNProgress.showError();return}
             self.imageView.addPicFromUrl(res["avatar"]as!String)

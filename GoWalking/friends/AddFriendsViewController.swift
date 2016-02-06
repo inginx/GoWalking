@@ -47,7 +47,7 @@ class AddFriendsViewController: UITableViewController,UISearchBarDelegate {
         print("search")
         searchBar.resignFirstResponder()
         let text = searchBar.text!
-        request(.GET, "\(urls.searchUser)\(text))").responseJSON{
+        request(.GET, "\(urls.searchUser)\(text)").responseJSON{
             s in
             guard let res = s.result.value else{KVNProgress.showErrorWithStatus("网络异常");return}
             let r = res["data"] as! [NSDictionary]

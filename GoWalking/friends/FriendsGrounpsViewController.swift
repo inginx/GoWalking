@@ -70,19 +70,47 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
             cell = self.tableview.dequeueReusableCellWithIdentifier("friendgroupcell")!
             let pic = cell.viewWithTag(53) as! UIImageView
             pic.addPicFromUrl(data["pic"] as! String)
+            pic.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showBigPic:"))
         }
         let avatar = cell.viewWithTag(50) as! UIImageView
         let name = cell.viewWithTag(51) as! UILabel
         let content = cell.viewWithTag(52) as! UILabel
+        let timeLabel = cell.viewWithTag(54) as! UILabel
+        let delButton = cell.viewWithTag(55) as! UIButton
+
+        if (data["name"] as! String ) != inf.username{delButton.hidden = true}
 
         avatar.layer.cornerRadius = avatar.layer.frame.width/2
         avatar.clipsToBounds = true
 
         name.text = data["name"] as? String
         content.text = data["content"] as? String
+        timeLabel.text = data["time"] as? String
         avatar.addPicFromUrl(data["avatar"] as! String)
 
+
+
         return cell
+    }
+
+    func showBigPic(sender:AnyObject){
+        let x = ( sender.view as! UIImageView ).image
+        let imageView = UIImageView(image: x)
+        imageView.userInteractionEnabled = true
+        imageView.multipleTouchEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "disMissBigPic:"))
+        imageView.animationDuration = 2.0
+        imageView.animationRepeatCount = 1
+        imageView.frame = CGRectMake(0.0, tableview.frame.origin.y, tableview.frame.size.width, tableview.frame.size.height)
+        imageView.startAnimating()
+        let window = UIApplication.sharedApplication().delegate?.window
+        window!!.addSubview(imageView)
+    }
+
+    func disMissBigPic(sender:AnyObject){
+        let x = (sender.view as! UIImageView )
+        x.removeFromSuperview()
+
     }
 
 
