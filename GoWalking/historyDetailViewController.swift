@@ -34,11 +34,11 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     func initMap(){
         mapview.delegate = self
         mapview.rotateCameraEnabled = false
-        if data.locations.count > 1{
-            let x = data.locations.lastObject as! CLLocation
-            mapview.centerCoordinate = x.coordinate
-        }
-        mapview.setZoomLevel(17, animated: false)
+//        if data.locations.count > 1{
+//            let x = data.locations.lastObject as! CLLocation
+//            mapview.centerCoordinate = x.coordinate
+//        }
+//        mapview.setZoomLevel(17, animated: false)
     }
     
     func initLabel(){
@@ -52,25 +52,51 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         stepsLabel.text = "\(data.steps)步"
     }
     
-
-
-
     func showRoute()
     {
+        if data.locations.count < 1{return}
+        
+        var maxlatitude :CLLocationDegrees = (data.locations[0]as! CLLocation).coordinate.latitude
+        var minlatitude :CLLocationDegrees = (data.locations[0]as! CLLocation).coordinate.latitude
+        var maxlongitude :CLLocationDegrees = (data.locations[0]as! CLLocation).coordinate.longitude
+        var minlongitude :CLLocationDegrees = (data.locations[0]as! CLLocation).coordinate.longitude
+        
+        
         var coordiantes: [CLLocationCoordinate2D] = []
         for location: AnyObject in data.locations {
             let loc = location as! CLLocation
+            
+            if loc.coordinate.latitude > maxlatitude {maxlatitude = loc.coordinate.latitude}
+            if loc.coordinate.latitude < minlatitude {minlatitude = loc.coordinate.latitude}
+            if loc.coordinate.longitude > maxlongitude {maxlongitude = loc.coordinate.longitude}
+            if loc.coordinate.longitude < minlongitude {minlongitude = loc.coordinate.longitude}
+            
+            loc.coordinate.longitude
             coordiantes.append(loc.coordinate)
         }
+        
+        let centerPoint:CLLocation = CLLocation(latitude: (maxlatitude + minlatitude)/2, longitude: (maxlongitude + minlongitude)/2 )
+        mapview.centerCoordinate = centerPoint.coordinate
+        
         let polyline = MAPolyline(coordinates: &coordiantes, count: UInt(data.locations.count))
         mapview.addOverlay(polyline)
         mapview.showAnnotations(mapview.annotations, animated: true)
         
-//        for a in coordiantes{
-//            let pointAnnotation = MAPointAnnotation()
-//            pointAnnotation.coordinate = a;
-//            mapview.addAnnotation(pointAnnotation)
-//        }
+        
+        let span:MACoordinateSpan = MACoordinateSpanMake(maxlatitude - minlatitude + 0.01, maxlongitude - minlongitude + 0.01)
+        let region:MACoordinateRegion = MACoordinateRegionMake(centerPoint.coordinate, span)
+        mapview.setRegion(region, animated: true)
+
+        
+        var coordiantesToDraw: [CLLocationCoordinate2D] = []
+        coordiantesToDraw.append((data.locations.firstObject as! CLLocation).coordinate)
+        coordiantesToDraw.append((data.locations.lastObject as! CLLocation).coordinate)
+        
+        for a in coordiantesToDraw{
+            let pointAnnotation = MAPointAnnotation()
+            pointAnnotation.coordinate = a;
+            mapview.addAnnotation(pointAnnotation)
+        }
         
 
     }

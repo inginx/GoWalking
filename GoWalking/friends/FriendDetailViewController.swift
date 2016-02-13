@@ -45,6 +45,13 @@ class FriendDetailViewController: UITableViewController {
         button.setTitle("关注", forState: UIControlState.Normal)
         button.backgroundColor = UIColor.blueColor()
         button.addTarget(self, action: "follow", forControlEvents: UIControlEvents.TouchDown)
+        request(.GET, "\(urls.friendstatment)\(self.data["username"]as!String)").responseJSON{
+            s in guard let res = s.result.value else{return}
+            let isWatiForAccept = res["Msg"] as! Bool
+            if isWatiForAccept{
+                self.showWatingForAccept()
+            }
+        }
     }
 
     func isWatiForAccept(){
@@ -69,13 +76,17 @@ class FriendDetailViewController: UITableViewController {
             s in
             guard let res = s.result.value else{return}
             if res["success"] as! Bool{
-                self.button.setTitle("等待对方批准", forState: UIControlState.Normal)
-                self.button.userInteractionEnabled = false
-                self.button.backgroundColor = UIColor.grayColor()
+                self.showWatingForAccept()
             }else{
                 KVNProgress.showErrorWithStatus(res["Msg"] as! String)
             }
         }
+    }
+    
+    func showWatingForAccept(){
+        self.button.setTitle("等待对方批准", forState: UIControlState.Normal)
+        self.button.userInteractionEnabled = false
+        self.button.backgroundColor = UIColor.grayColor()
     }
 
     func accept(){

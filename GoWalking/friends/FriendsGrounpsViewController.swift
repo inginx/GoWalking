@@ -98,8 +98,19 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     func deleButtonTap(sender:AnyObject){
         let x = (sender.superview)!!.superview as! UITableViewCell
         let indexPath = tableview.indexPathForCell(x)
-        dataArray.removeAtIndex((indexPath?.row)!)
-        tableview.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Top)
+        let mid = dataArray[(indexPath?.row)!]["mid"] as! String
+        request(.GET, "\(urls.deleFeed)\(mid)").responseJSON{
+            s in
+            guard let res = s.result.value else{return}
+            if res["success"] as! Bool == true{
+                self.dataArray.removeAtIndex((indexPath?.row)!)
+                self.tableview.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Top)
+            }else{
+                let err = res["Msg"] as! String
+                KVNProgress.showErrorWithStatus(err)
+            }
+        }
+        
     }
 
     func showBigPic(sender:AnyObject){

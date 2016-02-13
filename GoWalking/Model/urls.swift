@@ -18,12 +18,14 @@ class url{
     let uploadAvatar:String
     let uploadInfo:String
     let publishFeed:String
+    let deleFeed:String
     let register:String
     let searchUser:String
     let friendList:String
     let addfriend:String
     let wait4Accept:String
     let acceptFriend:String
+    let friendstatment:String
     init(){
         login = "\(prefix)/user/login"
         register = "\(prefix)/user/register"
@@ -35,11 +37,13 @@ class url{
 
         circleFeed = "\(prefix)/friends/content"
         publishFeed = "\(prefix)/friends/publish/"
+        deleFeed = "\(prefix)/friends/delFeed/"
 
 
         friendList = "\(prefix)/friends/list"
         addfriend = "\(prefix)/friends/add/"
         wait4Accept = "\(prefix)/friends/waitforaccept"
+        friendstatment = "\(prefix)/friends/statement/"
         acceptFriend = "\(prefix)/friends/accept/"
     }
 }
