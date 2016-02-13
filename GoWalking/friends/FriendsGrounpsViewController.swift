@@ -112,25 +112,43 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         }
         
     }
+    
+    var oldframe:CGRect!
 
     func showBigPic(sender:AnyObject){
         let x = ( sender.view as! UIImageView ).image
+        let xx = ( sender.view as! UIImageView )
+        
         let imageView = UIImageView(image: x)
         imageView.userInteractionEnabled = true
         imageView.multipleTouchEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "disMissBigPic:"))
-        imageView.animationDuration = 2.0
-        imageView.animationRepeatCount = 1
-        imageView.frame = CGRectMake(0.0, tableview.frame.origin.y, tableview.frame.size.width, tableview.frame.size.height)
-        imageView.startAnimating()
+
+
+        let newframe = xx.convertRect(xx.bounds, toView: self.view)
+        oldframe = newframe
+        imageView.frame = newframe
+        
         let window = UIApplication.sharedApplication().delegate?.window
         window!!.addSubview(imageView)
+        
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.3)
+  
+        imageView.frame = CGRectMake(0.0, self.tableview.frame.origin.y, self.tableview.frame.size.width, self.tableview.frame.size.height)
+        
+        UIView.commitAnimations()
+
     }
 
     func disMissBigPic(sender:AnyObject){
         let x = (sender.view as! UIImageView )
-        x.removeFromSuperview()
-
+        UIView.animateWithDuration(0.3, delay: 0.1, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
+            x.frame = self.oldframe
+            }) { _ in
+                x.removeFromSuperview()
+        }
     }
 
 
