@@ -31,6 +31,8 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
             history = NSKeyedUnarchiver.unarchiveObjectWithData(a) as![RunningData]
         } else  { history = [] }
 
+        history = history.sort({$0.startTime.timeIntervalSince1970 > $1.startTime.timeIntervalSince1970})
+
         if history.count == 0{
             showEmptyLabel()
         }
