@@ -4,6 +4,7 @@ PODS:
   - AMapSearch (3.0.1)
   - Kingfisher (2.0.0)
   - KVNProgress (2.2.1)
+  - MJRefresh (3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - AMapSearch (~> 3.0.1)
   - Kingfisher (~> 2.0)
   - KVNProgress
+  - MJRefresh
 
 SPEC CHECKSUMS:
   Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
@@ -18,5 +20,6 @@ SPEC CHECKSUMS:
   AMapSearch: 431b082417bd3da0c2fe594c4822b664607891e9
   Kingfisher: 67d280b39e878afbd467c80953924a61950c45e4
   KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
 
 COCOAPODS: 0.39.0

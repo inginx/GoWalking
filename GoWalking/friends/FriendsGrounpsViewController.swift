@@ -7,34 +7,62 @@
 //
 import Alamofire
 import KVNProgress
-
+import MJRefresh
 
 class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
 
-    @IBOutlet weak var avastar: UIImageView!
-    @IBOutlet weak var nickname: UILabel!
     @IBOutlet weak var tableview: UITableView!
+
     var dataArray:[NSDictionary] = []
+    let header = MJRefreshNormalHeader()
+    let footer = MJRefreshAutoNormalFooter()
+
+    var page:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        avastar.setRound()
         self.tableview.rowHeight = UITableViewAutomaticDimension;
         self.tableview.estimatedRowHeight = 220.0;
+        SetReflash()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        nickname.text = inf.nickname
-        avastar.addPicFromUrl(inf.avatar)
-        getData()
+        tableview.mj_header.beginRefreshing()
     }
 
-    func getData(){
+    func SetReflash(){
+        header.setRefreshingTarget(self, refreshingAction: Selector("pullUp"))
+        self.tableview.mj_header = header
+        footer.setRefreshingTarget(self, refreshingAction: Selector("pullDown"))
+        self.tableview.mj_footer = footer
+    }
+
+    func pullUp(){
+        getData(){
+            self.tableview.mj_header.endRefreshing()
+        }
+    }
+
+    func pullDown(){
+        getData(++page){
+            self.tableview.mj_footer.endRefreshing()
+        }
+    }
+
+    func getData(key:Int = 0,complete:(()->())? = nil){
         request(.POST, urls.circleFeed).responseJSON{
             s in guard let res = s.result.value else{return}
-            self.dataArray = res as![NSDictionary]
-            self.tableview.reloadData()
+            if key == 0{
+                self.page = 0
+                self.dataArray = res as![NSDictionary]
+                self.tableview.reloadData()
+            }else{
+                self.page++
+                self.dataArray.appendContentsOf(res as![NSDictionary])
+                self.tableview.reloadData()
+            }
+            complete?()
         }
     }
 
