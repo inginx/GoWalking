@@ -81,7 +81,7 @@ class information: NSObject {
     }
 
 
-    func 登录(errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
+    func 登录(errHandler:((String?)->())?=nil,completionHandler:(()->())?=nil){
         if password == "" && openid != ""{
             loginWithTencent(errHandler,completionHandler:completionHandler)
         }else{
@@ -90,7 +90,7 @@ class information: NSObject {
     }
 
 
-    func loginWithTencent(errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
+    func loginWithTencent(errHandler:((String?)->())?=nil,completionHandler:(()->())?=nil){
         let para = ["openid":openid]
         request(.POST, urls.tencentLogin,parameters:para).responseJSON(){
             s in guard let res = s.result.value else{return}
@@ -99,14 +99,18 @@ class information: NSObject {
                 self.获取详细信息(completionHandler)
             }else{
                 let error = res["Msg"] as! String
+                print(error)
+                if error == "haventReg"{errHandler?(error)}
+                else{
                 KVNProgress.showErrorWithStatus(error)
-                errHandler?()
+                errHandler?(error)
+                }
             }
 
         }
     }
 
-    func 登录(username:String,pwd:String,errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
+    func 登录(username:String,pwd:String,errHandler:((String)->())?=nil,completionHandler:(()->())?=nil){
         let para = ["user":username,"pwd":pwd]
         print("开始登录")
         Alamofire.request(.POST, urls.login,parameters:para).responseJSON(){
@@ -122,7 +126,7 @@ class information: NSObject {
             else {
                 let error = res["Msg"] as! String
                 KVNProgress.showErrorWithStatus(error)
-                errHandler?()
+                errHandler?(error)
             }
         }
     }

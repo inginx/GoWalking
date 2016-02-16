@@ -56,6 +56,7 @@ extension NSDate{
 
 extension UIImageView{
     func addPicFromUrl(x:String){
+        if (x.rangeOfString("http") != nil){self.kf_setImageWithURL(NSURL(string:x)!);return}
         self.kf_setImageWithURL(NSURL(string:"http://7xq7zd.com1.z0.glb.clouddn.com/\(x)")!)
     }
 }

@@ -54,6 +54,10 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
         super.viewDidLoad()
 
         self.automaticallyAdjustsScrollViewInsets = false
+
+        if inf.openid != ""{
+            nickname.text = inf.nickname
+        }
     }
 
     func resignResponder() {
@@ -81,7 +85,7 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
     func regist() {
         if username.text! == "" {KVNProgress.showErrorWithStatus("用户名不能为空");return}
         if password.text?.characters.count < 5{KVNProgress.showErrorWithStatus("密码至少为6位");return}
-        if nickname.text?.characters.count <= 3{KVNProgress.showErrorWithStatus("昵称至少为3位");return}
+        if nickname.text?.characters.count < 3{KVNProgress.showErrorWithStatus("昵称至少为3位");return}
         if mail.text?.characters.count < 3 || mail.text?.rangeOfString("@") == nil{KVNProgress.showErrorWithStatus("邮箱不合法");return}
 
 
@@ -94,7 +98,9 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
             "username":user,
             "pwd":pwd,
             "nickname":nick,
-            "email":email
+            "email":email,
+            "openid":inf.openid,
+            "avatar":inf.avatar
         ]
 
         KVNProgress.showWithStatus("请稍后")

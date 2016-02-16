@@ -36,9 +36,10 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func qqLogin(sender: AnyObject) {
-        inf.tencentOAuth.authorize(["get_user_info"])
+        inf.tencentOAuth.authorize(["get_user_info","get_simple_userinfo"])
 
     }
+
 
     func loginFromOpenid(){
         if (self.presentingViewController != nil){

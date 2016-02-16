@@ -15,7 +15,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inf.登录({KVNProgress.showErrorWithStatus("密码错误");inf.logout()})
+        inf.登录({s in KVNProgress.showErrorWithStatus(s);inf.logout()})
         runStartButton.setRound()
     }
     

@@ -572,7 +572,7 @@
                                 <rect key="frame" x="280" y="246" width="75" height="30"/>
                                 <state key="normal" title="注册新用户"/>
                                 <connections>
-                                    <segue destination="BDr-2j-NfU" kind="push" id="ee8-KL-tsi"/>
+                                    <segue destination="BDr-2j-NfU" kind="push" id="9zB-1Z-qyG"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hWX-5g-C9S">

@@ -133,15 +133,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
         if !inf.tencentOAuth.accessToken.isEmpty {
             print(inf.tencentOAuth.openId)
             inf.openid = inf.tencentOAuth.openId
-            inf.loginWithTencent(){
+            inf.loginWithTencent(LoginWithOpenidErroeHandler){
                 let x = inf.getVC("mainVC")
                 self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
             }
         }
 
     }
-    func tencentDidNotLogin(cancelled: Bool) {}
+
+    func LoginWithOpenidErroeHandler(x: String?){
+        if x! == "haventReg"{
+            inf.tencentOAuth.getUserInfo()
+
+        }
+    }
+
+    func tencentDidNotLogin(cancelled: Bool) {
+//        inf.openid = "22222"
+//        inf.loginWithTencent(LoginWithOpenidErroeHandler)
+    }
     func tencentDidNotNetWork() {}
+
+    func getUserInfoResponse(response:APIResponse){
+        print(response.jsonResponse["nickname"])
+        print(response.jsonResponse["figureurl_qq_2"])
+        inf.nickname = response.jsonResponse["nickname"] as! String
+        inf.avatar = response.jsonResponse["figureurl_qq_2"] as! String
+        
+        let x = inf.getVC("register") as! registerViewController
+        ((self.window?.rootViewController) as! UINavigationController).pushViewController(x, animated: true)
+    }
 
 }
 
