@@ -597,6 +597,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Cl-TK-QXx">
+                                <rect key="frame" x="315" y="274" width="40" height="40"/>
+                                <state key="normal" backgroundImage="qq"/>
+                                <connections>
+                                    <action selector="qqLogin:" destination="I9p-4W-VIx" eventType="touchUpInside" id="1I8-D1-1Gz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1511,7 +1518,7 @@
         <!--Login View Table-->
         <scene sceneID="Wa1-42-GhD">
             <objects>
-                <tableViewController id="AuP-co-viO" customClass="LoginViewTable" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="loginTable" id="AuP-co-viO" customClass="LoginViewTable" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EUn-qx-z7f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1607,6 +1614,7 @@
     </scenes>
     <resources>
         <image name="bg7" width="540" height="1080"/>
+        <image name="qq" width="182" height="182"/>
         <image name="历史" width="30" height="30"/>
         <image name="发现" width="30" height="30"/>
         <image name="运动" width="30" height="30"/>

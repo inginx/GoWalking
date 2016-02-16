@@ -6,4 +6,7 @@
 #import <KVNProgress/KVNProgress.h>
 #import "ZDSinaWeiboActionSheet.h"
 #import "ZDSheetCell.h"
-//#import "MJRefresh.h"
+
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterfaceObject.h>
+#import <TencentOpenAPI/QQApiInterface.h>

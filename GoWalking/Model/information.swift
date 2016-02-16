@@ -21,7 +21,9 @@ class information: NSObject {
     var avatar = "default.png"
     var mail = ""
     var introduce = ""
+    var openid = ""
 
+    var tencentOAuth: TencentOAuth!
     
     override init(){
         let x = NSUserDefaults.standardUserDefaults()
@@ -31,6 +33,7 @@ class information: NSObject {
         if let a = x.objectForKey("avatar") as? String {avatar = a} else {avatar="default.png"}
         if let a = x.objectForKey("mail") as? String {mail = a} else {mail=""}
         if let a = x.objectForKey("introduce")as? String {introduce = a} else {introduce = ""}
+        if let a = x.objectForKey("Tencentopenid")as? String {openid = a} else {openid = ""}
         }
     
     func getVC(x:String)->UIViewController{
@@ -45,6 +48,7 @@ class information: NSObject {
         x.setObject(password, forKey: "password")
         x.setObject(nickname, forKey: "nickname")
         x.setObject(introduce, forKey: "introduce")
+        x.setObject(openid, forKey: "Tencentopenid")
     }
     
     func checklogin(completionHandler:(Bool)->Void){
@@ -69,14 +73,37 @@ class information: NSObject {
         x.removeObjectForKey("username")
         x.removeObjectForKey("password")
         x.removeObjectForKey("nickname")
+        x.removeObjectForKey("Tencentopenid")
         username = ""
         password = ""
         nickname = ""
+        openid = ""
     }
 
 
     func 登录(errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
-        登录(inf.username,pwd: inf.password,errHandler:errHandler,completionHandler:completionHandler)
+        if password == "" && openid != ""{
+            loginWithTencent(errHandler,completionHandler:completionHandler)
+        }else{
+            登录(inf.username,pwd: inf.password,errHandler:errHandler,completionHandler:completionHandler)
+        }
+    }
+
+
+    func loginWithTencent(errHandler:(()->())?=nil,completionHandler:(()->())?=nil){
+        let para = ["openid":openid]
+        request(.POST, urls.tencentLogin,parameters:para).responseJSON(){
+            s in guard let res = s.result.value else{return}
+            if (res["status"] as! Bool){
+                self.username = res["username"] as! String
+                self.获取详细信息(completionHandler)
+            }else{
+                let error = res["Msg"] as! String
+                KVNProgress.showErrorWithStatus(error)
+                errHandler?()
+            }
+
+        }
     }
 
     func 登录(username:String,pwd:String,errHandler:(()->())?=nil,completionHandler:(()->())?=nil){

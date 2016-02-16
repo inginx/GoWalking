@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
 
     var window: UIWindow?
 
@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         swizzlingMethod(UIViewController.self,oldSelector: "viewDidLoad",newSelector: "viewDidLoadForChangeTitleColor")
         
-        
-        
+        inf.tencentOAuth = TencentOAuth(appId: "1105180266", andDelegate: self)
+
         if inf.username == ""{
             window=UIWindow(frame: UIScreen.mainScreen().bounds)
             window!.makeKeyAndVisible()
@@ -127,6 +127,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+
+    //MARK: - 第三方登录
+    func tencentDidLogin() {
+        if !inf.tencentOAuth.accessToken.isEmpty {
+            print(inf.tencentOAuth.openId)
+            inf.openid = inf.tencentOAuth.openId
+            inf.loginWithTencent(){
+                let x = inf.getVC("mainVC")
+                self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
+            }
+        }
+
+    }
+    func tencentDidNotLogin(cancelled: Bool) {}
+    func tencentDidNotNetWork() {}
 
 }
 

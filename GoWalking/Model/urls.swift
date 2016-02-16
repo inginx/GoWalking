@@ -9,10 +9,11 @@
 let urls = url()
 
 class url{
-    let prefix = "https://learning2learn.cn/gowalking"
-//    let prefix = "http://127.0.0.1:8000/gowalking"
+//    let prefix = "https://learning2learn.cn/gowalking"
+    let prefix = "http://127.0.0.1:8000/gowalking"
 
     let login:String
+    let tencentLogin:String
     let detail:String
     let circleFeed:String
     let uploadAvatar:String
@@ -28,6 +29,8 @@ class url{
     let friendstatment:String
     init(){
         login = "\(prefix)/user/login"
+        tencentLogin = "\(prefix)/user/Tencentlogin"
+
         register = "\(prefix)/user/register"
         detail = "\(prefix)/user/person"
         uploadAvatar = "\(prefix)/user/uploadavatar/"
