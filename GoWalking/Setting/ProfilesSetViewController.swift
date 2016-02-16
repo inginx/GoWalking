@@ -130,6 +130,11 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
     func save(){
         let nickname = nicknameField.text!
         let mail = mailField.text!
+
+        if nickname.characters.count < 3{KVNProgress.showErrorWithStatus("昵称至少为3位");return}
+        if !mail.isEmail(){KVNProgress.showErrorWithStatus("邮箱不合法");return}
+
+
         KVNProgress.showWithStatus("保存中")
         let data = ["nickname":nickname,
             "mail": mail,

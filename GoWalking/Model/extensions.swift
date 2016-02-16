@@ -6,7 +6,7 @@
 //  Copyright © 2016年 称一称. All rights reserved.
 //
 import Kingfisher
-
+import Foundation
 
 let sWidth = UIScreen.mainScreen().bounds.width
 let sHeight = UIScreen.mainScreen().bounds.height
@@ -68,5 +68,16 @@ extension UIImage{
         let fileURL = documentsURL.URLByAppendingPathComponent(filename)
         imageData.writeToURL(fileURL, atomically: false)
         return fileURL
+    }
+}
+
+extension String{
+    func isEmail()->Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(self)
+        
+
     }
 }
