@@ -41,6 +41,9 @@ class SettingTable: UITableViewController,SinaWeiboActionSheetDelegate {
         }
     }
 
+    func showPwdChange(){
+        self.navigationController?.pushViewController(inf.getVC("pwdchange"), animated: true)
+    }
 
     func showLogout() {
         let x = ZDSinaWeiboActionSheet(wihtTitlesArr: ["退出","取消"], isNeedCancleBtn: false)

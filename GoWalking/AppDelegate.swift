@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import KVNProgress
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
 
     var window: UIWindow?
+
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -29,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
             window=UIWindow(frame: UIScreen.mainScreen().bounds)
             window!.makeKeyAndVisible()
             let VC = inf.getVC("LoginNav")
-            window!.rootViewController = VC
+            window?.rootViewController = VC
         }
         
         return true
@@ -131,9 +134,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
     //MARK: - 第三方登录
     func tencentDidLogin() {
         if !inf.tencentOAuth.accessToken.isEmpty {
-            print(inf.tencentOAuth.openId)
             inf.openid = inf.tencentOAuth.openId
             inf.loginWithTencent(LoginWithOpenidErroeHandler){
+                if(inf.password != ""){
+                    request(.POST, urls.submitTencent,parameters : ["openid":inf.openid]).responseJSON{
+                        s in guard let res = s.result.value else {return}
+                        if res["success"] as! Bool {
+                            KVNProgress.showSuccessWithStatus("绑定成功")
+                        }else{
+                            KVNProgress.showErrorWithStatus(res["Msg"] as! String)
+                        }
+                    }
+                }
                 let x = inf.getVC("mainVC")
                 self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
             }
@@ -149,19 +161,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate {
     }
 
     func tencentDidNotLogin(cancelled: Bool) {
-//        inf.openid = "22222"
-//        inf.loginWithTencent(LoginWithOpenidErroeHandler)
+
     }
     func tencentDidNotNetWork() {}
 
     func getUserInfoResponse(response:APIResponse){
-        print(response.jsonResponse["nickname"])
-        print(response.jsonResponse["figureurl_qq_2"])
         inf.nickname = response.jsonResponse["nickname"] as! String
         inf.avatar = response.jsonResponse["figureurl_qq_2"] as! String
         
         let x = inf.getVC("register") as! registerViewController
-        ((self.window?.rootViewController) as! UINavigationController).pushViewController(x, animated: true)
+        var presentedVC = window?.rootViewController
+        while let pVC = presentedVC?.presentedViewController {
+            presentedVC = pVC
+            print(presentedVC)
+            if presentedVC!.isKindOfClass(UINavigationController){break}
+        }
+        (presentedVC as! UINavigationController).pushViewController(x, animated: true)
+    }
+
+    func handleTencentOpenUrl(url: String) -> Bool {
+        TencentOAuth.HandleOpenURL(NSURL(string: url))
+        return true
+    }
+
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool{
+        let string = url.absoluteString
+        if string.hasPrefix("tencent1105180266") {return handleTencentOpenUrl(string)}
+        return false
     }
 
 }

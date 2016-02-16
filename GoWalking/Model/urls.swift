@@ -14,6 +14,8 @@ class url{
 
     let login:String
     let tencentLogin:String
+    let submitTencent:String
+    let chandePwd:String
     let detail:String
     let circleFeed:String
     let uploadAvatar:String
@@ -30,6 +32,8 @@ class url{
     init(){
         login = "\(prefix)/user/login"
         tencentLogin = "\(prefix)/user/Tencentlogin"
+        submitTencent = "\(prefix)/user/submitTencent"
+        chandePwd = "\(prefix)/user/chandePwd"
 
         register = "\(prefix)/user/register"
         detail = "\(prefix)/user/person"

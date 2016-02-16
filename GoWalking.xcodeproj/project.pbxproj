@@ -13,6 +13,7 @@
 		09145D1E1C09460200BC3485 /* historyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09145D1D1C09460200BC3485 /* historyDetailViewController.swift */; };
 		091BC1B61C61064900CB656A /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091BC1B51C61064900CB656A /* extensions.swift */; };
 		091BC1B81C6106CE00CB656A /* urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091BC1B71C6106CE00CB656A /* urls.swift */; };
+		0949D1EA1C73342300712EF5 /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0949D1E91C73342300712EF5 /* PasswordChangeViewController.swift */; };
 		0952F0D81BF611EA000905A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952F0D71BF611EA000905A9 /* AppDelegate.swift */; };
 		0952F0DA1BF611EA000905A9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0952F0D91BF611EA000905A9 /* MapViewController.swift */; };
 		0952F0DD1BF611EA000905A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0952F0DB1BF611EA000905A9 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		09145D1D1C09460200BC3485 /* historyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = historyDetailViewController.swift; sourceTree = "<group>"; };
 		091BC1B51C61064900CB656A /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		091BC1B71C6106CE00CB656A /* urls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = urls.swift; sourceTree = "<group>"; };
+		0949D1E91C73342300712EF5 /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordChangeViewController.swift; path = Setting/PasswordChangeViewController.swift; sourceTree = "<group>"; };
 		0952F0D41BF611EA000905A9 /* GoWalking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoWalking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0952F0D71BF611EA000905A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0952F0D91BF611EA000905A9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				09D9B4DA1C034ED000C6DBD6 /* SetingViewController.swift */,
 				09C933381C586E1A0010D941 /* ProfilesSetViewController.swift */,
+				0949D1E91C73342300712EF5 /* PasswordChangeViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				098AA5C91C01CBE400EC6511 /* MKTextField.swift in Sources */,
 				098AA5C51C01CBE400EC6511 /* MKImageView.swift in Sources */,
 				098AA5C81C01CBE400EC6511 /* MKTableViewCell.swift in Sources */,
+				0949D1EA1C73342300712EF5 /* PasswordChangeViewController.swift in Sources */,
 				09897D021C5E62E1003E1433 /* FriendDetailViewController.swift in Sources */,
 				09D9B4DB1C034ED000C6DBD6 /* SetingViewController.swift in Sources */,
 			);

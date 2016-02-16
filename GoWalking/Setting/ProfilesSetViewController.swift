@@ -9,22 +9,21 @@ import UIKit
 import KVNProgress
 import Alamofire
 
-class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,SinaWeiboActionSheetDelegate {
+class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,SinaWeiboActionSheetDelegate,UITextViewDelegate {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nicknameField: UITextField!
     @IBOutlet weak var mailField: UITextField!
     @IBOutlet weak var introduce: UITextView!
     var avatatModify = false
 
-
+    var TableTap :UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Done, target: self, action: "saveTouch")
         let singleTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "avatarTouch")
-        let TableTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "resignFirst")
+        TableTap = UITapGestureRecognizer(target: self, action: "resignFirst")
         avatar.setRound()
         avatar.addGestureRecognizer(singleTap)
-        tableView.addGestureRecognizer(TableTap)
         }
 
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +51,9 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
         x.show()
     }
 
+    @IBAction func submitQQ(sender: AnyObject) {
+        inf.tencentOAuth.authorize(["get_user_info"])
+    }
     //image picker
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -109,8 +111,16 @@ class ProfilesSetViewController: UITableViewController,UIImagePickerControllerDe
             }
         )
     }
+    
+    func textViewDidBeginEditing(textView: UITextView){
+        tableView.addGestureRecognizer(TableTap)
+    }
 
+    @IBAction func StartEdit(sender: AnyObject) {
+        tableView.addGestureRecognizer(TableTap)
+    }
     func resignFirst(){
+        tableView.removeGestureRecognizer(TableTap)
         nicknameField.resignFirstResponder()
         mailField.resignFirstResponder()
         introduce.resignFirstResponder()
