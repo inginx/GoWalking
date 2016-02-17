@@ -18,48 +18,51 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     let footer = MJRefreshAutoNormalFooter()
 
     var page:Int = 0
+    var noMore:Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableview.rowHeight = UITableViewAutomaticDimension;
         self.tableview.estimatedRowHeight = 220.0;
         SetReflash()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         tableview.mj_header.beginRefreshing()
     }
 
     func SetReflash(){
         header.setRefreshingTarget(self, refreshingAction: Selector("pullUp"))
+        header.setTitle("下拉刷新", forState: MJRefreshState.WillRefresh)
+        header.setTitle("刷新ing", forState: MJRefreshState.Refreshing)
         self.tableview.mj_header = header
         footer.setRefreshingTarget(self, refreshingAction: Selector("pullDown"))
+        footer.setTitle("加载更多", forState: MJRefreshState.WillRefresh)
+        footer.setTitle("没啦！自己发一条吧！", forState: MJRefreshState.NoMoreData)
         self.tableview.mj_footer = footer
     }
 
     func pullUp(){
-        getData(){
+        getData(false){
             self.tableview.mj_header.endRefreshing()
         }
     }
 
     func pullDown(){
-        getData(++page){
-            self.tableview.mj_footer.endRefreshing()
+        getData(true){
+            if self.noMore{self.tableview.mj_footer.endRefreshingWithNoMoreData()}
+            else{self.tableview.mj_footer.endRefreshing()}
         }
     }
 
-    func getData(key:Int = 0,complete:(()->())? = nil){
-        request(.POST, urls.circleFeed).responseJSON{
-            s in guard let res = s.result.value else{return}
-            if key == 0{
-                self.page = 0
-                self.dataArray = res as![NSDictionary]
+    func getData(addPage:Bool,complete:(()->())? = nil){
+        if !addPage{self.page = 0}else{self.page++}
+        request(.POST, urls.circleFeed,parameters:["page":page]).responseJSON{
+            s in guard let res = s.result.value else{self.page--;return}
+            self.noMore =  res["end"] as! Bool
+
+            if !addPage{
+                self.dataArray = res["data"] as![NSDictionary]
                 self.tableview.reloadData()
             }else{
-                self.page++
-                self.dataArray.appendContentsOf(res as![NSDictionary])
+                self.dataArray.appendContentsOf(res["data"] as![NSDictionary])
                 self.tableview.reloadData()
             }
             complete?()

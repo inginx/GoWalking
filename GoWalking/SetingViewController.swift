@@ -54,11 +54,11 @@ class SettingTable: UITableViewController,SinaWeiboActionSheetDelegate {
 
     func sinaWeiboActionSheetDidClick(actionSheet: ZDSinaWeiboActionSheet!, selectedItem selectedLine: Int) {
         if selectedLine == 0{
+            inf.logout()
             if (self.presentingViewController != nil){
                 self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             }else{
                 self.presentViewController(inf.getVC("LoginNav"), animated: true, completion: nil)
-                inf.logout()
             }
         }
     }
