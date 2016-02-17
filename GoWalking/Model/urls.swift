@@ -29,6 +29,7 @@ class url{
     let wait4Accept:String
     let acceptFriend:String
     let friendstatment:String
+    let rank:String
     init(){
         login = "\(prefix)/user/login"
         tencentLogin = "\(prefix)/user/Tencentlogin"
@@ -52,6 +53,7 @@ class url{
         wait4Accept = "\(prefix)/friends/waitforaccept"
         friendstatment = "\(prefix)/friends/statement/"
         acceptFriend = "\(prefix)/friends/accept/"
+        rank = "\(prefix)/friends/rank"
     }
 }
 

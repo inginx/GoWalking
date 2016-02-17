@@ -1095,6 +1095,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dIr-E4-pZ4" kind="push" id="nCk-OJ-Hj4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1376,6 +1379,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgg-WL-cZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2038.5" y="2782.5"/>
+        </scene>
+        <!--排行榜-->
+        <scene sceneID="Tp7-Qi-uxq">
+            <objects>
+                <viewController id="dIr-E4-pZ4" customClass="RankViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gn7-qO-Pcj"/>
+                        <viewControllerLayoutGuide type="bottom" id="LRS-4i-exu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="324-gT-Rc5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="排行榜" id="d9k-1r-S8e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jZl-hQ-YeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1072.5" y="3663.5"/>
         </scene>
         <!--好友列表-->
         <scene sceneID="HmC-FQ-46i">
