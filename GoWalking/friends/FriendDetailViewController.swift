@@ -19,16 +19,22 @@ class FriendDetailViewController: UITableViewController {
     @IBOutlet weak var intriduceLabel: UITextView!
     @IBOutlet weak var button: UIButton!
 
-    var username:String!
+    var username:String! = ""
     var VCKind:DetailVCMode!
     var data:NSDictionary!
     override func viewDidLoad() {
         super.viewDidLoad()
-        GetData()
+        if username != "" {GetDataFromNet()}
+        else{GetData()}
         ModeSet()
     }
 
     func ModeSet(){
+        if username == inf.username{
+            button.hidden = true
+            return
+        }
+
         switch VCKind as DetailVCMode{
         case .Friend:isFriend()
         case .Stranger:isStranger()
@@ -69,6 +75,16 @@ class FriendDetailViewController: UITableViewController {
         self.intriduceLabel.text = data["introduce"]as? String
 
     }
+
+    func GetDataFromNet(){
+        request(.GET, "\(urls.detail)/\(username)").responseJSON{
+            s in
+            guard let res = s.result.value else{KVNProgress.showError();return}
+            self.data = res as! NSDictionary
+            self.GetData()
+        }
+    }
+
 
     func follow(){
         let to = data["username"] as! String

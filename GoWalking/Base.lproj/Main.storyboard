@@ -661,7 +661,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="50" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg7" translatesAutoresizingMaskIntoConstraints="NO" id="kSL-39-ini">
+                                                <imageView tag="50" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg7" translatesAutoresizingMaskIntoConstraints="NO" id="kSL-39-ini">
                                                     <rect key="frame" x="8" y="8" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="52" id="V9L-bc-MYh"/>
@@ -734,7 +734,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="50" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg7" translatesAutoresizingMaskIntoConstraints="NO" id="Yed-Z4-KZU">
+                                                <imageView tag="50" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg7" translatesAutoresizingMaskIntoConstraints="NO" id="Yed-Z4-KZU">
                                                     <rect key="frame" x="8" y="8" width="52" height="52"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="52" id="g0y-FZ-24y"/>
@@ -1448,7 +1448,7 @@
         <!--详细信息Table-->
         <scene sceneID="1x7-S6-mUb">
             <objects>
-                <tableViewController title="详细信息Table" id="IEC-pM-gZ9" customClass="FriendDetailViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="persondetail" title="详细信息Table" id="IEC-pM-gZ9" customClass="FriendDetailViewController" customModule="GoWalking" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cNq-0g-OPY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

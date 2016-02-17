@@ -120,6 +120,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         content.text = data["content"] as? String
         timeLabel.text = data["time"] as? String
         avatar.addPicFromUrl(data["avatar"] as! String)
+        avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "sendToDetail:"))
 
 
 
@@ -180,6 +181,18 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
             }) { _ in
                 x.removeFromSuperview()
         }
+    }
+
+    func sendToDetail(sender:AnyObject){
+        let x = (sender.view as! UIImageView )
+        let xx = x.superview!.superview! as! UITableViewCell
+        let indexPath = tableview.indexPathForCell(xx)
+        let username = dataArray[(indexPath?.row)!]["username"] as! String
+        print(username)
+        let vc = inf.getVC("persondetail") as! FriendDetailViewController
+        vc.username = username
+        vc.VCKind = DetailVCMode.Friend
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 
