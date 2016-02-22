@@ -17,11 +17,14 @@ class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var container: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         x = childViewControllers.last as!LoginViewTable
+        
+        
     }
     
     
@@ -57,7 +60,7 @@ class LoginViewController: UIViewController {
 class LoginViewTable: UITableViewController,UITextViewDelegate {
     @IBOutlet weak var usernamefield: UITextField!
     @IBOutlet weak var passwordfield: UITextField!
-
+    
     func resignFirstResponders(){
         usernamefield.resignFirstResponder()
         passwordfield.resignFirstResponder()

@@ -17,6 +17,10 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         inf.登录({s in KVNProgress.showErrorWithStatus(s);inf.logout()})
         runStartButton.setRound()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,7 +54,7 @@ class StartViewController: UIViewController {
         for one in history{
             dis += one.distance
         }
-        totalCountLabel.text = String(format: "%.2fKM",dis/1000)
+        totalCountLabel.text = String(format: "%.2f",dis/1000)
         
     }
 }
