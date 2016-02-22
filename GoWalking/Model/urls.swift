@@ -29,6 +29,7 @@ class url{
     let wait4Accept:String
     let acceptFriend:String
     let friendstatment:String
+    let updateRunningDis:String
     let rank:String
     init(){
         login = "\(prefix)/user/login"
@@ -46,6 +47,7 @@ class url{
         circleFeed = "\(prefix)/friends/content"
         publishFeed = "\(prefix)/friends/publish/"
         deleFeed = "\(prefix)/friends/delFeed/"
+        updateRunningDis = "\(prefix)/user/updateRunningDis"
 
 
         friendList = "\(prefix)/friends/list"

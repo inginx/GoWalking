@@ -8,6 +8,8 @@
 
 import UIKit
 import KVNProgress
+import Alamofire
+
 class StartViewController: UIViewController {
 
     @IBOutlet weak var runStartButton: UIButton!
@@ -46,11 +48,24 @@ class StartViewController: UIViewController {
         if let a = data.objectForKey("history") as? NSData {
             history = NSKeyedUnarchiver.unarchiveObjectWithData(a) as![RunningData]
         } else  { history = [] }
+
         var dis = 0.0
+        var todaydis = 0.0
+        let todayDateS = NSDate().description
+        let todayString = todayDateS.substringToIndex(todayDateS.startIndex.advancedBy(10))
         for one in history{
             dis += one.distance
+            if one.startTime.description.substringToIndex(one.startTime.description.startIndex.advancedBy(10)) == todayString{
+                todaydis += one.distance
+            }
         }
         totalCountLabel.text = String(format: "%.2fKM",dis/1000)
-        
+        let para = ["total":dis,"today":todaydis]
+        request(.POST, urls.updateRunningDis,parameters:para)
     }
+
+    func updateRunningDis(){
+//        request(.POST, )
+    }
+
 }
