@@ -38,6 +38,11 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         计时Timer()
         startTime = NSDate()
         StartReadStep()
+        
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
     }
     
 
@@ -185,21 +190,21 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     //MARK:- Label Updaters
     func updateDistance(dis:Double){
         self.distance += dis
-        distanceLabel.text = String(format: "%.2f m", distance)
+        distanceLabel.text = String(format: "%.2f", distance)
     }
     func updateSpeed(loc:MAUserLocation){
         var speed = Double(loc.location.speed)
         if speed < 0 {speed = 0}
-        speedLabel.text = String(format: "%.2f m/s", speed)
+        speedLabel.text = String(format: "%.2f", speed)
     }
     func updateTime(){
         let min=seconds/60;
         let hour=min/60;
-        timeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,seconds%60)
+        timeLabel.text = String(format: "%d:%d:%d",hour%24,min%60,seconds%60)
     }
     func uodateAverage(){
         let avg = distance / Double(seconds)
-        averageLabel.text = String(format: "%.2f m/s", avg)
+        averageLabel.text = String(format: "%.2f", avg)
     }
     //MARK:- timers
     func secondsAdder(){
@@ -229,7 +234,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
                 dispatch_async(dispatch_get_main_queue(), {
                     print("\(self.pauseStep),\(data!.numberOfSteps)")
                     self.steps = Int(data!.numberOfSteps) - self.pauseStep
-                    self.setpsLabel.text = "\(self.steps)步"
+                    self.setpsLabel.text = "\(self.steps)"
                 });
             }
         }
