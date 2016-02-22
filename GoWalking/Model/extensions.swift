@@ -15,10 +15,6 @@ let navBarTextColor = UIColor.whiteColor()
 let navTitleAttribute = NSDictionary(object: navBarTextColor,forKey: NSForegroundColorAttributeName) as! [String : AnyObject]
 
 
-func getPicUrl(x:String) -> NSURL{
-    return NSURL(string:"http://7xq7zd.com1.z0.glb.clouddn.com/\(x)")!
-}
-
 extension UIViewController {
     func viewDidLoadForChangeTitleColor() {
         self.viewDidLoadForChangeTitleColor()
