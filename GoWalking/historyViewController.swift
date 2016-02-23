@@ -14,9 +14,16 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var history:[RunningData]!
     var data : NSUserDefaults!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         data = NSUserDefaults.standardUserDefaults()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        
+        tableview.backgroundView = UIImageView(image: UIImage(named: "history_bg1"))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -81,9 +88,9 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         let min=data.seconds/60;
         let hour=min/60;
-        seconds.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
+        seconds.text = String(format: "%d:%d:%d",hour%24,min%60,data.seconds%60)
 
-        distance.text = String(format:"%.2f Km",data.distance/1000 )
+        distance.text = String(format:"%.2f",data.distance/1000 )
 
         let img:UIImage!
         switch data.kind as RunningType{

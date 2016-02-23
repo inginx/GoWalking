@@ -29,6 +29,9 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         initLabel()
         showRoute()
 
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
     }
 
     func initMap(){
@@ -46,10 +49,10 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         let hour=min/60;
         startTimelabel.text = data.startTime.toString()
         endTimeLabel.text = data.endTime.toString()
-        distanceLabel.text = String(format: "%.2f m",data.distance)
-        spendTimeLabel.text = String(format: "%dh:%dm:%ds",hour%24,min%60,data.seconds%60)
-        averageSpeedLabel.text = String(format: "%.2f m/s",data.distance/Double(data.seconds) )
-        stepsLabel.text = "\(data.steps)步"
+        distanceLabel.text = String(format: "%.2f",data.distance)
+        spendTimeLabel.text = String(format: "%d:%d:%d",hour%24,min%60,data.seconds%60)
+        averageSpeedLabel.text = String(format: "%.2f",data.distance/Double(data.seconds) )
+        stepsLabel.text = "\(data.steps)"
     }
     
     func showRoute()
