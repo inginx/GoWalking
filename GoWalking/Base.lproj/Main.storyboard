@@ -1069,6 +1069,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="overdue2" translatesAutoresizingMaskIntoConstraints="NO" id="X46-t8-box">
                                 <rect key="frame" x="266" y="140" width="30" height="30"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrN-hu-TCq">
+                                <rect key="frame" x="301" y="178" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="shareButtonTap:" destination="wjH-0g-EHa" eventType="touchUpInside" id="9Bp-SL-lbm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

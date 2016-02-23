@@ -62,9 +62,11 @@ class RankViewController: UITableViewController{
         let row = indexPath.row
         let data = dataArray[row]
         avatar.addPicFromUrl(data["avatar"] as! String)
+        avatar.setRound()
         nameLabel.text = (data["nickname"] as! String)
         todayLabel.text = "\((data["today"] as! NSNumber).integerValue)"
-        totalLabel.text = "\((data["today"] as! NSNumber).integerValue)"
+        totalLabel.text = "\((data["total"] as! NSNumber).integerValue)"
+
 
         return x
 

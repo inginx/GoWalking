@@ -118,4 +118,44 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     }
 
 
+    func shareScreenShot() {
+        UIGraphicsBeginImageContextWithOptions(CGRectMake(0, 64, sWidth, sHeight - mapview.frame.height-64).size,false,0.0)
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        let x = CGRectMake(0, 0, mapview.frame.width,mapview.frame.height)
+        let mapImg = mapview.takeSnapshotInRect(x)
+
+        //此处应有图片拼接
+
+
+        let size = view.frame.size
+        UIGraphicsBeginImageContext(size)
+
+        let infoSize = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        let mapsize = CGRect(x: 0, y: image.size.height, width: size.width, height: mapImg.size.height)
+
+
+        mapImg!.drawInRect(mapsize)
+        image!.drawInRect(infoSize)
+
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+//        let xx = UIImageView(image: newImage)
+//        xx.frame = CGRectMake(0, 0, sWidth/2, sHeight/2)
+//        self.view.addSubview(xx)
+
+        Share.timeline("我的运动", img: newImage)
+
+    }
+
+    @IBAction func shareButtonTap(sender: AnyObject) {
+        shareScreenShot()
+//        Share.timeline("sdfsaf", img: UIImage(named: "bg7")!)
+//        Share.qq("dfs", description: "d", url: "http://learning2learn.cn", byQzone: true)
+    }
+
+
 }
