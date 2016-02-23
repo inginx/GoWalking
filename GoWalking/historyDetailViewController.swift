@@ -147,7 +147,8 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
 //        xx.frame = CGRectMake(0, 0, sWidth/2, sHeight/2)
 //        self.view.addSubview(xx)
 
-        Share.timeline("我的运动", img: newImage)
+//        Share.timeline("我的运动", img: newImage)
+        Share.weibo("哈哈，看看我的运动结果",img:newImage)
 
     }
 

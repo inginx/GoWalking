@@ -12,6 +12,32 @@ class Share: NSObject {
 
     static var weixinToken: dispatch_once_t = 0
 
+    static var weiboToken: dispatch_once_t = 0
+
+    static func weibo(title: String, img: UIImage) {
+        dispatch_once(&weiboToken) {
+            WeiboSDK.registerApp("433281613")
+        }
+
+        let authRequest = WBAuthorizeRequest()
+        authRequest.redirectURI = "https://api.weibo.com/oauth2/default.html"
+        authRequest.scope = "all"
+
+        //微博内容
+        let obj = WBMessageObject()
+        obj.text = title
+
+        //微博图片
+        let weibo_image = WBImageObject()
+        weibo_image.imageData = UIImageJPEGRepresentation(img, 1.0)
+
+        obj.imageObject = weibo_image
+
+        let request = WBSendMessageToWeiboRequest.requestWithMessage(obj, authInfo:authRequest, access_token:nil) as! WBSendMessageToWeiboRequest
+        request.shouldOpenWeiboAppInstallPageIfNotInstalled = false
+        WeiboSDK.sendRequest(request)
+    }
+
     static func timeline(title: String, img: UIImage) {
         dispatch_once(&weixinToken) {
             WXApi.registerApp("wx85f3d518c47c320a")

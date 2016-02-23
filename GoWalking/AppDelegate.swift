@@ -12,7 +12,7 @@ import Alamofire
 import KVNProgress
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WXApiDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WXApiDelegate,WeiboSDKDelegate{
 
     var window: UIWindow?
 
@@ -85,6 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
     func onResp(resp: BaseResp!){
         if resp.errCode == 0 {shareSuccss()}
         else if resp.errCode == -2 {shareFailure()}
+    }
+
+    func didReceiveWeiboRequest(request: WBBaseRequest!) {}
+    func didReceiveWeiboResponse(response: WBBaseResponse!){
+        if response.statusCode == .Success {shareSuccss()}
+        else if response.statusCode == .UserCancel {shareFailure()}
     }
 
     func shareSuccss() {
