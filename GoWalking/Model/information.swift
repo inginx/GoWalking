@@ -16,6 +16,8 @@ var inf = information()
 
 
 class information: NSObject {
+    let x = NSUserDefaults.standardUserDefaults()
+
     var username:String! , password:String!;
     var nickname = ""
     var avatar = "default.png"
@@ -23,10 +25,15 @@ class information: NSObject {
     var introduce = ""
     var openid = ""
 
+    var total_dis:Double = 0.0
+    var today_dis:Double = 0.0
+
+    var logined:Bool = false
+
     var tencentOAuth: TencentOAuth!
     
     override init(){
-        let x = NSUserDefaults.standardUserDefaults()
+        super.init()
         if let a = x.objectForKey("username") as? String {username = a} else {username=""}
         if let a = x.objectForKey("password") as? String {password = a} else {password=""}
         if let a = x.objectForKey("nickname") as? String {nickname = a}
@@ -34,6 +41,11 @@ class information: NSObject {
         if let a = x.objectForKey("mail") as? String {mail = a} else {mail=""}
         if let a = x.objectForKey("introduce")as? String {introduce = a} else {introduce = ""}
         if let a = x.objectForKey("Tencentopenid")as? String {openid = a} else {openid = ""}
+
+//        if let a = x.objectForKey("total_dis")as? Double {total_dis = a} else {total_dis = 0}
+//        if let a = x.objectForKey("today_dis")as? Double {today_dis = a} else {today_dis = 0}
+        self.计算路程()
+
         }
     
     func getVC(x:String)->UIViewController{
@@ -43,12 +55,14 @@ class information: NSObject {
     }
     
     func saveUser(){
-        let x = NSUserDefaults.standardUserDefaults()
         x.setObject(username, forKey: "username")
         x.setObject(password, forKey: "password")
         x.setObject(nickname, forKey: "nickname")
         x.setObject(introduce, forKey: "introduce")
         x.setObject(openid, forKey: "Tencentopenid")
+
+//        x.setObject(today_dis, forKey: "today_dis")
+//        x.setObject(total_dis, forKey: "total_dis")
     }
     
     func checklogin(completionHandler:(Bool)->Void){
@@ -69,7 +83,6 @@ class information: NSObject {
     }
     
     func logout(){
-        let x = NSUserDefaults.standardUserDefaults()
         x.removeObjectForKey("username")
         x.removeObjectForKey("password")
         x.removeObjectForKey("nickname")
@@ -95,6 +108,7 @@ class information: NSObject {
         request(.POST, urls.tencentLogin,parameters:para).responseJSON(){
             s in guard let res = s.result.value else{return}
             if (res["status"] as! Bool){
+                self.logined = true
                 self.username = res["username"] as! String
                 self.获取详细信息(completionHandler)
             }else{
@@ -144,8 +158,41 @@ class information: NSObject {
 
             inf.saveUser()
             completionHandler?()
+            self.计算路程()
         }
 
+    }
+
+    func 计算路程(Handler:(()->())? = nil){
+        var dis = 0.0
+        var todaydis = 0.0
+        var secondCount = 0
+        let todayDateS = NSDate().description
+        let todayString = todayDateS.substringToIndex(todayDateS.startIndex.advancedBy(10))
+
+        let history:[RunningData]!
+
+        if let a = x.objectForKey("history") as? NSData {
+            history = NSKeyedUnarchiver.unarchiveObjectWithData(a) as![RunningData]
+        } else  { history = [] }
+
+        for one in history{
+            dis += one.distance
+            secondCount += one.seconds
+            if one.startTime.description.substringToIndex(one.startTime.description.startIndex.advancedBy(10)) == todayString{
+                todaydis += one.distance
+            }
+        }
+        today_dis = todaydis
+        total_dis = dis
+        self.saveUser()
+
+        let para = ["total":dis,"today":todaydis]
+        if logined{
+            request(.POST, urls.rank,parameters:para)
+        }
+
+        Handler?()
     }
 
 }

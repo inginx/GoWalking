@@ -313,6 +313,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         history.append(current)
         historyData = NSKeyedArchiver.archivedDataWithRootObject(history)
         x.setObject(historyData, forKey: "history")
+        inf.计算路程()
         KVNProgress.showSuccessWithStatus("保存成功")
     }
 
