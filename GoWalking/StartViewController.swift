@@ -14,6 +14,7 @@ class StartViewController: UIViewController {
 
     @IBOutlet weak var runStartButton: UIButton!
     @IBOutlet weak var totalCountLabel: UILabel!
+    @IBOutlet weak var totalTimeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,15 +56,19 @@ class StartViewController: UIViewController {
 
         var dis = 0.0
         var todaydis = 0.0
+        var secondCount = 0
         let todayDateS = NSDate().description
         let todayString = todayDateS.substringToIndex(todayDateS.startIndex.advancedBy(10))
+
         for one in history{
             dis += one.distance
+            secondCount += one.seconds
             if one.startTime.description.substringToIndex(one.startTime.description.startIndex.advancedBy(10)) == todayString{
                 todaydis += one.distance
             }
         }
         totalCountLabel.text = String(format: "%.2f",dis/1000)
+        totalTimeLabel.text = String(format: "%.1f", Double(secondCount)/3600)
 
         let para = ["total":dis,"today":todaydis]
         request(.POST, urls.updateRunningDis,parameters:para)

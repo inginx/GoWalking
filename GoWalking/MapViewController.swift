@@ -83,10 +83,10 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     func mapView(mapView: MAMapView!, didUpdateUserLocation userLocation: MAUserLocation!, updatingLocation: Bool) {
         if updatingLocation {
             currentLocation = userLocation.location
+            updateSpeed(userLocation)
             if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0 ){
                 if(AvaiblePoints > 3){
                     addRoutePoint(mapView!.userLocation.location)
-                    updateSpeed(userLocation)
                     showRoute()
                 }
                 else {AvaiblePoints++}
