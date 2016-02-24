@@ -88,10 +88,16 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/KVNProgress.framework"
   install_framework "Pods/Kingfisher.framework"
   install_framework "Pods/MJRefresh.framework"
+  install_framework "Pods/PopMenu.framework"
+  install_framework "Pods/XHRealTimeBlur.framework"
+  install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/KVNProgress.framework"
   install_framework "Pods/Kingfisher.framework"
   install_framework "Pods/MJRefresh.framework"
+  install_framework "Pods/PopMenu.framework"
+  install_framework "Pods/XHRealTimeBlur.framework"
+  install_framework "Pods/pop.framework"
 fi

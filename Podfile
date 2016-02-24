@@ -10,3 +10,4 @@ pod 'Kingfisher', '~> 2.0'
 pod 'MJRefresh'
 pod "TencentOpenApiSDK/Basic"
 pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git" 
+pod 'PopMenu'
