@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PopMenu
+
 
 class Share: NSObject {
 
@@ -56,11 +58,10 @@ class Share: NSObject {
         WXApi.sendReq(req)
     }
 
-    static func qq(title: String, description: String, url: String, byQzone: Bool = false) {
-        let newsObj = QQApiNewsObject.objectWithURL(NSURL(string: url),
-            title: title,
-            description: description,
-            previewImageData: UIImageJPEGRepresentation(UIImage(named: "bg7")!, 1.0)) as! QQApiNewsObject
+    static func qq(title: String, description: String, img: UIImage, byQzone: Bool = false) {
+
+        let newsObj = QQApiImageObject.objectWithData(UIImageJPEGRepresentation(img, 1.0), previewImageData: (UIImageJPEGRepresentation(UIImage(named: "AppIcon")!, 1.0)), title: title, description: description)  as! QQApiImageObject
+
         if byQzone {
             newsObj.cflag = UInt64(kQQAPICtrlFlagQZoneShareOnStart)
         }
@@ -68,5 +69,35 @@ class Share: NSObject {
         QQApiInterface.sendReq(req)
     }
 
+    static func shareAction(img:UIImage,view:UIView!){
+        var items = [MenuItem]()
+
+        items.append(MenuItem(title: "微博", iconName: "weibo"))
+
+        if TencentOAuth.iphoneQQInstalled() {
+            items.append(MenuItem(title: "QQ", iconName: "qq"))
+            items.append(MenuItem(title: "说说", iconName: "qzone"))
+        }
+        if WXApi.isWXAppSupportApi() {
+            items.append(MenuItem(title: "微信", iconName: "weixin"))
+            items.append(MenuItem(title: "朋友圈", iconName: "timeline"))
+        }
+
+        let popMenu = PopMenu(frame: CGRectMake(0, 0, sWidth, sHeight), items: items)
+
+        popMenu.didSelectedItemCompletion = {
+            item in
+            switch item.title {
+            case "微博": Share.weibo("哈哈，看看我的运动结果",img: img)
+            case "QQ": Share.qq("我的运动成果", description: "羡慕吧！", img: img)
+            case "说说": Share.qq("我的运动成果", description: "羡慕吧！", img: img, byQzone: true)
+//            case "微信": Share.weixin("教务处通知", description: self.titleLabel.text!, url: self.url)
+            case "朋友圈": Share.timeline("我的运动", img: img)
+            default:break
+            }
+        }
+
+        popMenu.showMenuAtView(view)
+    }
     
 }

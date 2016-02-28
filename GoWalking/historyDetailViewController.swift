@@ -47,8 +47,8 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
     func initLabel(){
         let min=data.seconds/60;
         let hour=min/60;
-        startTimelabel.text = data.startTime.toString()
-        endTimeLabel.text = data.endTime.toString()
+        startTimelabel.text = data.startTime.toString("yyyy/MM/dd hh:mm")
+        endTimeLabel.text = data.endTime.toString("hh:mm")
         distanceLabel.text = String(format: "%.2f",data.distance)
         spendTimeLabel.text = String(format: "%d:%d:%d",hour%24,min%60,data.seconds%60)
         averageSpeedLabel.text = String(format: "%.2f",data.distance/Double(data.seconds) )
@@ -131,15 +131,14 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
         //此处应有图片拼接
 
 
-        let size = view.frame.size
+        let size = CGSize(width: view.frame.size.width, height: view.frame.size.height - 56 )
         UIGraphicsBeginImageContext(size)
 
         let infoSize = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         let mapsize = CGRect(x: 0, y: image.size.height, width: size.width, height: mapImg.size.height)
 
-
-        mapImg!.drawInRect(mapsize)
         image!.drawInRect(infoSize)
+        mapImg!.drawInRect(mapsize)
 
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -148,7 +147,9 @@ class historyDetailViewController: UIViewController ,MAMapViewDelegate{
 //        self.view.addSubview(xx)
 
 //        Share.timeline("我的运动", img: newImage)
-        Share.weibo("哈哈，看看我的运动结果",img:newImage)
+//        Share.weibo("哈哈，看看我的运动结果",img:newImage)
+//        self.view
+        Share.shareAction(newImage,view: self.view)
 
     }
 
