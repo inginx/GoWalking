@@ -22,6 +22,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.changeNavigationBarTextColor()
         self.tableview.rowHeight = UITableViewAutomaticDimension;
         self.tableview.estimatedRowHeight = 220.0;
         SetReflash()

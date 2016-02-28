@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
         AMapSearchServices.sharedServices().apiKey = MAPAPIKey
         AMapNaviServices.sharedServices().apiKey = MAPAPIKey
 
-        swizzlingMethod(UIViewController.self,oldSelector: "viewDidLoad",newSelector: "viewDidLoadForChangeTitleColor")
-        
+//        swizzlingMethod(UIViewController.self,oldSelector: "viewDidLoad",newSelector: "viewDidLoadForChangeTitleColor")
+
         inf.tencentOAuth = TencentOAuth(appId: "1105180266", andDelegate: self)
 
         if inf.username == ""{
@@ -38,11 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
         return true
     }
 // change nav color
-    func swizzlingMethod(clzz: AnyClass, oldSelector: Selector, newSelector: Selector) {
-        let oldMethod = class_getInstanceMethod(clzz, oldSelector)
-        let newMethod = class_getInstanceMethod(clzz, newSelector)
-        method_exchangeImplementations(oldMethod, newMethod)
-    }
+//    func swizzlingMethod(clzz: AnyClass, oldSelector: Selector, newSelector: Selector) {
+//        let oldMethod = class_getInstanceMethod(clzz, oldSelector)
+//        let newMethod = class_getInstanceMethod(clzz, newSelector)
+//        method_exchangeImplementations(oldMethod, newMethod)
+//    }
 
 
 
@@ -51,17 +51,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
     func tencentDidLogin() {
         if !inf.tencentOAuth.accessToken.isEmpty {
             inf.openid = inf.tencentOAuth.openId
-            inf.loginWithTencent(LoginWithOpenidErroeHandler){
-                if(inf.password != ""){
-                    request(.POST, urls.submitTencent,parameters : ["openid":inf.openid]).responseJSON{
-                        s in guard let res = s.result.value else {return}
-                        if res["success"] as! Bool {
-                            KVNProgress.showSuccessWithStatus("绑定成功")
-                        }else{
-                            KVNProgress.showErrorWithStatus(res["Msg"] as! String)
-                        }
+
+
+            if(inf.password != ""){
+                request(.POST, urls.submitTencent,parameters : ["openid":inf.openid]).responseJSON{
+                    s in guard let res = s.result.value else {return}
+                    if res["success"] as! Bool {
+                        KVNProgress.showSuccessWithStatus("绑定成功")
+                    }else{
+                        KVNProgress.showErrorWithStatus(res["Msg"] as! String)
                     }
                 }
+                inf.saveUser()
+                return
+            }
+
+
+            inf.loginWithTencent(LoginWithOpenidErroeHandler){
                 let x = inf.getVC("mainVC")
                 self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
             }
@@ -102,6 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
     }
 
     func getUserInfoResponse(response:APIResponse){
+        if inf.username != "" {
+//            inf.openid = 
+//            inf
+        }
         inf.nickname = response.jsonResponse["nickname"] as! String
         inf.avatar = response.jsonResponse["figureurl_qq_2"] as! String
         

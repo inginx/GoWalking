@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.changeNavigationBarTextColor()
         self.automaticallyAdjustsScrollViewInsets = false
         x = childViewControllers.last as!LoginViewTable
         

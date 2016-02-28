@@ -22,7 +22,6 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
-        
         tableview.backgroundView = UIImageView(image: UIImage(named: "history_bg1"))
     }
     

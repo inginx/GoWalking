@@ -10,24 +10,23 @@ import Foundation
 
 let sWidth = UIScreen.mainScreen().bounds.width
 let sHeight = UIScreen.mainScreen().bounds.height
-//let navBarColor = UIColor(red: 44.0/255.0, green: 171.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+let navBarColor = UIColor(red: 44.0/255.0, green: 171.0/255.0, blue: 241.0/255.0, alpha: 1.0)
 let navBarTextColor = UIColor.whiteColor()
 let navTitleAttribute = NSDictionary(object: navBarTextColor,forKey: NSForegroundColorAttributeName) as! [String : AnyObject]
 
 
 extension UIViewController {
-    func viewDidLoadForChangeTitleColor() {
-        self.viewDidLoadForChangeTitleColor()
-        if self.isKindOfClass(UINavigationController.classForCoder()) {
-            self.changeNavigationBarTextColor(self as! UINavigationController)
-        }
-    }
-    
-    func changeNavigationBarTextColor(navController: UINavigationController) {
-        let nav = navController as UINavigationController
-        nav.navigationBar.titleTextAttributes = navTitleAttribute
-        //nav.navigationBar.barTintColor = navBarColor
-        nav.navigationBar.tintColor = navBarTextColor
+//    func ChangeTitleColor() {
+//        if self.isKindOfClass(UINavigationController.classForCoder()) {
+//            self.changeNavigationBarTextColor(self as! UINavigationController)
+//        }
+//    }
+
+    func changeNavigationBarTextColor() {
+        let nav = self.navigationController
+        nav!.navigationBar.titleTextAttributes = navTitleAttribute
+        nav!.navigationBar.barTintColor = navBarColor
+        nav!.navigationBar.tintColor = navBarTextColor
     }
 }
 

@@ -22,6 +22,7 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.changeNavigationBarTextColor()
         TapAction =  UITapGestureRecognizer(target: self, action: "hideKeyboard")
     }
 
@@ -29,7 +30,9 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func confirmTap(sender: AnyObject) {
+        KVNProgress.showSuccessWithStatus("发布中")
         publish(){
+            KVNProgress.dismiss()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

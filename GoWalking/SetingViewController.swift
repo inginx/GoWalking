@@ -15,6 +15,7 @@ class SettingTable: UITableViewController,SinaWeiboActionSheetDelegate {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var usermail: UILabel!
     override func viewDidLoad() {
+        self.changeNavigationBarTextColor()
         userIcon.setRound()
     }
 
