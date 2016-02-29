@@ -60,7 +60,7 @@ class Share: NSObject {
 
     static func qq(title: String, description: String, img: UIImage, byQzone: Bool = false) {
 
-        let newsObj = QQApiImageObject.objectWithData(UIImageJPEGRepresentation(img, 1.0), previewImageData: (UIImageJPEGRepresentation(UIImage(named: "AppIcon")!, 1.0)), title: title, description: description)  as! QQApiImageObject
+        let newsObj = QQApiImageObject.objectWithData(UIImageJPEGRepresentation(img, 1.0), previewImageData:UIImageJPEGRepresentation(img,1.0), title: title, description: description)  as! QQApiImageObject
 
         if byQzone {
             newsObj.cflag = UInt64(kQQAPICtrlFlagQZoneShareOnStart)
@@ -75,7 +75,7 @@ class Share: NSObject {
         items.append(MenuItem(title: "微博", iconName: "weibo"))
 
         if TencentOAuth.iphoneQQInstalled() {
-//            items.append(MenuItem(title: "QQ", iconName: "qq"))
+            items.append(MenuItem(title: "QQ", iconName: "qq"))
             items.append(MenuItem(title: "说说", iconName: "qzone"))
         }
         if WXApi.isWXAppSupportApi() {
