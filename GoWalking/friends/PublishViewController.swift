@@ -30,7 +30,7 @@ class PublishViewController: UITableViewController ,UIImagePickerControllerDeleg
         dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func confirmTap(sender: AnyObject) {
-        KVNProgress.showSuccessWithStatus("发布中")
+        KVNProgress.showWithStatus("发布中")
         publish(){
             KVNProgress.dismiss()
             self.dismissViewControllerAnimated(true, completion: nil)
