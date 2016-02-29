@@ -75,11 +75,11 @@ class Share: NSObject {
         items.append(MenuItem(title: "微博", iconName: "weibo"))
 
         if TencentOAuth.iphoneQQInstalled() {
-            items.append(MenuItem(title: "QQ", iconName: "qq"))
+//            items.append(MenuItem(title: "QQ", iconName: "qq"))
             items.append(MenuItem(title: "说说", iconName: "qzone"))
         }
         if WXApi.isWXAppSupportApi() {
-            items.append(MenuItem(title: "微信", iconName: "weixin"))
+//            items.append(MenuItem(title: "微信", iconName: "weixin"))
             items.append(MenuItem(title: "朋友圈", iconName: "timeline"))
         }
 

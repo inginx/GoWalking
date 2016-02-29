@@ -24,11 +24,13 @@ class LoginViewController: UIViewController {
         self.changeNavigationBarTextColor()
         self.automaticallyAdjustsScrollViewInsets = false
         x = childViewControllers.last as!LoginViewTable
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToRegPage", name: "goToRegPage", object: nil)
         
     }
     
-    
+    func goToRegPage(){
+        self.navigationController?.pushViewController(inf.getVC("register"), animated: true)
+    }
 
     @IBAction func LoginTap(sender: AnyObject) {
         x.login()

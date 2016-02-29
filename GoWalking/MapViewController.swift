@@ -21,6 +21,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     var seconds:Int = 0
     var AvaiblePoints:Int = 0
     var timer1:NSTimer?
+    var typeIconTimer:NSTimer?
     var startTime:NSDate! = NSDate()
     var endTime:NSDate! = NSDate()
     var steps:Int = 0
@@ -29,6 +30,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     let pedometer = CMPedometer()
     var flags: NSMutableArray! = []
 
+    @IBOutlet weak var typeIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +40,15 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         计时Timer()
         startTime = NSDate()
         StartReadStep()
+        showWeakGps(true)
         
-        
+        self.changeNavigationBarTextColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
+
     }
-    
+
 
     
 
@@ -86,10 +90,14 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             updateSpeed(userLocation)
             if (currentLocation?.horizontalAccuracy < kCLLocationAccuracyNearestTenMeters*3 && currentLocation?.horizontalAccuracy > 0 ){
                 if(AvaiblePoints > 3){
+                    showWeakGps(false)
                     addRoutePoint(mapView!.userLocation.location)
                     showRoute()
                 }
                 else {AvaiblePoints++}
+            }else{
+                AvaiblePoints = 0
+                showWeakGps(true)
             }
         }
     }
@@ -190,7 +198,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     //MARK:- Label Updaters
     func updateDistance(dis:Double){
         self.distance += dis
-        distanceLabel.text = String(format: "%.2f", distance)
+        distanceLabel.text = String(format: "%.2f", distance/1000)
     }
     func updateSpeed(loc:MAUserLocation){
         var speed = Double(loc.location.speed)
@@ -206,19 +214,38 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         let avg = distance / Double(seconds)
         averageLabel.text = String(format: "%.2f", avg)
     }
+
+    func updateTypeIcon(){
+        let image:UIImage!
+        switch JudgingRuningType(){
+        case .cycling:image = UIImage(named: "骑车")
+        case .walking:image = UIImage(named: "走路")
+        case .runing:image = UIImage(named: "跑步")
+        }
+        typeIcon.image = image
+
+    }
+
     //MARK:- timers
     func secondsAdder(){
         self.seconds += 1
         updateTime()
         uodateAverage()
     }
+
+
     func 计时Timer(enable:Bool = true){
         if enable{
         self.timer1 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "secondsAdder", userInfo: nil, repeats: true)
+
+        self.typeIconTimer = NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "updateTypeIcon", userInfo: nil, repeats: true)
         }
+
         else{
             timer1?.invalidate()
             timer1 = nil
+            typeIconTimer?.invalidate()
+            typeIconTimer = nil
         }
     }
 //MARK:- 计步器
@@ -262,9 +289,6 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         endTime = NSDate()
         popSaveAlert()
 
-        
-//        let mainVC = inf.getVC("mainVC")
-//        presentViewController(mainVC, animated: true, completion: nil)
 
     }
     
@@ -284,6 +308,18 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     }
 
     //MARK:- 保存
+
+    func JudgingRuningType()->RunningType{
+        //Judging Runing Type
+        let distancePerStep = Double(distance)/Double(steps)
+        let avg = distance / Double(seconds)
+
+        if distancePerStep > 2{return RunningType.cycling}
+        else if avg > 1.4 {return RunningType.runing}
+        else {return RunningType.walking}
+    }
+
+
     func save(){
         let current = RunningData()
         current.locations = locations
@@ -292,14 +328,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         current.distance = distance
         current.seconds = self.seconds
         current.steps = self.steps
-
-        //Judging Runing Type
-        let distancePerStep = Double(distance)/Double(steps)
-        let avg = distance / Double(seconds)
-        
-        if distancePerStep > 2{current.kind = RunningType.cycling}
-        else if avg > 1.4 {current.kind = RunningType.runing}
-        else {current.kind = RunningType.walking}
+        current.kind = JudgingRuningType()
 
         let x = NSUserDefaults.standardUserDefaults()
         var history:[RunningData] = []
@@ -332,5 +361,22 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         
         presentViewController(alert, animated: true, completion: nil)
         }
+
+    func showWeakGps(isWeak:Bool){
+        if (isWeak && self.view.viewWithTag(50) == nil){
+            let x = UILabel(frame: CGRectMake(0 , sHeight - 104, sWidth, 50.0))
+            x.backgroundColor = UIColor.blackColor()
+            x.alpha = 0.5
+            x.textColor = UIColor.whiteColor()
+            x.tag = 50
+            x.text = "GPS信号弱，将会影响定位及位置记录。"
+            x.textAlignment = NSTextAlignment.Center
+            self.view.addSubview(x)
+        }
+        else{
+            let x = self.view.viewWithTag(50) as? UILabel
+            x?.removeFromSuperview()
+        }
+    }
 
 }

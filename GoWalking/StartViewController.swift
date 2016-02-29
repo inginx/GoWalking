@@ -21,11 +21,14 @@ class StartViewController: UIViewController {
         inf.登录({s in KVNProgress.showErrorWithStatus(s);inf.logout()})
         runStartButton.setRound()
         
+        self.changeNavigationBarTextColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barTintColor = navBarColor
+        self.navigationController?.navigationBar.tintColor = navBarTextColor
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         updateTotalLabel()
     }

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Running-->
@@ -94,16 +95,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="completed" translatesAutoresizingMaskIntoConstraints="NO" id="W5y-Yv-5kJ">
                                 <rect key="frame" x="167" y="259" width="30" height="30"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-2M-z6h">
-                                <rect key="frame" x="275" y="224" width="65" height="65"/>
-                                <state key="normal" image="facebook"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-U6-Y2k">
                                 <rect key="frame" x="115" y="197" width="135" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="走路" translatesAutoresizingMaskIntoConstraints="NO" id="Ub4-kz-h8I">
+                                <rect key="frame" x="280" y="226" width="61" height="61"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -155,6 +155,7 @@
                         <outlet property="setpsLabel" destination="Wo9-U6-Y2k" id="isM-ss-wNr"/>
                         <outlet property="speedLabel" destination="M3I-P4-VbT" id="OXd-YY-WzV"/>
                         <outlet property="timeLabel" destination="N4d-ag-4Dj" id="U1e-id-LeG"/>
+                        <outlet property="typeIcon" destination="Ub4-kz-h8I" id="Rsx-qN-L36"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -363,16 +364,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="header bg" translatesAutoresizingMaskIntoConstraints="NO" id="duL-Fm-NUi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yma-zx-ZP6">
-                                <rect key="frame" x="37" y="375" width="300" height="300"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="开始跑步－按钮">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="StartButtonTap:" destination="3Y8-UJ-JhK" eventType="touchUpInside" id="5Dy-1Q-MaB"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累计路程（公里）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-tp-vdA">
                                 <rect key="frame" x="101" y="242" width="173" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
@@ -403,13 +394,22 @@
                                 <color key="textColor" red="0.55150240380000004" green="0.55150240380000004" blue="0.55150240380000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="开始跑步－按钮" translatesAutoresizingMaskIntoConstraints="NO" id="eSB-fX-rk6">
+                                <rect key="frame" x="37" y="344" width="311" height="311"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8s-9V-m5o">
+                                <rect key="frame" x="153" y="460" width="79" height="79"/>
+                                <connections>
+                                    <action selector="StartButtonTap:" destination="3Y8-UJ-JhK" eventType="touchUpInside" id="uj1-Wy-2GN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97227032230640986" green="0.97920274172980748" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="奔跑吧" id="Im4-G9-geT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="runStartButton" destination="Yma-zx-ZP6" id="Vt2-E8-YTn"/>
+                        <outlet property="runStartButton" destination="L8s-9V-m5o" id="eP3-am-dpi"/>
                         <outlet property="totalCountLabel" destination="z2b-Up-J4c" id="i58-XB-acd"/>
                         <outlet property="totalTimeLabel" destination="LmV-qa-PC4" id="pBT-Ue-N3w"/>
                     </connections>
@@ -938,7 +938,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="wjH-0g-EHa" kind="push" identifier="history" id="6uR-uK-zuH"/>
+                                            <segue destination="wjH-0g-EHa" kind="push" identifier="history" id="6uR-uK-zuH">
+                                                <segue key="commit" inheritsFrom="parent" id="vcG-Ob-Sfr"/>
+                                                <segue key="preview" inheritsFrom="commit" id="Iab-Q8-bbH"/>
+                                            </segue>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1500,26 +1503,26 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="42" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-Py-gd6">
-                                            <rect key="frame" x="280" y="30" width="49" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今天(km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCN-aQ-7rZ">
-                                            <rect key="frame" x="235" y="8" width="69" height="21"/>
+                                            <rect key="frame" x="102" y="44" width="69" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="累计(km)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaY-Lj-B9i">
-                                            <rect key="frame" x="101" y="53" width="69" height="21"/>
+                                            <rect key="frame" x="250" y="8" width="69" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="43" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJS-XS-boF">
-                                            <rect key="frame" x="178" y="53" width="62" height="21"/>
+                                            <rect key="frame" x="257" y="30" width="110" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="42" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-Py-gd6">
+                                            <rect key="frame" x="184" y="44" width="49" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -1927,10 +1930,12 @@
         <image name="历史" width="30" height="30"/>
         <image name="发现" width="30" height="30"/>
         <image name="开始跑步－按钮" width="370" height="370"/>
+        <image name="走路" width="199" height="199"/>
         <image name="运动" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mnl-MI-x5T"/>
         <segue reference="AgX-bo-FwX"/>
+        <segue reference="Mnl-MI-x5T"/>
+        <segue reference="6uR-uK-zuH"/>
     </inferredMetricsTieBreakers>
 </document>

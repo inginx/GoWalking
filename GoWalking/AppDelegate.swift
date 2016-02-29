@@ -108,21 +108,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
     }
 
     func getUserInfoResponse(response:APIResponse){
-        if inf.username != "" {
-//            inf.openid = 
-//            inf
-        }
         inf.nickname = response.jsonResponse["nickname"] as! String
         inf.avatar = response.jsonResponse["figureurl_qq_2"] as! String
-        
-        let x = inf.getVC("register") as! registerViewController
-        var presentedVC = window?.rootViewController
-        while let pVC = presentedVC?.presentedViewController {
-            presentedVC = pVC
-            print(presentedVC)
-            if presentedVC!.isKindOfClass(UINavigationController){break}
-        }
-        (presentedVC as! UINavigationController).pushViewController(x, animated: true)
+        NSNotificationCenter.defaultCenter().postNotificationName("goToRegPage", object: nil)
     }
 
     func handleTencentOpenUrl(url: String) -> Bool {
