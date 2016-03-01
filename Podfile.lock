@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (3.1.2)
+  - Alamofire (3.2.0)
   - AMapNavi (1.3.2)
   - AMapSearch (3.0.1)
-  - Kingfisher (2.0.0)
-  - KVNProgress (2.2.1)
+  - Kingfisher (2.0.3)
+  - KVNProgress (2.2.3)
   - MJRefresh (3.1.0)
   - pop (1.0.9)
   - PopMenu (2.4):
@@ -34,11 +34,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 SPEC CHECKSUMS:
-  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   AMapNavi: 01b4ec04204f36814bc3d320d7b548b98a3db5c5
   AMapSearch: 431b082417bd3da0c2fe594c4822b664607891e9
-  Kingfisher: 67d280b39e878afbd467c80953924a61950c45e4
-  KVNProgress: 7001d2d16a2755cee5599e8e485befe056f2197b
+  Kingfisher: 44c1f1912f19371a67d701e67c96d6bb45ca1c8d
+  KVNProgress: 099c2d0feca4fee4ae3dffee26378c7e2a04edcf
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
