@@ -47,6 +47,12 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
 
+
+        let pauseItem = UIApplicationShortcutItem(type: "暂停/停止", localizedTitle: "暂停/停止")
+        UIApplication.sharedApplication().shortcutItems = [pauseItem]
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pause", name: "pause", object: nil)
+
     }
 
 
@@ -293,6 +299,10 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
     }
     
     @IBAction func PauseTap(sender: AnyObject) {
+        pause()
+    }
+
+    func pause(){
         if mapView!.showsUserLocation{
             AvaiblePoints = 0
             mapView.showsUserLocation = false
@@ -305,6 +315,7 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
             计时Timer(true)
             StartReadStep()
         }
+
     }
 
     //MARK:- 保存
@@ -352,11 +363,19 @@ class MapViewController: UIViewController ,MAMapViewDelegate, AMapSearchDelegate
         alert.addAction(UIAlertAction(title: "保存！", style: UIAlertActionStyle.Default){
             _ in
             self.save();
+
+            let startItem = UIApplicationShortcutItem(type: "开始跑步", localizedTitle: "开始跑步")
+            UIApplication.sharedApplication().shortcutItems = [startItem]
+
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         alert.addAction(UIAlertAction(title: "算了吧", style: UIAlertActionStyle.Cancel) {
             _ in
+            let startItem = UIApplicationShortcutItem(type: "开始跑步", localizedTitle: "开始跑步")
+            UIApplication.sharedApplication().shortcutItems = [startItem]
+
             self.dismissViewControllerAnimated(true, completion: nil)
+
             })
         
         presentViewController(alert, animated: true, completion: nil)

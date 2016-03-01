@@ -34,7 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
             let VC = inf.getVC("LoginNav")
             window?.rootViewController = VC
         }
-        
+
+
+        let startItem = UIApplicationShortcutItem(type: "开始跑步", localizedTitle: "开始跑步")
+
+        application.shortcutItems = [startItem]
+
         return true
     }
 // change nav color
@@ -68,8 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
 
 
             inf.loginWithTencent(LoginWithOpenidErroeHandler){
-                let x = inf.getVC("mainVC")
-                self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
+                NSNotificationCenter.defaultCenter().postNotificationName("goToMainPage", object: nil)
+//                let x = inf.getVC("mainVC")
+//                self.window?.rootViewController?.presentViewController(x, animated: true, completion: nil)
             }
         }
 
@@ -123,6 +129,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
         if string.hasPrefix("tencent1105180266") {return handleTencentOpenUrl(string)}
         else if string.hasPrefix("wx") {return WXApi.handleOpenURL(url, delegate: self)}
         return false
+    }
+
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void){
+        if inf.username == ""{return}
+        switch shortcutItem.type {
+        case "开始跑步":NSNotificationCenter.defaultCenter().postNotificationName("startRunning", object: nil)
+        case "暂停/停止":NSNotificationCenter.defaultCenter().postNotificationName("pause", object: nil)
+        default:break
+        }
     }
 
 }

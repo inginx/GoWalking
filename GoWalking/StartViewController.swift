@@ -27,12 +27,23 @@ class StartViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = navBarColor
         self.navigationController?.navigationBar.tintColor = navBarTextColor
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startRunning", name: "startRunning", object: nil)
+
+
+
     }
 
     override func viewWillAppear(animated: Bool) {
         updateTotalLabel()
     }
-    
+
+
+    func startRunning(){
+        let VC = inf.getVC("runningVC")
+        presentViewController(VC, animated: true, completion: nil)
+    }
+
     func loginCheck(x:Bool){
         if !x{
             inf.logout()

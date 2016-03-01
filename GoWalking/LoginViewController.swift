@@ -25,12 +25,26 @@ class LoginViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         x = childViewControllers.last as!LoginViewTable
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToRegPage", name: "goToRegPage", object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "goToMainPage", name: "goToMainPage", object: nil)
+
+
     }
-    
+
+
+
     func goToRegPage(){
         self.navigationController?.pushViewController(inf.getVC("register"), animated: true)
     }
+
+    func goToMainPage(){
+        if (self.presentingViewController != nil){
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            let vc = inf.getVC("mainVC")
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+
 
     @IBAction func LoginTap(sender: AnyObject) {
         x.login()

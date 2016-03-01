@@ -55,7 +55,11 @@ class RegistTableViewController: UITableViewController,UITextViewDelegate ,regis
 
         self.automaticallyAdjustsScrollViewInsets = false
 
+    }
+
+    override func viewWillAppear(animated: Bool) {
         if inf.openid != ""{
+            nickname.text = inf.nickname
             nickname.text = inf.nickname
         }
     }

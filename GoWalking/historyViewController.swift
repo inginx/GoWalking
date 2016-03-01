@@ -112,7 +112,8 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "history"{
             let vc = segue.destinationViewController as! historyDetailViewController
-            let indexPath = tableview.indexPathForSelectedRow
+            let cell = sender as! UITableViewCell
+            let indexPath = tableview.indexPathForCell(cell)
             vc.data = history[(indexPath?.row)!]
         }
     }
