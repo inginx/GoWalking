@@ -45,7 +45,7 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
         else{
             if let x = self.view.viewWithTag(50){
                 x.removeFromSuperview()
-                tableview.hidden = false
+//                tableview.hidden = false
             }
         }
     }
@@ -60,11 +60,12 @@ class historyViewController: UIViewController, UITableViewDelegate, UITableViewD
     func showEmptyLabel(){
         if (self.view.viewWithTag(50) != nil){return}
         let x = UILabel(frame: CGRectMake(0, sHeight/2, sWidth, 20.0))
+        x.textColor = UIColor.whiteColor()
         x.tag = 50
         x.text = "暂时没有记录哦~先跑跑步吧！"
         x.textAlignment = NSTextAlignment.Center
         self.view.addSubview(x)
-        tableview.hidden = true
+//        tableview.hidden = true
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){

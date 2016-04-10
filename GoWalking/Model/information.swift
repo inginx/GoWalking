@@ -133,6 +133,7 @@ class information: NSObject {
             guard let  res = s.result.value else{ KVNProgress.showErrorWithStatus("网络故障");return}
             let status = res["status"] as! Bool;
             if status == true{
+                self.logined = true
                 inf.username = username
                 inf.password = pwd
                 self.获取详细信息(completionHandler)

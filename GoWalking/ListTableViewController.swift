@@ -33,9 +33,10 @@ class ListTableViewController: UITableViewController {
         case .friends:url = urls.friendList
         case .waitForAccept:url = urls.wait4Accept
         }
+        print(url)
         request(.GET, url).responseJSON{
             s in guard let res = s.result.value else{return}
-            
+            print(s)
             self.dataArray = res["data"] as![NSDictionary]
             self.tableView.reloadData()
         }

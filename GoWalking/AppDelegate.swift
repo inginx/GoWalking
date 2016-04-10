@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,TencentSessionDelegate ,WX
             window!.makeKeyAndVisible()
             let VC = inf.getVC("LoginNav")
             window?.rootViewController = VC
+        }else{
+//            inf.登录()
         }
 
 

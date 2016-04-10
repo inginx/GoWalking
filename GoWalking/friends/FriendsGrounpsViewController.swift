@@ -27,6 +27,8 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
         self.tableview.estimatedRowHeight = 220.0;
         SetReflash()
         tableview.mj_header.beginRefreshing()
+
+        tableview.delegate = self
     }
 
     func SetReflash(){
@@ -43,6 +45,8 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
     func pullUp(){
         getData(false){
             self.tableview.mj_header.endRefreshing()
+            self.noMore = false
+            self.footer.resetNoMoreData()
         }
     }
 
@@ -55,6 +59,7 @@ class FriendsGrounpsViewController: UIViewController,UITableViewDataSource,UITab
 
     func getData(addPage:Bool,complete:(()->())? = nil){
         if !addPage{self.page = 0}else{self.page++}
+        print(page)
         request(.POST, urls.circleFeed,parameters:["page":page]).responseJSON{
             s in guard let res = s.result.value else{self.page--;return}
             self.noMore =  res["end"] as! Bool
